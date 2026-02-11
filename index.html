@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empires III - World Conquest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Marcellus&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=mobile-map-fix-25" />
+</head>
+<body>
+  <main class="cabinet">
+    <header class="top-chrome">
+      <button id="new-game-btn" class="icon-btn" aria-label="new campaign" title="New Campaign">HOME</button>
+      <div id="date-label" class="season-title">Spring 1850</div>
+      <div class="top-actions">
+        <button id="sound-toggle-btn" class="icon-btn" aria-pressed="true" title="Toggle sound">SFX ON</button>
+        <button id="sound-test-btn" class="icon-btn" title="Test sound">TEST</button>
+        <div id="turn-pill" class="turn-pill">Player Regency</div>
+      </div>
+    </header>
+
+    <section class="board-frame">
+      <div class="map-stage">
+        <svg id="world-map" class="world-map" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet" aria-label="Conquest map"></svg>
+        <div id="movement-badge" class="movement-badge" aria-live="polite"></div>
+        <section id="country-picker" class="country-picker" aria-live="polite">
+          <div class="country-picker-card">
+            <h2>Choose Your Starting Country</h2>
+            <p>
+              Pick your empire. You will start in that country&apos;s capital, and each AI will begin in a different major capital.
+            </p>
+            <div id="country-picker-options" class="country-picker-options"></div>
+          </div>
+        </section>
+        <section id="mobile-next-step" class="mobile-next-step" aria-live="polite">
+          <p id="mobile-next-text">Next: Tap one of your territories.</p>
+          <div class="mobile-next-actions">
+            <button id="mobile-next-btn" class="order-btn">Begin Offensive</button>
+            <button id="mobile-end-btn" class="order-btn secondary">End Season</button>
+          </div>
+        </section>
+        <div class="map-controls" aria-label="Map controls">
+          <button id="zoom-in-btn" class="map-control-btn" title="Zoom in" aria-label="Zoom in">+</button>
+          <button id="zoom-out-btn" class="map-control-btn" title="Zoom out" aria-label="Zoom out">-</button>
+          <button id="zoom-reset-btn" class="map-control-btn wide" title="Reset view" aria-label="Reset view">RESET</button>
+        </div>
+
+        <aside id="orders-panel" class="orders-panel">
+          <button id="close-panel-btn" class="close-panel-btn" aria-label="toggle panel">X</button>
+
+          <section class="order-card status-card">
+            <h2 id="status-text">Choose a home base and expand your empire.</h2>
+            <div class="status-grid">
+              <div><span>Turn</span><strong id="turn-label">Player</strong></div>
+              <div><span>Phase</span><strong id="phase-label">Reinforce</strong></div>
+              <div><span>Reinforcements</span><strong id="reinforcement-label">0</strong></div>
+              <div><span>Selection</span><strong id="selection-label">None</strong></div>
+            </div>
+          </section>
+
+          <section class="order-card control-card">
+            <button id="start-attack-btn" class="order-btn">Begin Offensive</button>
+            <button id="attack-btn" class="order-btn danger">Resolve Battle</button>
+            <button id="end-turn-btn" class="order-btn">End Season</button>
+
+            <div class="attack-force-panel">
+              <div class="attack-force-head">
+                <span>Attack Force</span>
+                <strong id="army-send-value">1 / 1</strong>
+              </div>
+              <input id="army-send-slider" type="range" min="1" max="1" value="1" step="1" />
+              <p id="army-send-hint">Select your attacking territory to set force.</p>
+              <div class="attack-force-head">
+                <span>Ship Force</span>
+                <strong id="ship-send-value">0 / 0</strong>
+              </div>
+              <input id="ship-send-slider" type="range" min="0" max="0" value="0" step="1" />
+              <p id="ship-send-hint">Ships add heavy attack power.</p>
+              <p id="attack-success-label">Success chance: --</p>
+            </div>
+          </section>
+
+          <section class="order-card ops-card">
+            <h3>Buy Armies To Conquer</h3>
+            <p id="buy-armies-info">10 armies cost $400</p>
+            <button id="buy-armies-btn" class="order-btn">Buy 10 Armies ($400)</button>
+          </section>
+
+          <section class="order-card ops-card">
+            <h3>Buy Ships To Transport</h3>
+            <p id="buy-ships-info">5 ships cost $400</p>
+            <button id="buy-ships-btn" class="order-btn">Buy 5 Ships ($400)</button>
+          </section>
+
+          <section class="order-card ops-card">
+            <h3>Fortify Territory</h3>
+            <p id="fortify-info">Defend selected friendly territory twice as well.</p>
+            <button id="fortify-btn" class="order-btn">Fortify Territory ($1000)</button>
+          </section>
+        </aside>
+
+        <section id="mobile-shop-bar" class="mobile-shop-bar">
+          <button id="mobile-buy-armies-btn" class="shop-btn">+10 Armies $400</button>
+          <button id="mobile-buy-ships-btn" class="shop-btn">+5 Ships $400</button>
+          <button id="mobile-fortify-btn" class="shop-btn">Fortify $1000</button>
+        </section>
+
+        <section id="mobile-force-popup" class="mobile-force-popup" aria-live="polite">
+          <button id="mobile-force-close-btn" class="force-popup-close" aria-label="Hide attack force controls">Hide</button>
+          <div class="mobile-force-head">
+            <span>Attack Force</span>
+            <strong id="mobile-army-send-value">1 / 1</strong>
+          </div>
+          <input id="mobile-army-send-slider" type="range" min="1" max="1" value="1" step="1" />
+          <p id="mobile-army-send-hint">Select your attacking territory.</p>
+          <div class="mobile-force-head">
+            <span>Ship Force</span>
+            <strong id="mobile-ship-send-value">0 / 0</strong>
+          </div>
+          <input id="mobile-ship-send-slider" type="range" min="0" max="0" value="0" step="1" />
+          <p id="mobile-ship-send-hint">Ships strike harder than troops.</p>
+          <p id="mobile-attack-success-label">Success chance: --</p>
+          <button id="mobile-resolve-btn" class="order-btn danger">Resolve Battle</button>
+        </section>
+        <button id="mobile-force-open-btn" class="force-popup-open" aria-label="Show attack force controls">FORCE</button>
+        <div id="battle-outcome" class="battle-outcome" aria-live="assertive"></div>
+
+        <div class="instruction-ribbon" id="ribbon-text">Choose a home base and expand your empire.</div>
+      </div>
+
+      <footer class="bottom-chrome">
+        <div class="power-wrap" aria-label="territory control bar">
+          <div class="power-strip">
+            <div id="power-player" class="power-fill player"></div>
+            <div id="power-ai1" class="power-fill ai1"></div>
+            <div id="power-ai2" class="power-fill ai2"></div>
+            <div id="power-ai3" class="power-fill ai3"></div>
+            <div id="power-ai4" class="power-fill ai4"></div>
+            <div id="power-neutral" class="power-fill neutral"></div>
+          </div>
+          <div class="power-legend">
+            <span id="power-player-label">Player 33%</span>
+            <span id="power-ai-label">AI Total 33%</span>
+            <span id="power-neutral-label">Unclaimed 34%</span>
+          </div>
+        </div>
+        <div class="treasury">$<span id="treasury-label">5,000</span></div>
+      </footer>
+    </section>
+
+    <section class="log-panel">
+      <h3>War Ledger</h3>
+      <ul id="log"></ul>
+    </section>
+  </main>
+
+  <script src="./game.js?v=mobile-map-fix-25"></script>
+</body>
+</html>

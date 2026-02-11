@@ -1,0 +1,72 @@
+Original prompt: remember that game i talked about The game about taking over civilizations, Empires & Empires II. I just realized it’s just like Risk, can you help me build a similar game?
+
+## 2026-02-10
+- Set up `develop-web-game` skill workflow for this turn.
+- User feedback: North America/USA still does not match reference style and is still wrong.
+- Installed Node.js/Homebrew (`node`, `npm`, `npx`) to enable Playwright-based validation loop.
+
+### TODO (current turn)
+- Run Playwright client and capture current North America state.
+- Adjust North America territory polygons to match user reference screenshot style.
+- Re-run Playwright capture and verify map, labels, and interactions remain usable.
+- Installed Playwright package and Chromium under `~/.codex/skills/develop-web-game`.
+- Ready to run Playwright visual regression loop for this map fix.
+- Captured baseline and post-change screenshots via Playwright client.
+- Reworked USA region polygons again to reduce grid-like blockiness and improve organic territory boundaries.
+- Verified JS parse after each geometry patch (`OK parse`).
+- Generated focused screenshots at `/tmp/us-current.png`, `/tmp/us-after-fix.png`, `/tmp/us-after-fix-2.png`.
+- Generated full-map skill capture at `/tmp/webgame-capture-after-us-fix/shot-0.png`.
+
+### Remaining issues noted
+- US still has some straight shared borders due to limited region count and adjacency constraints.
+- If user wants closer match to reference, next step is a dedicated North America polygon pass including Canada/Mexico reshaping and optional subdivision tuning (still 8 US regions).
+- Added a dedicated map texture pass: stronger ocean gradient/wash/noise/vignette layers and richer land parchment noise/shading overlays.
+- Updated SVG water layering in `buildMap()` to include `ocean-wash` and `ocean-vignette` layers for a painted look closer to reference.
+- Tuned CSS map palette/strokes/texture opacities for higher contrast and vintage texture readability.
+- Bumped cache-bust query string to `mobile-map-fix-19` in `index.html` so mobile Safari fetches the new texture assets.
+- Fixed token/chip occlusion by splitting SVG rendering into two layers: terrain polygons below and UI chips/labels above.
+- Replaced label anchor source with polygon centroid-based placement (with token-proximity fallback), reducing capital-name drift/misalignment.
+- Added `.territory-ui-layer { pointer-events: none; }` so chip overlays do not block map interactions.
+- Refined capital label placement: use blended centroid+capital anchors and enforce inside-polygon fallback to reduce off-region labels.
+- Removed forced upward label offset from token proximity, which was causing visible misalignment in the US.
+- Reordered UI layer draw order so labels render above troop/ship chips.
+- Bumped asset cache key to `mobile-map-fix-20` to force browser refresh for layering/label alignment fixes.
+- Updated capital labels per request: `US Southeast` is now `Washington`; `US Northeast` now uses `New York`.
+- Added looping background music (procedural synth) that fits the period strategy style and starts on first user interaction.
+- Wired music lifecycle to existing SFX toggle: turning SFX off stops background music; turning it on restarts the loop.
+- Bumped cache key to `mobile-map-fix-21` so browser reloads updated JS.
+- Fixed region-name occlusion by implementing dynamic anti-overlap label placement against all number chips each frame (desktop + mobile).
+- Split rendering into dedicated territory token and label layers so labels remain above terrain and can be nudged independently.
+- Updated movement and combat-related text cues to consistently use capital labels via `territoryLabel(...)` (including move cue banner and action logs).
+- Corrected label connector geometry scaling when zooming so connector endpoints stay visually anchored.
+- Bumped cache key to `mobile-map-fix-22` in `index.html` for JS/CSS refresh.
+- Validation run completed with Playwright captures:
+  - `/tmp/webgame-capture-overlap-fixed-iter/shot-0.png`
+  - `/tmp/desktop-europe-check.png`
+  - `/tmp/desktop-south-america-check.png`
+  - `/tmp/mobile-south-america-check.png`
+- Added explicit start-country selection flow (overlay modal) so player chooses empire before the campaign starts.
+- New fixed start-country pool:
+  - United States -> Washington (`US Southeast`)
+  - France -> Paris (`France`)
+  - United Kingdom -> London (`British Isles`)
+  - Japan -> Edo (`Japan South`)
+  - South Africa -> Cape Town (`Southern Africa`)
+  - Russia -> Moscow (`Russia West`)
+- AI empires now start in deterministic country capitals from the same pool (excluding player pick), one capital per AI.
+- Game actions are locked while start-country picker is open; map selection/turn actions are disabled until user chooses.
+- `HOME` now opens the start-country picker instead of immediately randomizing starts.
+- Startup now shows picker immediately after load; selecting a country starts game and focuses the map on that capital.
+- Bumped cache key to `mobile-map-fix-23` in `index.html`.
+- Validation screenshots:
+  - `/tmp/webgame-capture-country-picker/shot-0.png` (desktop picker visible)
+  - `/tmp/webgame-capture-country-start-uk/shot-0.png` (desktop start after UK selected)
+  - `/tmp/mobile-country-picker.png` (mobile picker visible)
+  - `/tmp/mobile-country-start-japan.png` (mobile start after Japan selected)
+- Added visual country flags to each start-country selection card in the beginning picker.
+- Country picker entries now show: `flag + country name + capital`.
+- Styling added for flag alignment/size on desktop and mobile.
+- Bumped cache key to `mobile-map-fix-24` in `index.html`.
+- Validation screenshots for flag picker:
+  - `/tmp/webgame-capture-country-flags-picker/shot-0.png`
+  - `/tmp/mobile-country-picker-flags.png`
