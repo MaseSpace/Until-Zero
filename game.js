@@ -755,6 +755,7 @@ const state = {
   attackForce: 1,
   attackShips: 0,
   selection: { from: null, to: null },
+  viewedTerritory: null,
   homeBase: null,
   ships: 0,
   playerShipLocations: {},
@@ -2934,6 +2935,7 @@ const turnLabel = document.getElementById("turn-label");
 const phaseLabel = document.getElementById("phase-label");
 const reinforcementLabel = document.getElementById("reinforcement-label");
 const selectionLabel = document.getElementById("selection-label");
+const regionValueLabel = document.getElementById("region-value-label");
 const statusText = document.getElementById("status-text");
 const ribbonText = document.getElementById("ribbon-text");
 const dateLabel = document.getElementById("date-label");
@@ -6205,6 +6207,12 @@ function claimedArea(owner) {
   }, 0);
 }
 
+function territoryValue(name) {
+  if (!name || !TERRITORY_AREAS[name]) return 0;
+  const share = TERRITORY_AREAS[name] / TOTAL_MAP_AREA;
+  return Math.round(share * ECONOMY.annualIncomeScale);
+}
+
 function annualIncomeFor(owner) {
   const areaShare = claimedArea(owner) / TOTAL_MAP_AREA;
   return Math.max(
@@ -6277,14 +6285,23 @@ function checkGameOver() {
 function applyAnnualIncomeIfNeeded() {
   if (state.seasonIndex !== 0) return;
   if (state.year <= state.lastIncomeYear) return;
-  const activeOwner = state.turn || "player";
-  const income = annualIncomeFor(activeOwner);
-  const areaShare = (claimedArea(activeOwner) / TOTAL_MAP_AREA) * 100;
-  const nextTreasury = getOwnerTreasury(activeOwner) + income;
-  setOwnerTreasury(activeOwner, nextTreasury);
+
+  const owners = ["player", ...AI_OWNERS];
+  owners.forEach((owner) => {
+    if (territoryCount(owner) > 0) {
+      const income = annualIncomeFor(owner);
+      const current = getOwnerTreasury(owner);
+      setOwnerTreasury(owner, current + income);
+
+      if (owner === localHumanOwner()) {
+        const areaShare = (claimedArea(owner) / TOTAL_MAP_AREA) * 100;
+        addLog(`Year ${state.year} revenue: +$${income} from ${Math.round(areaShare)}% land control.`);
+      }
+    }
+  });
+
   syncDisplayedTreasury();
   state.lastIncomeYear = state.year;
-  addLog(`Year ${state.year} revenue: +$${income} from ${Math.round(areaShare)}% land control.`);
 }
 
 function autoDeployPlayerReinforcementsIfNeeded() {
@@ -6334,6 +6351,9 @@ function advanceCalendar() {
 }
 
 function select(territoryName) {
+  state.viewedTerritory = territoryName;
+  render();
+
   if (state.setupOpen || !isLocalTurnOwner() || state.gameOver || state.animating || isNetworkInputLocked()) return;
   if (state.phase === "reinforce") {
     reinforce(territoryName);
@@ -7087,6 +7107,15 @@ function render() {
   updateMobileTopMenuUI();
   syncDisplayedTreasury();
   treasuryLabel.textContent = state.treasury.toLocaleString();
+
+  if (regionValueLabel) {
+    if (state.viewedTerritory) {
+      const val = territoryValue(state.viewedTerritory);
+      regionValueLabel.textContent = `$${val.toLocaleString()}`;
+    } else {
+      regionValueLabel.textContent = "--";
+    }
+  }
 
   const message = statusMessage();
   statusText.textContent = message;
