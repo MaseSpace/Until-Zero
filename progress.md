@@ -70,3 +70,526 @@ Original prompt: remember that game i talked about The game about taking over ci
 - Validation screenshots for flag picker:
   - `/tmp/webgame-capture-country-flags-picker/shot-0.png`
   - `/tmp/mobile-country-picker-flags.png`
+- Updated player empire color from yellow to muted red for better contrast on parchment map:
+  - `--land-player` changed to muted red.
+  - Player share bar color updated to matching red gradient.
+  - Player chip owner-dot updated to matching red tone.
+- Restricted economy purchases to the player's capital only:
+  - Armies and ships can be bought only when your capital is currently player-owned.
+  - If capital is occupied, buy buttons disable and the UI/log now explains you must recapture capital.
+  - Buy card text now explicitly says deployment is to `<capital> (capital)`.
+- Kept fortify behavior unchanged (still uses current selected/default friendly territory).
+- Bumped cache key to `mobile-map-fix-25` in `index.html`.
+- Validation captures for this pass:
+  - `/tmp/webgame-capture-capital-only/shot-0.png` (US start, muted red player, capital-only deploy text for Washington)
+  - `/tmp/webgame-capture-capital-only-mobile/shot-0.png` (Russia start, muted red player, capital-only deploy text for Moscow)
+- Renamed game title branding to `Until Zero`:
+  - Browser/tab title in `index.html`.
+  - Project heading in `README.md`.
+- Enforced owner color uniqueness:
+  - Player remains muted red.
+  - AI3 palette shifted to amber (`#bf8b4f`) to avoid red-like overlap with player.
+  - Confirmed desktop owner fill colors are unique (`player`, `ai1`, `ai2`, `ai3`, `ai4`).
+- Added mobile top popup menu to free map space:
+  - On mobile, top header now shows only season title + `MENU`.
+  - `RESIGN`, `SFX`, `TEST`, and turn pill moved into `mobile-top-menu` overlay.
+  - Desktop header behavior unchanged.
+  - Cache key bumped to `mobile-map-fix-27`.
+- Updated capital/country setup per latest request:
+  - Paris removed as a capital marker/start country (`France` is now regular named region text).
+  - Added India capital at Delhi (`India North`) and Brazil capital at Rio (`Brazil South`).
+  - Added playable countries + flags in picker:
+    - India 🇮🇳
+    - Brazil 🇧🇷
+  - Updated AI start priority list to include India/Brazil countries.
+  - Capital icon visibility now keyed to playable-country capitals only (crown marker on capitals, hidden elsewhere).
+  - Cache key bumped to `mobile-map-fix-28`.
+- Fixed colorless playable capitals when not selected by player/AI:
+  - Unpicked playable capitals now spawn occupied at game start by AI factions (instead of staying neutral), so capitals like Edo/Rio are always colorized.
+  - Added startup log line listing these additional occupied capitals.
+  - Cache key bumped to `mobile-map-fix-29`.
+- Implemented full "all countries active + unique colors" model:
+  - Expanded AI owners from 4 to 6 (`ai1`..`ai6`) so with player there are 7 active factions at game start.
+  - Added new unique owner palettes:
+    - `ai5` teal
+    - `ai6` violet
+  - Updated map fill classes, owner dots, and power-strip segments for `ai5`/`ai6`.
+  - Updated control-bar percentage calculation to iterate dynamically across all AI owners.
+  - Updated AI ship initialization to dynamic owner list.
+  - Removed dependency on reserve-capital fallback by making all 7 starting countries occupied directly by player/AI assignment each new game.
+  - Cache key bumped to `mobile-map-fix-30`.
+- Validation:
+  - DOM owner check confirms distinct ownership across all 7 starting capitals in one game:
+    - `US Southeast -> player`
+    - `British Isles -> ai1`
+    - `Russia West -> ai2`
+    - `India North -> ai3`
+    - `Southern Africa -> ai4`
+    - `Japan South -> ai5`
+    - `Brazil South -> ai6`
+  - Screenshot: `/tmp/unique-seven-capitals-zoomout.png`
+- Added pattern-based faction differentiation (striped/hatch/dot) so owners are distinguishable beyond color:
+  - New SVG pattern defs for `ai1`..`ai6` in `createMapTextureDefs`.
+  - Territory fills for each AI owner now use `url(#territory-fill-aiX)` patterns.
+  - Player remains solid muted red (no pattern).
+  - Cache key bumped to `mobile-map-fix-31`.
+- Validation:
+  - Computed fill confirms pattern assignment for each non-player capital owner.
+  - Screenshot: `/tmp/unique-patterned-seven-capitals.png`
+- Validation screenshots:
+  - `/tmp/webgame-capture-new-countries-picker/shot-0.png` (picker with India/Brazil + flags)
+  - `/tmp/india-capital-icon-check.png` (Delhi capital used in economy text and marker set)
+  - `/tmp/uk-no-paris-capital-check.png` (Paris shown as regular region, London capital active)
+  - `/tmp/mobile-menu-after-select.png`, `/tmp/mobile-menu-open.png` (mobile popup menu behavior)
+- Fixed mountain overlay placement and visual weight so ranges align with current world projection and no longer draw a stray Atlantic diagonal.
+- Updated `MOUNTAIN_RANGES` coordinates in `game.js`:
+  - Rockies repositioned over western/central North America.
+  - Andes repositioned along western South America.
+  - Himalaya repositioned across north India / west China.
+  - Alps repositioned as a small European range accent.
+- Reduced mountain thickness and ridge heaviness:
+  - Lower base widths per range.
+  - Lower ridge minimum width in map build from `2.4` to `1.2`.
+  - Tuned mountain CSS opacity/stroke/dash for thinner original-game style.
+- Mountain movement blocking remains active and verified in runtime:
+  - `US Pacific ↔ US Rockies` blocked.
+  - `US Southwest ↔ US Rockies` blocked.
+  - `US Midwest ↔ US Rockies` blocked.
+  - `US South ↔ US Rockies` blocked.
+  - Non-mountain links (e.g. `US Pacific ↔ US Southwest`) still allowed.
+- Cache key bumped to `mobile-map-fix-33` in `index.html`.
+- Validation screenshots:
+  - `/tmp/until-zero-mountain-after-fix.png` (broken Atlantic stripe removed; Rockies visible)
+  - `/tmp/until-zero-mountain-himalaya-check.png` (Himalaya aligned over India/China)
+  - `/tmp/until-zero-mountain-after-thin-pass.png` (final thinner Rockies pass)
+- 2026-02-13 mountain-side verification pass:
+  - Re-checked mountain layer behavior in running build (`http://localhost:4173`) with Playwright MCP.
+  - Confirmed each range has a single territory clip path and full mountain styling paths (band + contour + peaks + crest):
+    - `rockies -> mountain-clip-us-rockies`
+    - `andes -> mountain-clip-bolivia`
+    - `himalaya -> mountain-clip-india-north`
+    - `alps -> mountain-clip-alpine-states`
+  - DOM sample checks against clip polygons stayed predominantly inside the target territory (band path samples):
+    - Rockies: `38 / 41` inside
+    - Andes: `37 / 41` inside
+    - Himalaya: `39 / 41` inside
+    - Alps: `41 / 41` inside
+  - Focused visual captures:
+    - `/tmp/mountain-rockies-focus.png` (US Rockies: west-side anchored mountain cluster)
+    - `/tmp/mountain-andes-focus.png` (Bolivia: west-side anchored Andes chain)
+  - Skill loop run artifact:
+    - `/tmp/webgame-mountain-verify/shot-0.png`
+  - Console warnings remain audio-autoplay related (`AudioContext was not allowed to start` before user gesture); no JS runtime errors observed.
+- 2026-02-13 mountain visual refinement pass (follow-up):
+  - Tightened side extraction depth so mountain spines stay closer to one edge of each target territory:
+    - Rockies `sideDepth: 0.19`
+    - Andes `sideDepth: 0.20`
+    - Himalaya `sideDepth: 0.18`
+    - Alps `sideDepth: 0.22`
+  - Reduced “single-line” appearance and emphasized mountain glyph readability:
+    - Increased peak spacing in `buildMountainPeakPath` (`peakSpacingHint * 0.9`) to reduce overlapping scribble.
+    - Lightened contour/crest strokes and reduced widths/opacities in `styles.css`.
+  - Cache key bumped to `mobile-map-fix-39` in `index.html`.
+  - Validation screenshots (v39):
+    - `/tmp/mountain-rockies-focus-v39.png`
+    - `/tmp/mountain-andes-focus-v39.png`
+    - `/tmp/mountain-himalaya-focus-v39.png`
+    - `/tmp/webgame-mountain-verify-v39/shot-0.png` (skill client scripted artifact; start-country picker visible)
+  - Structural checks still pass:
+    - Each mountain range renders with one territory clip-path.
+    - Each range includes mountain band + contour + peaks + crest paths.
+- 2026-02-13 subtle mountains pass (user requested much smaller + less visible):
+  - Reduced mountain footprint in `MOUNTAIN_RANGES` by lowering `bandWidth`, `peakWidth`, and `peakHeight` across all ranges.
+  - Switched peak generation to fewer, cleaner triangles:
+    - `buildMountainPeakPath` now samples more sparsely and places simplified triangular peaks with less overlap.
+  - Removed ridge/crest path rendering from mountain groups so no heavy line-like ridge remains.
+  - Lowered mountain shadow/band opacity and stroke weight in CSS for subtle map accents.
+  - Cache key bumped to `mobile-map-fix-40` in `index.html`.
+  - Validation screenshots (v40):
+    - `/tmp/mountain-rockies-focus-v40.png`
+    - `/tmp/mountain-andes-focus-v40.png`
+    - `/tmp/mountain-himalaya-focus-v40.png`
+  - DOM structure check:
+    - each range still clipped to one territory.
+    - each range now renders only 3 paths (`shadow + band + peaks`) for minimal style.
+- 2026-02-13 reference-style mountains pass (match user-provided art sample):
+  - Reworked mountain art to resemble hand-drawn ranges in reference image:
+    - Soft, outlined ridge band (parchment tint).
+    - Small interior “m” mountain glyph strokes (line marks), replacing filled triangular peaks.
+  - Smoothing/details:
+    - `buildMountainBandPath` now uses subtle scallop/ripple offsets for rounded ridge blobs.
+    - `buildMountainPeakPath` now emits compact dual-crest line glyphs with denser spacing.
+    - Updated map build to render `.mountain-glyphs` path instead of heavy peak triangles.
+  - Visual tuning:
+    - Increased ridge readability while keeping subtle contrast.
+    - Kept one-side anchoring and one-territory clipping unchanged.
+  - Cache key bumped to `mobile-map-fix-42` in `index.html`.
+  - Validation screenshots:
+    - `/tmp/mountain-rockies-focus-v42.png`
+    - `/tmp/mountain-andes-focus-v42.png`
+    - `/tmp/mountain-himalaya-focus-v42.png`
+    - `/tmp/webgame-mountain-verify-v42/shot-0.png` (skill-client artifact)
+- 2026-02-13 mountain style iteration follow-up (v43-v45):
+  - v43:
+    - Changed interior glyph strokes from fence-like slants to upright curved `^^` marks.
+    - Adjusted ridge band contrast/line weight for readability.
+    - Cache key: `mobile-map-fix-43`.
+    - Screens: `/tmp/mountain-rockies-focus-v43.png`, `/tmp/mountain-andes-focus-v43.png`, `/tmp/mountain-himalaya-focus-v43.png`.
+  - v44:
+    - Moved mountain marks into `mountain-band-pattern` fill and disabled separate `.mountain-glyphs` rendering.
+    - Goal: avoid line-fence artifact from explicit glyph path.
+    - Cache key: `mobile-map-fix-44`.
+    - Screens: `/tmp/mountain-rockies-focus-v44.png`, `/tmp/mountain-andes-focus-v44.png`, `/tmp/mountain-himalaya-focus-v44.png`.
+  - v45:
+    - Smoothed ridge geometry with quadratic smoothing (`buildSmoothPathFromPoints`) to reduce jagged edges.
+    - Increased ridge width in per-range settings and tightened pattern scale for denser interior marks.
+    - Cache key: `mobile-map-fix-45`.
+    - Screens: `/tmp/mountain-rockies-focus-v45.png`, `/tmp/mountain-andes-focus-v45.png`, `/tmp/mountain-himalaya-focus-v45.png`.
+- 2026-02-13 edge-alignment recovery passes (v46-v49):
+  - v46 experiment (rejected): overlapping capsule blobs along the edge spine; looked circular/incorrect.
+  - v47 rollback: reverted blob logic to prior smooth-strip baseline to recover map readability.
+  - v48:
+    - removed spine wiggle entirely in `buildMountainSideSpine`.
+    - switched to constant side inset and clean parallel strip geometry.
+    - reduced `sideInset` and tuned per-range `bandWidth` so ranges hug the intended border side more tightly.
+  - v49:
+    - changed ridge rendering to an open stroke path (edge-following centerline) with per-range stroke widths.
+    - enabled compact `^^` mountain glyph marks on top of the ridge.
+    - cleaned duplicate CSS and kept mountain styles deterministic.
+    - cache key: `mobile-map-fix-49`.
+    - screens: `/tmp/mountain-rockies-focus-v49.png`, `/tmp/mountain-andes-focus-v49.png`, `/tmp/mountain-himalaya-focus-v49.png`.
+  - v50/v51 cleanup:
+    - trimmed mountain strip endpoints and removed end-cap bulge at border junctions.
+    - reduced shadow halo and softened glyph contrast.
+    - kept strict edge-lock alignment and one-region clipping unchanged.
+    - cache key: `mobile-map-fix-51`.
+    - screens: `/tmp/mountain-rockies-focus-v51.png`, `/tmp/mountain-andes-focus-v51.png`, `/tmp/mountain-himalaya-focus-v51.png`.
+    - skill-client artifact: `/tmp/webgame-mountain-verify-v49/shot-0.png`.
+- 2026-02-13 Denver-east and southern-Russia mountain alignment pass:
+  - Updated `rockies` mountain config to follow the full east side of `US Rockies` (Denver region):
+    - `sideDepth: 0.26`
+    - `sampleStart: 0.0`
+    - `sampleEnd: 1.0`
+    - `coverFullSide: true`
+  - Improved side-edge spine extraction to reduce wonky edge artifacts:
+    - Added `orderMountainSidePolyline(...)` to normalize side points by dominant axis.
+    - Added per-axis bucketing + extreme-point selection so side points stay on the intended side.
+    - Added anti-jitter filtering for near-horizontal/near-vertical corner noise.
+  - Updated band/peak generation to respect `coverFullSide` and keep endpoints for full-edge ranges.
+  - Validation:
+    - JS syntax check: `node --check game.js` (pass)
+    - Focused screenshots:
+      - `/tmp/mountains-us-east-denver-focus.png` (US Rockies run now spans Denver's east border)
+      - `/tmp/mountains-russia-south-focus.png` (southern Russia mountain run visible on south edge)
+  - Cache bust updated in `index.html` to `mobile-map-fix-53` so browsers load the new mountain geometry immediately.
+- 2026-02-13 Urga (Mongolia) mountain addition pass:
+  - Added new range `urga-north` on territory `Mongolia` with `sideHint: "north"` for a subtle top-edge mountain strip.
+  - Added matching mountain travel block on northern edge: `Mongolia <-> Russia East` in `MOUNTAIN_BLOCKED_PAIRS`.
+  - Cache key bumped to `mobile-map-fix-54` in `index.html`.
+  - Validation:
+    - `node --check game.js` pass.
+    - Focused screenshot: `/tmp/mountains-urga-top-focus.png`.
+    - Runtime geometry check confirms band/glyph bounds are inside `Mongolia` and near the territory top edge.
+- 2026-02-13 common-name standardization pass:
+  - Replaced abbreviated `DISPLAY_NAMES` entries with clearer full names (e.g., Eastern/Western regions, US region names, Mainland/Maritime SE Asia).
+  - Updated `CAPITAL_LABELS` to more widely recognized names across regions.
+    - Examples: `France -> Paris`, `Japan South -> Tokyo`, `Mongolia -> Ulaanbaatar`, `US Pacific -> Los Angeles`, `US Southwest -> Phoenix`, `Bolivia -> La Paz`, `Russia East -> Vladivostok`.
+  - Cache key bumped to `mobile-map-fix-55` in `index.html`.
+  - Validation:
+    - `node --check game.js` pass.
+    - Screens:
+      - `/tmp/names-picker-v55.png`
+      - `/tmp/names-map-v55.png`
+      - `/tmp/names-urga-v55.png`
+- 2026-02-13 Canada split confirmation (user request: more than 2 Canada regions):
+  - Map now uses three Canada territories:
+    - `Canada West`
+    - `Canada Central` (new)
+    - `Canada East`
+  - Added/confirmed supporting data in `game.js`:
+    - `TERRITORIES` adjacency links for all three Canada regions.
+    - `GEO_LAYOUT` polygons + label/token anchors for `Canada Central`.
+    - `DISPLAY_NAMES` entry: `Canada Central -> Central Canada`.
+    - `CAPITAL_LABELS`: `Vancouver` (West), `Winnipeg` (Central), `Toronto` (East).
+  - Validation:
+    - Skill client screenshot: `/tmp/webgame-canada-split-final-check/shot-0.png`.
+    - Playwright DOM snapshot confirms all three labels render on map: `Vancouver`, `Winnipeg`, `Toronto`.
+- 2026-02-13 start-screen setup flow pass (create game/options UI):
+  - Replaced the old country-only picker overlay with a 2-step wizard:
+    - Create page: `Solo`, `Play Online`, `Pass & Play`, `Network Play`.
+    - Options page: `Map`/`Rules` tabs, difficulty slider, campaign mode, starting country cards, setup summary.
+  - Added setup profiles/constants in `game.js`:
+    - `SETUP_PLAY_MODES`, `SETUP_MAP_PRESETS`, `SETUP_RULE_PRESETS`, `SETUP_CAMPAIGN_MODES`, `SETUP_DIFFICULTIES`.
+    - Added difficulty-driven gameplay tuning (player/AI start armies, reinforcement bonuses, AI aggression threshold).
+  - Added launch scaffolding logs for non-solo modes:
+    - Pass & Play includes local player count summary.
+    - Online/Network modes log planned networking scaffold messaging.
+  - UX cleanup:
+    - Back button is now usable on the Create page as cancel/close when reopening setup mid-campaign.
+  - Validation:
+    - `node --check game.js` pass.
+    - Skill client run:
+      - `node "$WEB_GAME_CLIENT" --url http://127.0.0.1:4173 --click-selector "#start-screen-next-btn" --actions-file "$WEB_GAME_ACTIONS" --iterations 3 --pause-ms 250 --screenshot-dir /tmp/webgame-startscreen-capture`
+      - Artifacts: `/tmp/webgame-startscreen-capture/shot-0.png`, `/tmp/webgame-startscreen-capture/shot-1.png`, `/tmp/webgame-startscreen-capture/shot-2.png`.
+      - No JS console errors; only expected browser audio autoplay warnings.
+    - Manual Playwright interaction checks:
+      - Create -> Options transition works.
+      - Pass & Play selection shows local player +/- controls on Options.
+      - Start launches campaign with setup summary logs.
+      - Reopen setup (RESIGN) -> Back closes setup and returns to current campaign.
+  - Runtime polish:
+    - Added inline favicon link and committed `favicon.ico` so browser no longer logs `favicon.ico` 404 during startup checks.
+  - Re-ran skill client after favicon fix:
+    - `/tmp/webgame-startscreen-capture-2/shot-0.png`
+    - `/tmp/webgame-startscreen-capture-2/shot-1.png`
+    - No `errors-*.json` emitted.
+- 2026-02-14 desktop pause-menu unification pass:
+  - Desktop header controls moved to single `PAUSE` entry point, matching mobile interaction pattern.
+  - `RESIGN`, `SFX`, and `TEST` remain available via the existing top-menu overlay; always-on desktop buttons are now hidden.
+  - Reused existing `mobile-top-menu` overlay on desktop by removing mobile-only open guard in `setMobileTopMenuOpen(...)`.
+  - Removed auto-close behavior that previously forced the top-menu closed on non-mobile renders.
+  - Added `Escape` key handler to close the pause/menu overlay when open.
+  - Cache key bumped to `mobile-map-fix-57` in `index.html`.
+  - Validation:
+    - JS syntax check passed: `node --check game.js`.
+    - Skill loop capture via `web_game_playwright_client`:
+      - `/tmp/webgame-desktop-pause-menu/shot-0.png`
+      - `/tmp/webgame-desktop-pause-menu/shot-1.png`
+    - Playwright MCP checks confirmed:
+      - Desktop: top bar now shows only season + `PAUSE`; legacy desktop `RESIGN/SFX/TEST` controls are hidden.
+      - Desktop: pause overlay opens from `PAUSE` and closes with `Escape`.
+      - Mobile: menu button remains visible; top-actions remain hidden and `#new-game-btn` remains hidden.
+
+## 2026-02-14 LAN multiplayer stability + lobby authority pass
+- Replaced `BroadcastChannel` multiplayer transport with LAN API polling in `game.js`.
+  - Added robust network state (`lobbyId`, `playerId`, roster, active player, payload versions, hosted lobby browser state).
+  - Added fetch-based API client, polling loop, lobby refresh, host settings update, country claim sync, and async handoff/start flows.
+  - `shutdownNetworkSession()` now tears down polling and sends a best-effort leave request.
+- Added host-authoritative setup behavior for Network Play:
+  - Host-only controls for map/rules/difficulty/campaign settings once in join flow.
+  - Host-only max players (`2-4`) and AI toggle (`AI On` / `LAN Only`).
+  - Joiners can preview lobby settings read-only, browse hosted lobbies, and cannot mutate host rules.
+  - Country picker now reflects real-time claims (`You`/player name), prevents selecting already claimed countries, and shows roster ownership.
+- Added LAN backend server: `lan-server.js`
+  - Serves static game files and `/api/lobbies` endpoints (create/list/get/join/leave/settings/select-country/start/handoff).
+  - In-memory lobbies with player heartbeats/stale pruning and active-turn rotation.
+- Updated UI/CSS for lobby browser/roster and locked country styling.
+- Updated cache-bust keys in `index.html` to `mobile-map-fix-60`.
+- Updated `README.md` with LAN startup instructions (`node lan-server.js`) and network flow notes.
+
+### Validation completed
+- Syntax checks:
+  - `node --check game.js`
+  - `node --check lan-server.js`
+- Skill client loop (fresh run against updated build):
+  - `node "$HOME/.codex/skills/develop-web-game/scripts/web_game_playwright_client.js" --url http://localhost:8080 --actions-file "$HOME/.codex/skills/develop-web-game/references/action_payloads.json" --iterations 2 --pause-ms 250 --screenshot-dir /tmp/webgame-lan-pass2`
+  - Artifacts: `/tmp/webgame-lan-pass2/shot-0.png`, `/tmp/webgame-lan-pass2/shot-1.png`
+  - No new console error artifact files were emitted.
+- End-to-end LAN flow automation (2 tabs + isolated server process):
+  - Verified host lobby creation, joiner lobby discovery, joiner settings read-only behavior, country claim propagation, host launch, and turn handoff enabling joiner controls.
+  - Result output: `LAN flow test passed.`
+
+### Remaining TODO / next-agent suggestions
+- Optional: add a packaged `npm` script for LAN server startup so users don’t need manual `node` command.
+- Optional: show explicit network connection indicator (latency/last sync timestamp) in setup and in-match UI.
+- Optional: persist lobby/player identity across accidental refreshes (rejoin token) to reduce interrupted sessions.
+
+## 2026-02-14 LAN setup UX guardrail pass (open-lobby no-op fix)
+- Goal: remove the "nothing happens" feel on `Open Lobby` and make selection state truthful.
+- Updated network country-card selected logic in `game.js` so LAN setup no longer shows a preselected country before an explicit claim:
+  - In pre-lobby network mode, `.selected` now requires `state.networkSetup.countryChosen`.
+  - In active lobbies, `.selected` is driven by server claim ownership (`selectedByMe`).
+- Kept validation-on-click behavior for setup actions:
+  - Host without country -> `Choose your country before opening a lobby.`
+  - Join without lobby -> `Select a hosted LAN lobby before joining.`
+- Bumped cache key in `index.html` to `mobile-map-fix-62` for immediate client refresh.
+
+### Validation completed
+- Syntax checks:
+  - `node --check game.js`
+  - `node --check lan-server.js`
+- Skill Playwright client run:
+  - `node "$WEB_GAME_CLIENT" --url http://127.0.0.1:9090 --click-selector "[data-mode-id='network']" --actions-json '{"steps":[]}' --iterations 1 --pause-ms 200 --screenshot-dir /tmp/webgame-capture-lan-openlobby-ui`
+  - Artifact: `/tmp/webgame-capture-lan-openlobby-ui/shot-0.png`
+- Playwright MCP interaction checks:
+  - `Network Play -> Next` now shows country cards unselected until clicked.
+  - Clicking `Open Lobby` with no claimed country shows inline error: `Choose your country before opening a lobby.`
+  - Selecting a country adds clear selected indicator (`✓`) and summary updates from `Choose Country` to selected country.
+  - Clicking `Open Lobby` after country claim opens lobby and switches CTA to `Launch Match`.
+
+## 2026-02-14 Open Lobby no-op hardening (LAN API clarity)
+- Addressed user report: `Open Lobby` appears to do nothing in some setups.
+- Root cause reproduced: when game is served from a non-LAN server (e.g., `python -m http.server`), `/api/lobbies` returns 501 and previous UX surfaced a vague `LAN request failed (501)` message.
+
+### Code changes
+- `/Users/maselivingston/Documents/Empires III/game.js`
+  - Added `NETWORK_REQUEST_TIMEOUT_MS = 7000`.
+  - Updated `networkApiRequest(...)`:
+    - Uses `AbortController` timeout to avoid hanging requests.
+    - Returns explicit configuration guidance for `404/405/501` non-JSON API responses:
+      - `LAN API is unavailable on this URL. Start the game with \`node lan-server.js\` and open that server address.`
+    - Returns clearer timeout guidance if request stalls.
+  - Updated `setNetworkSetupError(...)` to require acknowledgement while setup wizard is open (`showBattleOutcome(..., requireAck = state.setupOpen)`), so errors are not missed.
+- `/Users/maselivingston/Documents/Empires III/index.html`
+  - Cache-bust key bumped to `mobile-map-fix-63` for CSS/JS.
+
+### Validation completed
+- Syntax:
+  - `node --check game.js`
+  - `node --check lan-server.js`
+- Manual Playwright checks:
+  - On non-LAN server URL (`http://127.0.0.1:9173/?v=63check`):
+    - `Open Lobby` now shows persistent actionable error with exact `lan-server.js` instruction.
+  - On LAN server URL (`http://127.0.0.1:9090/?v=63check`):
+    - `Open Lobby` succeeds and transitions CTA to `Launch Match` with `Lobby open (1/4)...` status.
+
+## 2026-02-14 Extra validation sweep + stale-lobby disconnect fix
+- User request: run deeper checks to ensure LAN multiplayer paths are stable.
+
+### New issue found during extra checks
+- Reproduced a stale-session loop: if a joined lobby is removed server-side, client polling continued and produced repeated failed `/api/lobbies/:id` requests.
+- This could appear as persistent disconnect/noisy failures.
+
+### Fix applied
+- `/Users/maselivingston/Documents/Empires III/game.js`
+  - `networkApiRequest(...)` now returns `status` on failures (including timeout/unreachable paths).
+  - `refreshActiveNetworkLobby(...)` now treats `404/403` as terminal for active session:
+    - shuts down the stale network session (`shutdownNetworkSession({ notifyServer: false })`)
+    - stops polling
+    - re-renders setup state cleanly when setup UI is open.
+- `/Users/maselivingston/Documents/Empires III/index.html`
+  - Cache key bumped to `mobile-map-fix-64`.
+
+### Extra checks completed
+- Syntax checks:
+  - `node --check game.js`
+  - `node --check lan-server.js`
+- LAN API integration suite (against `PORT=9093 node lan-server.js`):
+  - Host create/list/join up to 4/4 players.
+  - 5th join rejected (`Lobby is full.`).
+  - Country conflict rejection.
+  - Host-only settings enforcement.
+  - Host-only start enforcement.
+  - Start guards for unselected-country players.
+  - Handoff turn-owner enforcement and rotation.
+  - Payload delta behavior (`since` version).
+  - Host leave removes lobby.
+- UI checks (Playwright):
+  - Host flow:
+    - `Open Lobby` without country => inline + outcome error.
+    - After country claim => lobby opens and button changes to `Launch Match`.
+    - LAN-only + max-player selections stay active and reflected in status.
+  - Join flow:
+    - `Join Selected Lobby` without lobby selection => explicit error.
+    - Join role shows host settings in read-only mode (map/rules/difficulty/campaign disabled).
+    - Preview and claim summary are visible before joining.
+    - After join, roster shows both players and button changes to `Waiting for Host`.
+  - Full-lobby edge case:
+    - 4/4 lobby is visible in browser.
+    - Joining as 5th player returns clear error `Lobby is full.`
+  - Stale-lobby regression:
+    - after host removes joined lobby, client now resets to join state (`Join Selected Lobby`) instead of repeated poll-loop failures.
+- Skill-loop verification:
+  - `web_game_playwright_client` run on latest build, screenshot artifact:
+    - `/tmp/webgame-extra-lan-check/shot-0.png`
+  - No `errors-*.json` emitted.
+- Follow-up skill check after cache bump to `mobile-map-fix-64`:
+  - `node "$WEB_GAME_CLIENT" --url "http://127.0.0.1:9093/?v=64skill" --click-selector "[data-mode-id='network']" --actions-json '{"steps":[]}' --iterations 1 --pause-ms 250 --screenshot-dir /tmp/webgame-extra-lan-check-v64`
+  - Artifact: `/tmp/webgame-extra-lan-check-v64/shot-0.png`
+  - No `errors-*.json` emitted.
+
+## 2026-02-15 LAN ownership-control fix pass
+- Continued the in-progress LAN ownership refactor to address user report: joiner could act as host/player and could not act on their selected country.
+
+### Gameplay/ownership fixes applied (`game.js`)
+- Converted remaining hardcoded player-turn gates to local-owner-aware checks:
+  - `updateButtons()` now uses `isLocalTurnOwner()`.
+  - opening-season highlight checks in `applyMapCamera()` and `updateMapVisuals()` now use `isLocalTurnOwner()`.
+  - `statusMessage()` friendly-transfer check now compares against `localHumanOwner()`.
+  - `render()` friendly target detection, turn label, and turn pill now use `localHumanOwner()` / `isLocalTurnOwner()` instead of raw `"player"` checks.
+- Reinforcement logs now use the actual local owner display name:
+  - `reinforce()` logs `${ownerName(localHumanOwner())}`.
+- AI capture ship displacement now handles any network-human owner, not only `"player"`:
+  - `resolveAIAttack()` uses `isNetworkHumanOwner(defender.owner)` for ship loss handling.
+- Save-load validity guard generalized for LAN owner slots:
+  - `loadGameFromStorage()` now validates that at least one controllable owner (`player` or AI owner slot) exists, instead of requiring only `"player"` ownership.
+
+### Verification completed
+- Syntax checks passed:
+  - `node --check game.js`
+  - `node --check lan-server.js`
+- LAN API integration check passed (fresh temp server process):
+  - host create -> joiner join/select-country -> host start -> host handoff -> joiner poll
+  - verified server state after handoff:
+    - status `started`
+    - `activePlayerId` rotated to joiner
+    - `payloadVersion` incremented
+    - joiner/host country claims retained
+
+### Notes / caveat from extra checks
+- Attempted full two-page headless Playwright UI run for host+joiner control assertions.
+- Found setup screen automation is flaky because duplicated hidden/visible controls in create/options steps can absorb clicks in headless mode (especially country and role controls), causing false negatives in automation even when API/session state is healthy.
+- Manual/interactive verification is still recommended for the final user-reported symptom (joiner selecting own territory and issuing orders only for that owner) on this build.
+
+## 2026-02-15 LAN owner-slot hardening + explicit Open Lobby errors
+- Follow-up on user reports:
+  - `Open Lobby` felt like a no-op in some setups.
+  - Joiner ownership could drift and act like host/player in edge cases.
+
+### Fixes applied
+- `/Users/maselivingston/Documents/Empires III/lan-server.js`
+  - Added explicit LAN human owner slots on server: `player`, `ai1`, `ai2`, `ai3`.
+  - New owner-slot helpers:
+    - `isValidOwnerSlot(...)`
+    - `allocateOwnerSlot(...)`
+    - `normalizeLobbyOwnerSlots(...)`
+  - Host is always assigned `ownerSlot: "player"` at lobby creation.
+  - Joiners are assigned the next free owner slot at join.
+  - Lobby payload now returns `players[].ownerSlot` to clients.
+  - Owner-slot normalization runs during lobby refresh/join to prevent duplicate/missing slots.
+
+- `/Users/maselivingston/Documents/Empires III/game.js`
+  - Added `normalizeNetworkOwnerSlot(...)`.
+  - `syncNetworkStateFromLobby(...)` now consumes `entry.ownerSlot` from server.
+  - `syncNetworkOwnerAssignments(...)` now prefers server-provided owner slots and only falls back to index mapping if needed.
+  - `validateNetworkSetupBeforeLobbyAction()` now hard-fails `file://` with explicit guidance:
+    - start `node lan-server.js`
+    - open server URL (e.g. `http://localhost:8080`).
+  - `beginNetworkSessionFromSetup()` now surfaces immediate visible errors (outcome popup + inline) for:
+    - setup validation failure
+    - join without selected lobby
+    - failed host/join API responses
+
+### Validation completed
+- Syntax checks:
+  - `node --check /Users/maselivingston/Documents/Empires III/game.js`
+  - `node --check /Users/maselivingston/Documents/Empires III/lan-server.js`
+
+- LAN API integration (isolated server on `127.0.0.1:9124`):
+  - create host lobby
+  - join 2 commanders
+  - verify unique owner slots returned (`player`, `ai1`, `ai2`)
+  - start match + 3 handoffs
+  - verify active player rotation is correct
+  - Result: `LAN owner-slot integration: PASS`
+
+- Skill loop run (`develop-web-game`):
+  - `node "$WEB_GAME_CLIENT" --url "http://127.0.0.1:9130?v=lan-ownerslot-2" --actions-file "$WEB_GAME_ACTIONS" --iterations 2 --pause-ms 250 --screenshot-dir /tmp/webgame-lan-ownerslot-check-9130`
+  - Artifacts:
+    - `/tmp/webgame-lan-ownerslot-check-9130/shot-0.png`
+    - `/tmp/webgame-lan-ownerslot-check-9130/shot-1.png`
+  - No runtime JS errors observed in this loop (audio autoplay warnings only).
+
+- Playwright MCP focused verification:
+  - `Open Lobby` without country now shows explicit inline + popup error: `Choose your country before opening a lobby.`
+  - 2-client LAN flow confirmed with server owner slots:
+    - Host mapped to `player`.
+    - Joiner mapped to `ai1`.
+    - After launch, `US Southeast` owner stayed `player`; `British Isles` owner stayed `ai1`.
+    - Joiner could not reinforce host territory.
+    - Joiner could reinforce own territory.
+    - Joiner purchase (`buyArmiesBundle`) increased own-capital armies and did not affect host territory.
+
+### Remaining suggestions
+- Optional: add a small persistent setup banner when URL is `file://` so LAN incompatibility is visible before clicking `Open Lobby`.
+- Optional: expose `ownerSlot` in roster UI text (`HostA (player)`, `JoinB (ai1)`) for easier troubleshooting in QA sessions.

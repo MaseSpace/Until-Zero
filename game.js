@@ -11,8 +11,9 @@ const TERRITORIES = {
   "Brazil North": ["Bolivia", "Brazil South", "Colombia", "France", "Gulf of Guinea", "Peru", "Venezuela"],
   "Brazil South": ["Argentina North", "Bolivia", "Brazil North", "La Plata"],
   "British Isles": ["Benelux", "France", "Greenland", "US Northeast"],
-  "Canada East": ["Canada West", "Greenland", "US Midwest", "US Northeast", "US Rockies"],
-  "Canada West": ["Canada East", "US Midwest", "US Northwest", "US Rockies"],
+  "Canada Central": ["Canada East", "Canada West", "US Midwest", "US Rockies"],
+  "Canada East": ["Canada Central", "Greenland", "US Midwest", "US Northeast"],
+  "Canada West": ["Canada Central", "US Midwest", "US Northwest", "US Rockies"],
   "Caucasus": ["Iran", "Russia West", "Turkey"],
   "Central Africa": ["East Africa", "Nigeria", "Sahel", "Southern Africa"],
   "Central America": ["Colombia", "Mexico"],
@@ -57,11 +58,11 @@ const TERRITORIES = {
   "Scandinavia": ["Germany", "Poland-Baltic", "Russia West"],
   "Southern Africa": ["Argentina South", "Central Africa", "East Africa", "Madagascar"],
   "Turkey": ["Arabia", "Balkans", "Caucasus", "Iran"],
-  "US Midwest": ["Canada East", "Canada West", "US Northeast", "US Rockies", "US South", "US Southeast", "US Southwest"],
+  "US Midwest": ["Canada Central", "Canada East", "Canada West", "US Northeast", "US Rockies", "US South", "US Southeast", "US Southwest"],
   "US Northeast": ["British Isles", "Canada East", "US Midwest", "US South", "US Southeast"],
   "US Northwest": ["Canada West", "Russia East", "US Pacific", "US Rockies", "US Southwest"],
   "US Pacific": ["Mexico", "US Northwest", "US Rockies", "US Southwest"],
-  "US Rockies": ["Canada East", "Canada West", "US Midwest", "US Northwest", "US Pacific", "US South", "US Southwest"],
+  "US Rockies": ["Canada Central", "Canada West", "US Midwest", "US Northwest", "US Pacific", "US South", "US Southwest"],
   "US South": ["Mexico", "US Midwest", "US Northeast", "US Rockies", "US Southeast", "US Southwest"],
   "US Southeast": ["Cuba", "Iberia", "US Midwest", "US Northeast", "US South"],
   "US Southwest": ["Mexico", "US Midwest", "US Northwest", "US Pacific", "US Rockies", "US South"],
@@ -130,10 +131,15 @@ const GEO_LAYOUT = {
     label: [-7.8067, 53.5104],
     token: [-7.8067, 53.5104]
   },
+  "Canada Central": {
+    polygon: [[-99.9019, 67.8057], [-98.4432, 67.7816], [-98.5586, 68.4039], [-97.6695, 68.5786], [-96.1199, 68.2394], [-96.1259, 67.2934], [-95.4894, 68.0907], [-94.685, 68.0638], [-94.2328, 69.069], [-96.4713, 70.0898], [-96.3911, 71.1948], [-95.2088, 71.9205], [-92.8782, 71.3187], [-91.5196, 70.1913], [-92.4069, 69.7], [-90.5471, 69.4977], [-90.5515, 68.475], [-89.2151, 69.2587], [-88.0197, 68.6151], [-88.3175, 67.8734], [-87.3502, 67.1987], [-85.5766, 68.7846], [-85.522, 69.8821], [-82.6226, 69.6583], [-82.0, 69.4281], [-82.0, 66.8917], [-83.3446, 66.4115], [-84.7354, 66.2573], [-85.7694, 66.5583], [-87.3232, 64.7756], [-88.483, 64.099], [-89.9144, 64.0327], [-90.704, 63.6102], [-90.77, 62.9602], [-91.9334, 62.8351], [-94.2415, 60.8987], [-94.6846, 58.9488], [-93.215, 58.7821], [-92.297, 57.0871], [-90.8977, 57.2847], [-85.0118, 55.3026], [-82.2729, 55.1483], [-82.4362, 54.2823], [-82.125, 53.277], [-82.0, 53.0838], [-82.0, 41.8938], [-82.6901, 41.6751], [-83.12, 42.08], [-82.1376, 43.5711], [-82.5509, 45.3475], [-83.5929, 45.8169], [-84.1421, 46.5122], [-84.6049, 46.4396], [-84.8761, 46.9001], [-88.3781, 48.3029], [-89.6, 48.01], [-94.3291, 48.6707], [-94.8176, 49.389], [-95.1561, 49.3843], [-95.1591, 49.0], [-100.0, 49.0001], [-99.9019, 67.8057]],
+    label: [-92.0017, 57.8975],
+    token: [-92.0017, 57.8975]
+  },
   "Canada East": {
-    polygon: [[-99.9019, 67.8057], [-98.4432, 67.7816], [-98.5586, 68.4039], [-97.6695, 68.5786], [-96.1199, 68.2394], [-96.1259, 67.2934], [-95.4894, 68.0907], [-94.685, 68.0638], [-94.2328, 69.069], [-96.4713, 70.0898], [-96.3911, 71.1948], [-95.2088, 71.9205], [-92.8782, 71.3187], [-91.5196, 70.1913], [-92.4069, 69.7], [-90.5471, 69.4977], [-90.5515, 68.475], [-89.2151, 69.2587], [-88.0197, 68.6151], [-88.3175, 67.8734], [-87.3502, 67.1987], [-85.5766, 68.7846], [-85.522, 69.8821], [-82.6226, 69.6583], [-81.2804, 69.162], [-81.2202, 68.6657], [-81.9644, 68.1325], [-81.2593, 67.5972], [-81.3865, 67.1108], [-83.3446, 66.4115], [-84.7354, 66.2573], [-85.7694, 66.5583], [-87.3232, 64.7756], [-88.483, 64.099], [-89.9144, 64.0327], [-90.704, 63.6102], [-90.77, 62.9602], [-91.9334, 62.8351], [-94.2415, 60.8987], [-94.6846, 58.9488], [-93.215, 58.7821], [-92.297, 57.0871], [-90.8977, 57.2847], [-85.0118, 55.3026], [-82.2729, 55.1483], [-82.4362, 54.2823], [-82.125, 53.277], [-81.4008, 52.1579], [-79.9129, 51.2084], [-79.143, 51.5339], [-78.6019, 52.5621], [-79.1242, 54.1414], [-79.8296, 54.6677], [-78.2287, 55.1365], [-76.5414, 56.5342], [-76.6232, 57.2026], [-77.3023, 58.0521], [-78.5169, 58.8046], [-77.3368, 59.8526], [-78.1069, 62.3196], [-77.4107, 62.5505], [-74.6682, 62.1811], [-73.8399, 62.4438], [-71.3737, 61.1372], [-69.5904, 61.0614], [-69.2879, 58.9574], [-68.3745, 58.8011], [-67.6498, 58.2121], [-66.2018, 58.7673], [-64.5835, 60.3356], [-61.3965, 56.9674], [-61.7987, 56.3394], [-59.5696, 55.2041], [-57.3332, 54.6265], [-56.9369, 53.7803], [-55.7563, 53.2704], [-55.6834, 52.1466], [-58.7748, 51.0643], [-60.0331, 50.2428], [-66.3991, 50.229], [-67.2363, 49.5116], [-68.5111, 49.0684], [-71.1046, 46.8217], [-70.2552, 46.9861], [-68.65, 48.3], [-66.5524, 49.1331], [-65.0563, 49.2328], [-64.171, 48.7425], [-65.1154, 48.0709], [-64.4722, 46.2385], [-63.1733, 45.739], [-61.5207, 45.8838], [-60.5181, 47.0079], [-60.4486, 46.2826], [-59.8029, 45.9204], [-64.2466, 44.2655], [-65.3641, 43.5452], [-66.1234, 43.6187], [-66.1617, 44.4651], [-64.4255, 45.292], [-67.1374, 45.1375], [-67.7913, 45.7028], [-67.7905, 47.0664], [-69.2372, 47.4478], [-70.66, 45.46], [-71.5051, 45.0082], [-74.867, 45.0005], [-76.82, 43.6288], [-78.7203, 43.6251], [-79.1717, 43.4663], [-78.9394, 42.8636], [-82.6901, 41.6751], [-83.12, 42.08], [-82.1376, 43.5711], [-82.5509, 45.3475], [-83.5929, 45.8169], [-84.1421, 46.5122], [-84.6049, 46.4396], [-84.8761, 46.9001], [-88.3781, 48.3029], [-89.6, 48.01], [-94.3291, 48.6707], [-94.8176, 49.389], [-95.1561, 49.3843], [-95.1591, 49.0], [-100.0, 49.0001], [-99.9019, 67.8057]],
-    label: [-69.0665, 56.693],
-    token: [-69.0665, 56.693]
+    polygon: [[-82.0, 69.4281], [-81.2804, 69.162], [-81.2202, 68.6657], [-81.9644, 68.1325], [-81.2593, 67.5972], [-81.3865, 67.1108], [-82.0, 66.8917], [-82.0, 53.0838], [-81.4008, 52.1579], [-79.9129, 51.2084], [-79.143, 51.5339], [-78.6019, 52.5621], [-79.1242, 54.1414], [-79.8296, 54.6677], [-78.2287, 55.1365], [-76.5414, 56.5342], [-76.6232, 57.2026], [-77.3023, 58.0521], [-78.5169, 58.8046], [-77.3368, 59.8526], [-78.1069, 62.3196], [-77.4107, 62.5505], [-74.6682, 62.1811], [-73.8399, 62.4438], [-71.3737, 61.1372], [-69.5904, 61.0614], [-69.2879, 58.9574], [-68.3745, 58.8011], [-67.6498, 58.2121], [-66.2018, 58.7673], [-64.5835, 60.3356], [-61.3965, 56.9674], [-61.7987, 56.3394], [-59.5696, 55.2041], [-57.3332, 54.6265], [-56.9369, 53.7803], [-55.7563, 53.2704], [-55.6834, 52.1466], [-58.7748, 51.0643], [-60.0331, 50.2428], [-66.3991, 50.229], [-67.2363, 49.5116], [-68.5111, 49.0684], [-71.1046, 46.8217], [-70.2552, 46.9861], [-68.65, 48.3], [-66.5524, 49.1331], [-65.0563, 49.2328], [-64.171, 48.7425], [-65.1154, 48.0709], [-64.4722, 46.2385], [-63.1733, 45.739], [-61.5207, 45.8838], [-60.5181, 47.0079], [-60.4486, 46.2826], [-59.8029, 45.9204], [-64.2466, 44.2655], [-65.3641, 43.5452], [-66.1234, 43.6187], [-66.1617, 44.4651], [-64.4255, 45.292], [-67.1374, 45.1375], [-67.7913, 45.7028], [-67.7905, 47.0664], [-69.2372, 47.4478], [-70.66, 45.46], [-71.5051, 45.0082], [-74.867, 45.0005], [-76.82, 43.6288], [-78.7203, 43.6251], [-79.1717, 43.4663], [-78.9394, 42.8636], [-82.0, 41.8938], [-82.0, 69.4281]],
+    label: [-71.0643, 52.3942],
+    token: [-71.0643, 52.3942]
   },
   "Canada West": {
     polygon: [[-122.9742, 49.0025], [-125.6246, 50.4166], [-127.4356, 50.8306], [-127.9928, 51.7158], [-127.8503, 52.3296], [-129.1298, 52.7554], [-129.3052, 53.5616], [-130.515, 54.2876], [-130.0078, 55.9158], [-131.7078, 56.5521], [-133.3556, 58.4103], [-135.4758, 59.7878], [-137.4525, 58.905], [-139.039, 60.0], [-140.9978, 60.3064], [-140.986, 69.712], [-136.5036, 68.898], [-134.4146, 69.6274], [-132.9292, 69.5053], [-129.7947, 70.1937], [-129.1077, 69.7793], [-128.3616, 70.0129], [-128.1382, 70.4838], [-125.7563, 69.4806], [-124.4248, 70.1584], [-124.2897, 69.3997], [-122.6835, 69.8555], [-121.4723, 69.7978], [-117.6027, 69.0113], [-115.2469, 68.9059], [-113.8979, 68.3989], [-115.3049, 67.9026], [-113.4973, 67.6881], [-109.9462, 67.981], [-108.8802, 67.3814], [-107.7924, 67.8874], [-108.813, 68.3116], [-108.1672, 68.6539], [-106.15, 68.8], [-104.3379, 68.018], [-103.2211, 68.0978], [-101.4543, 67.6469], [-100.0, 67.7956], [-100.0, 49.0001], [-122.9742, 49.0025]],
@@ -496,8 +502,13 @@ const ECONOMY = {
   annualIncomeFloor: 900,
   annualIncomeScale: 22000
 };
-const AI_OWNERS = ["ai1", "ai2", "ai3", "ai4"];
-const OWNER_STYLE_CLASSES = ["player", "neutral", "ai1", "ai2", "ai3", "ai4"];
+const STARTING_TREASURY = 5000;
+const WATER_TRANSPORT_SHIP_BATCH = 5;
+const WATER_TRANSPORT_TROOPS_PER_BATCH = 35;
+const WATER_TRANSPORT_TROOPS_PER_SHIP = WATER_TRANSPORT_TROOPS_PER_BATCH / WATER_TRANSPORT_SHIP_BATCH;
+const AI_OWNERS = ["ai1", "ai2", "ai3", "ai4", "ai5", "ai6"];
+const NETWORK_HUMAN_OWNER_SLOTS = ["player", "ai1", "ai2", "ai3"];
+const OWNER_STYLE_CLASSES = ["player", "neutral", "ai1", "ai2", "ai3", "ai4", "ai5", "ai6"];
 
 const OCEAN_ROUTE_PAIRS = [
   ["Arabia", "East Africa"],
@@ -535,6 +546,145 @@ function routeKey(a, b) {
 const OCEAN_ROUTE_KEYS = new Set(
   OCEAN_ROUTE_PAIRS.map(([a, b]) => routeKey(a, b))
 );
+
+const MOUNTAIN_BLOCKED_PAIRS = [
+  ["US Pacific", "US Rockies"],
+  ["US Southwest", "US Rockies"],
+  ["US Midwest", "US Rockies"],
+  ["US South", "US Rockies"],
+  ["Chile", "Bolivia"],
+  ["Peru", "Bolivia"],
+  ["India North", "China West"],
+  ["India North", "China Central"],
+  ["Pakistan", "China West"],
+  ["Mongolia", "Russia East"]
+];
+
+const MOUNTAIN_BLOCKED_ROUTE_KEYS = new Set(
+  MOUNTAIN_BLOCKED_PAIRS.map(([a, b]) => routeKey(a, b))
+);
+
+const MOUNTAIN_RANGES = [
+  {
+    id: "rockies",
+    territory: "US Rockies",
+    anchorToSide: true,
+    sideHint: "east",
+    sideDepth: 0.26,
+    sideInset: 0.86,
+    sampleStart: 0.0,
+    sampleEnd: 1.0,
+    coverFullSide: true,
+    spine: [
+      { x: 198.5, y: 145.8 },
+      { x: 198.0, y: 155.4 },
+      { x: 197.4, y: 165.3 },
+      { x: 197.5, y: 175.0 },
+      { x: 198.3, y: 182.7 }
+    ],
+    side: 1,
+    edgeInset: 0.52,
+    bandWidth: 6.7,
+    peakSpacing: 8.4,
+    peakWidth: 3.2,
+    peakHeight: 5.2
+  },
+  {
+    id: "southern-russia",
+    territory: "Russia West",
+    anchorToSide: true,
+    sideHint: "south",
+    sideDepth: 0.18,
+    sideInset: 0.86,
+    sampleStart: 0.12,
+    sampleEnd: 0.9,
+    edgeInset: 0.54,
+    bandWidth: 6.1,
+    peakSpacing: 8.2,
+    peakWidth: 2.8,
+    peakHeight: 4.6
+  },
+  {
+    id: "urga-north",
+    territory: "Mongolia",
+    anchorToSide: true,
+    sideHint: "north",
+    sideDepth: 0.22,
+    sideInset: 0.9,
+    sampleStart: 0.06,
+    sampleEnd: 0.94,
+    edgeInset: 0.54,
+    bandWidth: 5.8,
+    peakSpacing: 7.9,
+    peakWidth: 2.6,
+    peakHeight: 4.2
+  },
+  {
+    id: "andes",
+    territory: "Bolivia",
+    anchorToSide: true,
+    sideHint: "west",
+    sideDepth: 0.2,
+    sideInset: 0.95,
+    spine: [
+      { x: 307.6, y: 348.2 },
+      { x: 308.0, y: 356.0 },
+      { x: 308.4, y: 364.4 },
+      { x: 308.8, y: 372.5 },
+      { x: 309.1, y: 380.3 }
+    ],
+    side: 1,
+    edgeInset: 0.68,
+    bandWidth: 7.2,
+    peakSpacing: 8.6,
+    peakWidth: 3.4,
+    peakHeight: 5.8
+  },
+  {
+    id: "himalaya",
+    territory: "India North",
+    anchorToSide: true,
+    sideHint: "north",
+    sideDepth: 0.18,
+    sideInset: 1.0,
+    spine: [
+      { x: 705.4, y: 191.2 },
+      { x: 718.2, y: 193.8 },
+      { x: 730.8, y: 198.4 },
+      { x: 743.8, y: 203.1 },
+      { x: 756.7, y: 207.8 },
+      { x: 768.5, y: 212.2 }
+    ],
+    side: 1,
+    edgeInset: 0.74,
+    bandWidth: 7.8,
+    peakSpacing: 9.2,
+    peakWidth: 3.6,
+    peakHeight: 6.1
+  },
+  {
+    id: "alps",
+    territory: "Alpine States",
+    anchorToSide: true,
+    sideHint: "north",
+    sideDepth: 0.22,
+    sideInset: 0.8,
+    spine: [
+      { x: 539.5, y: 134.2 },
+      { x: 545.0, y: 135.3 },
+      { x: 550.8, y: 136.9 },
+      { x: 556.8, y: 138.5 },
+      { x: 561.8, y: 140.9 }
+    ],
+    side: 1,
+    edgeInset: 0.58,
+    bandWidth: 5.6,
+    peakSpacing: 8.0,
+    peakWidth: 2.9,
+    peakHeight: 4.6
+  }
+];
+
 const COASTAL_TERRITORIES = new Set([
   "Arabia",
   "Argentina North",
@@ -546,6 +696,7 @@ const COASTAL_TERRITORIES = new Set([
   "Brazil North",
   "Brazil South",
   "British Isles",
+  "Canada Central",
   "Canada East",
   "Canada West",
   "Caucasus",
@@ -607,75 +758,141 @@ const state = {
   homeBase: null,
   ships: 0,
   playerShipLocations: {},
-  aiShips: { ai1: 0, ai2: 0, ai3: 0, ai4: 0 },
+  shipsByOwner: { player: 0 },
+  shipLocationsByOwner: { player: {} },
+  aiShips: AI_OWNERS.reduce((acc, owner) => {
+    acc[owner] = 0;
+    return acc;
+  }, {}),
   gameOver: false,
   seasonIndex: 0,
   year: 1850,
   lastIncomeYear: 1850,
-  treasury: 5000,
+  treasury: STARTING_TREASURY,
+  treasuryByOwner: { player: STARTING_TREASURY },
   firstRound: true,
   animating: false,
   setupOpen: false,
   playerCountryId: "united-states",
+  setupStep: "create",
+  setupTab: "map",
+  setupOptions: {
+    playMode: "solo",
+    mapPreset: "world-1850",
+    rulesPreset: "classic",
+    difficulty: "very-easy",
+    campaignMode: "deathmatch",
+    passPlayers: 2
+  },
+  networkSetup: {
+    role: "host",
+    room: "empires-room",
+    playerName: "Commander",
+    selectedLobbyId: "",
+    maxPlayers: 4,
+    aiEnabled: true,
+    countryChosen: false
+  },
+  multiplayer: {
+    commanderIndex: 0,
+    network: {
+      active: false,
+      role: "host",
+      room: "",
+      lobbyId: "",
+      playerId: "",
+      hostPlayerId: "",
+      waitingForRemote: false,
+      connected: false,
+      started: false,
+      players: [],
+      maxPlayers: 4,
+      aiEnabled: true,
+      activePlayerId: "",
+      payloadVersion: 0,
+      lastAppliedPayloadVersion: 0,
+      availableLobbies: [],
+      ownerByPlayerId: {},
+      ownerCountryByOwner: {},
+      lastError: "",
+      actionPending: false
+    }
+  },
   forceMenuHidden: false,
+  economyPanelOpen: false,
   outcomeAckRequired: false,
   outcomeAckWaiters: []
 };
 
+const SAVE_FORMAT_VERSION = 1;
+const SAVE_STORAGE_KEY = "until-zero-save-v1";
+const VALID_OWNER_SET = new Set(["player", "neutral", ...AI_OWNERS]);
+const NETWORK_ROOM_MAX_LEN = 32;
+const MULTIPLAYER_DEFAULT_ROOM = "empires-room";
+const NETWORK_POLL_INTERVAL_MS = 900;
+const NETWORK_REQUEST_TIMEOUT_MS = 7000;
+let networkPollTimer = null;
+let networkPollBusy = false;
+let networkLobbyBrowseBusy = false;
+let networkLobbyBrowseQueued = false;
+let networkLastLobbyBrowseAt = 0;
+
 const DISPLAY_NAMES = {
-  "Alpine States": "Alpine",
-  "Australia East": "E. Australia",
-  "Australia West": "W. Australia",
-  "British Isles": "Brit. Isles",
-  "Canada East": "E. Canada",
-  "Canada West": "W. Canada",
-  "Central Africa": "C. Africa",
-  "Central America": "C. America",
-  "Central Asia": "C. Asia",
-  "China Central": "C. China",
-  "China East": "E. China",
-  "China West": "W. China",
-  "East Africa": "E. Africa",
+  "Alpine States": "Alps",
+  "Australia East": "Eastern Australia",
+  "Australia West": "Western Australia",
+  "British Isles": "United Kingdom",
+  "Canada Central": "Central Canada",
+  "Canada East": "Eastern Canada",
+  "Canada West": "Western Canada",
+  "Central Africa": "Central Africa",
+  "Central America": "Central America",
+  "Central Asia": "Central Asia",
+  "China Central": "Central China",
+  "China East": "Eastern China",
+  "China West": "Western China",
+  "East Africa": "East Africa",
   "Gulf of Guinea": "Gulf Guinea",
-  "India North": "N. India",
-  "India South": "S. India",
-  "Japan North": "N. Japan",
-  "Japan South": "S. Japan",
-  "Mainland SEA": "Mainland SEA",
-  "Maritime SEA": "Maritime SEA",
+  "India North": "North India",
+  "India South": "South India",
+  "Japan North": "North Japan",
+  "Japan South": "South Japan",
+  "Mainland SEA": "Mainland SE Asia",
+  "Maritime SEA": "Maritime SE Asia",
   "Poland-Baltic": "Poland-Baltic",
-  "Russia East": "E. Russia",
-  "Russia West": "W. Russia",
-  "Southern Africa": "S. Africa",
-  "US Midwest": "US MW",
-  "US Northeast": "US NE",
-  "US Northwest": "US NW",
-  "US Pacific": "US Pac",
-  "US Rockies": "US RK",
-  "US South": "US S",
-  "US Southeast": "US SE",
-  "US Southwest": "US SW"
+  "Russia East": "Eastern Russia",
+  "Russia West": "Western Russia",
+  "Southern Africa": "Southern Africa",
+  "US Midwest": "US Midwest",
+  "US Northeast": "US Northeast",
+  "US Northwest": "US Northwest",
+  "US Pacific": "US Pacific",
+  "US Rockies": "US Rockies",
+  "US South": "US South",
+  "US Southeast": "US Southeast",
+  "US Southwest": "US Southwest"
 };
 
 const CAPITAL_LABELS = {
   "Alpine States": "Vienna",
   "Arabia": "Mecca",
   "Argentina North": "Cordoba",
-  "Argentina South": "Bahia Blanca",
+  "Argentina South": "Patagonia",
   "Australia East": "Sydney",
   "Australia West": "Perth",
   "Balkans": "Belgrade",
   "Benelux": "Brussels",
-  "Bolivia": "Sucre",
-  "Brazil North": "Belem",
+  "Bolivia": "La Paz",
+  "Brazil North": "Manaus",
   "Brazil South": "Rio",
   "British Isles": "London",
-  "Canada East": "Quebec",
+  "Canada Central": "Winnipeg",
+  "Canada East": "Toronto",
   "Canada West": "Vancouver",
   "Caucasus": "Tbilisi",
-  "Central Africa": "Bangui",
+  "Central Africa": "Kinshasa",
   "Central America": "Guatemala",
-  "Central Asia": "Samarkand",
+  "Central Asia": "Tashkent",
   "Chile": "Santiago",
   "China Central": "Xi'an",
   "China East": "Shanghai",
@@ -686,31 +903,31 @@ const CAPITAL_LABELS = {
   "Egypt": "Cairo",
   "France": "Paris",
   "Germany": "Berlin",
-  "Greenland": "Nuuk",
+  "Greenland": "Greenland",
   "Gulf of Guinea": "Accra",
   "Hispaniola": "Santo Domingo",
   "Iberia": "Madrid",
   "India North": "Delhi",
-  "India South": "Madras",
+  "India South": "Bangalore",
   "Iran": "Tehran",
   "Italy": "Rome",
-  "Japan North": "Hakodate",
-  "Japan South": "Edo",
+  "Japan North": "Sapporo",
+  "Japan South": "Tokyo",
   "Korea": "Seoul",
   "La Plata": "Buenos Aires",
-  "Madagascar": "Antananarivo",
+  "Madagascar": "Madagascar",
   "Maghreb": "Algiers",
   "Mainland SEA": "Bangkok",
-  "Maritime SEA": "Batavia",
+  "Maritime SEA": "Jakarta",
   "Mexico": "Mexico City",
-  "Mongolia": "Urga",
+  "Mongolia": "Ulaanbaatar",
   "New Zealand": "Wellington",
   "Nigeria": "Lagos",
   "Pakistan": "Karachi",
   "Papua": "Port Moresby",
   "Peru": "Lima",
   "Poland-Baltic": "Warsaw",
-  "Russia East": "Irkutsk",
+  "Russia East": "Vladivostok",
   "Russia West": "Moscow",
   "Sahel": "Timbuktu",
   "Scandinavia": "Stockholm",
@@ -719,45 +936,177 @@ const CAPITAL_LABELS = {
   "US Midwest": "Chicago",
   "US Northeast": "New York",
   "US Northwest": "Seattle",
-  "US Pacific": "San Jose",
+  "US Pacific": "Los Angeles",
   "US Rockies": "Denver",
   "US South": "New Orleans",
   "US Southeast": "Washington",
-  "US Southwest": "Santa Fe",
+  "US Southwest": "Phoenix",
   "Ukraine": "Kyiv",
   "Venezuela": "Caracas"
 };
 
 const STARTING_COUNTRY_POOL = [
   { id: "united-states", name: "United States", territory: "US Southeast" },
-  { id: "france", name: "France", territory: "France" },
   { id: "united-kingdom", name: "United Kingdom", territory: "British Isles" },
   { id: "japan", name: "Japan", territory: "Japan South" },
   { id: "south-africa", name: "South Africa", territory: "Southern Africa" },
-  { id: "russia", name: "Russia", territory: "Russia West" }
+  { id: "russia", name: "Russia", territory: "Russia West" },
+  { id: "india", name: "India", territory: "India North" },
+  { id: "brazil", name: "Brazil", territory: "Brazil South" }
 ];
+const CAPITAL_ICON_TERRITORIES = new Set(
+  STARTING_COUNTRY_POOL.map((country) => country.territory)
+);
 
 const STARTING_COUNTRY_FLAGS = {
   "united-states": "🇺🇸",
-  "france": "🇫🇷",
   "united-kingdom": "🇬🇧",
   "japan": "🇯🇵",
   "south-africa": "🇿🇦",
-  "russia": "🇷🇺"
+  "russia": "🇷🇺",
+  "india": "🇮🇳",
+  "brazil": "🇧🇷"
 };
 
 const STARTING_AI_PRIORITY = [
-  "france",
   "united-kingdom",
-  "japan",
   "russia",
+  "india",
   "south-africa",
+  "japan",
+  "brazil",
   "united-states"
 ];
+
+const SETUP_PLAY_MODES = [
+  {
+    id: "solo",
+    name: "Solo",
+    icon: "🧍",
+    summary: "Play alone against AI empires."
+  },
+  {
+    id: "online",
+    name: "Play Online",
+    icon: "🌐",
+    summary: "Internet matchmaking and private lobbies (planned)."
+  },
+  {
+    id: "pass-play",
+    name: "Pass & Play",
+    icon: "🤝",
+    summary: "Rotate local commanders on one device."
+  },
+  {
+    id: "network",
+    name: "Network Play",
+    icon: "🛰️",
+    summary: "Host or join a room and hand off turns remotely."
+  }
+];
+
+const SETUP_MAP_PRESETS = [
+  {
+    id: "world-1850",
+    name: "World 1850",
+    summary: "77 regions. Best for full campaigns."
+  },
+  {
+    id: "classic-world",
+    name: "Classic World",
+    summary: "Alternate map layout and pacing (planned)."
+  }
+];
+
+const SETUP_RULE_PRESETS = [
+  {
+    id: "classic",
+    name: "Classic Rules",
+    summary: "Standard conquest with annual budget and reinforcements."
+  },
+  {
+    id: "rapid",
+    name: "Rapid Rules",
+    summary: "Faster seasons and more aggressive pacing (planned)."
+  }
+];
+
+const SETUP_CAMPAIGN_MODES = [
+  { id: "deathmatch", name: "Deathmatch" },
+  { id: "cooperative", name: "Cooperative" }
+];
+
+const SETUP_DIFFICULTIES = [
+  {
+    id: "very-easy",
+    name: "Very easy",
+    playerStartArmies: 14,
+    aiStartArmies: 10,
+    reserveStartArmies: 10,
+    playerReinforcementBonus: 1,
+    aiReinforcementBonus: 0,
+    aiAttackThreshold: -5
+  },
+  {
+    id: "easy",
+    name: "Easy",
+    playerStartArmies: 13,
+    aiStartArmies: 11,
+    reserveStartArmies: 10,
+    playerReinforcementBonus: 1,
+    aiReinforcementBonus: 0,
+    aiAttackThreshold: -4
+  },
+  {
+    id: "normal",
+    name: "Normal",
+    playerStartArmies: 12,
+    aiStartArmies: 12,
+    reserveStartArmies: 11,
+    playerReinforcementBonus: 0,
+    aiReinforcementBonus: 0,
+    aiAttackThreshold: -3
+  },
+  {
+    id: "hard",
+    name: "Hard",
+    playerStartArmies: 11,
+    aiStartArmies: 13,
+    reserveStartArmies: 12,
+    playerReinforcementBonus: 0,
+    aiReinforcementBonus: 1,
+    aiAttackThreshold: -2
+  },
+  {
+    id: "very-hard",
+    name: "Very hard",
+    playerStartArmies: 10,
+    aiStartArmies: 14,
+    reserveStartArmies: 13,
+    playerReinforcementBonus: 0,
+    aiReinforcementBonus: 1,
+    aiAttackThreshold: -1
+  }
+];
+
+const DEFAULT_SETUP_OPTIONS = Object.freeze({
+  step: "create",
+  tab: "map",
+  playMode: "solo",
+  mapPreset: "world-1850",
+  rulesPreset: "classic",
+  difficulty: "very-easy",
+  campaignMode: "deathmatch",
+  passPlayers: 2
+});
 
 function territoryLabel(name, fallback = "") {
   if (!name) return fallback;
   return CAPITAL_LABELS[name] || DISPLAY_NAMES[name] || name;
+}
+
+function hasCapitalIcon(name) {
+  return CAPITAL_ICON_TERRITORIES.has(name);
 }
 
 function resolveStartingCountry(countryId) {
@@ -798,21 +1147,1119 @@ function buildStartingAssignments(playerCountryId) {
   };
 }
 
+function setupModeById(modeId) {
+  return SETUP_PLAY_MODES.find((mode) => mode.id === modeId) || SETUP_PLAY_MODES[0];
+}
+
+function setupMapPresetById(mapId) {
+  return SETUP_MAP_PRESETS.find((preset) => preset.id === mapId) || SETUP_MAP_PRESETS[0];
+}
+
+function setupRulesPresetById(rulesId) {
+  return SETUP_RULE_PRESETS.find((preset) => preset.id === rulesId) || SETUP_RULE_PRESETS[0];
+}
+
+function setupDifficultyById(difficultyId) {
+  return SETUP_DIFFICULTIES.find((entry) => entry.id === difficultyId) || SETUP_DIFFICULTIES[0];
+}
+
+function setupCampaignModeById(modeId) {
+  return SETUP_CAMPAIGN_MODES.find((entry) => entry.id === modeId) || SETUP_CAMPAIGN_MODES[0];
+}
+
+function setupDifficultyIndex() {
+  const index = SETUP_DIFFICULTIES.findIndex((entry) => entry.id === state.setupOptions.difficulty);
+  return index < 0 ? 0 : index;
+}
+
+function sanitizeNetworkRoom(value) {
+  const raw = typeof value === "string" ? value.trim().toLowerCase() : "";
+  const normalized = raw
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+    .slice(0, NETWORK_ROOM_MAX_LEN);
+  return normalized || MULTIPLAYER_DEFAULT_ROOM;
+}
+
+function isPassPlayMode() {
+  return state.setupOptions.playMode === "pass-play";
+}
+
+function isNetworkMode() {
+  return state.setupOptions.playMode === "network" && state.multiplayer.network.active;
+}
+
+function multiplayerCommanderCount() {
+  if (isPassPlayMode()) {
+    return Math.max(2, Math.min(6, state.setupOptions.passPlayers || 2));
+  }
+  if (isNetworkMode()) {
+    return Math.max(1, Math.min(4, state.multiplayer.network.players.length || 1));
+  }
+  return 1;
+}
+
+function currentCommanderNumber() {
+  return Math.max(1, Math.min(multiplayerCommanderCount(), (state.multiplayer.commanderIndex || 0) + 1));
+}
+
+function isNetworkInputLocked() {
+  return isNetworkMode() && state.multiplayer.network.waitingForRemote;
+}
+
+function currentCommanderLabel() {
+  if (isNetworkMode()) {
+    const localPlayer = networkLocalPlayer();
+    const activePlayer = networkActivePlayer();
+    if (activePlayer && localPlayer && activePlayer.id === localPlayer.id) {
+      return `${localPlayer.name} (You)`;
+    }
+    if (activePlayer) {
+      return `${activePlayer.name} (Remote)`;
+    }
+    if (localPlayer) return `${localPlayer.name} (You)`;
+    return isNetworkInputLocked() ? "Remote Commander" : "Your Commander";
+  }
+  if (isPassPlayMode()) {
+    return `Commander ${currentCommanderNumber()}`;
+  }
+  return "Player";
+}
+
+function sanitizeNetworkPlayerName(value) {
+  const raw = typeof value === "string" ? value.trim() : "";
+  if (!raw) return "Commander";
+  return raw.replace(/\s+/g, " ").slice(0, 24);
+}
+
+function normalizeNetworkOwnerSlot(value) {
+  const slot = typeof value === "string" ? value.trim() : "";
+  return NETWORK_HUMAN_OWNER_SLOTS.includes(slot) ? slot : "";
+}
+
+function networkLocalPlayer() {
+  if (!state.multiplayer.network.playerId) return null;
+  return state.multiplayer.network.players.find((entry) => entry.id === state.multiplayer.network.playerId) || null;
+}
+
+function networkActivePlayer() {
+  if (!state.multiplayer.network.activePlayerId) return null;
+  return state.multiplayer.network.players.find((entry) => entry.id === state.multiplayer.network.activePlayerId) || null;
+}
+
+function networkCountrySelectionMap(players = state.multiplayer.network.players) {
+  const byCountry = {};
+  players.forEach((entry) => {
+    if (!entry || !entry.countryId) return;
+    byCountry[entry.countryId] = entry;
+  });
+  return byCountry;
+}
+
+function syncNetworkOwnerAssignments() {
+  const players = Array.isArray(state.multiplayer.network.players)
+    ? state.multiplayer.network.players
+    : [];
+  const byPlayerId = {};
+  const byOwner = {};
+  const assignedOwners = new Set();
+
+  players.forEach((entry, index) => {
+    if (!entry?.id) return;
+    let owner = normalizeNetworkOwnerSlot(entry.ownerSlot);
+    if (!owner || assignedOwners.has(owner)) {
+      owner = NETWORK_HUMAN_OWNER_SLOTS.find((slot) => !assignedOwners.has(slot)) || "";
+    }
+    if (!owner) {
+      const slotIndex = Math.max(0, Math.min(NETWORK_HUMAN_OWNER_SLOTS.length - 1, index));
+      owner = NETWORK_HUMAN_OWNER_SLOTS[slotIndex];
+    }
+    assignedOwners.add(owner);
+    byPlayerId[entry.id] = owner;
+    if (entry.countryId) {
+      byOwner[owner] = entry.countryId;
+    }
+  });
+
+  state.multiplayer.network.ownerByPlayerId = byPlayerId;
+  state.multiplayer.network.ownerCountryByOwner = byOwner;
+}
+
+function networkOwnerForPlayerId(playerId) {
+  if (!playerId) return "";
+  return state.multiplayer.network.ownerByPlayerId[playerId] || "";
+}
+
+function networkPlayerForOwner(owner) {
+  if (!owner) return null;
+  const players = Array.isArray(state.multiplayer.network.players)
+    ? state.multiplayer.network.players
+    : [];
+  return players.find((entry) => networkOwnerForPlayerId(entry.id) === owner) || null;
+}
+
+function isNetworkHumanOwner(owner) {
+  if (!owner) return false;
+  if (!isNetworkMode()) return owner === "player";
+  return Object.values(state.multiplayer.network.ownerByPlayerId || {}).includes(owner);
+}
+
+function localHumanOwner() {
+  if (isNetworkMode()) {
+    const mapped = networkOwnerForPlayerId(state.multiplayer.network.playerId);
+    if (mapped) return mapped;
+  }
+  return "player";
+}
+
+function activeNetworkOwner() {
+  if (isNetworkMode()) {
+    const mapped = networkOwnerForPlayerId(state.multiplayer.network.activePlayerId);
+    if (mapped) return mapped;
+  }
+  return state.turn || "player";
+}
+
+function ownerCapitalTerritory(owner = localHumanOwner()) {
+  if (!owner) return null;
+  if (isNetworkMode()) {
+    const countryId = state.multiplayer.network.ownerCountryByOwner?.[owner];
+    if (countryId) return resolveStartingCountry(countryId).territory;
+  }
+  if (owner === "player") {
+    return state.homeBase || resolveStartingCountry(state.playerCountryId).territory;
+  }
+  return null;
+}
+
+function syncHomeBaseForTurnOwner() {
+  if (!isNetworkMode()) return;
+  const homeBase = ownerCapitalTerritory(state.turn);
+  if (homeBase) {
+    state.homeBase = homeBase;
+  }
+}
+
+function isLocalTurnOwner() {
+  return state.turn === localHumanOwner();
+}
+
+function nextNetworkPlayerId(currentPlayerId = state.multiplayer.network.activePlayerId || state.multiplayer.network.playerId) {
+  const players = Array.isArray(state.multiplayer.network.players)
+    ? state.multiplayer.network.players
+    : [];
+  if (players.length < 1) return "";
+  const currentIndex = players.findIndex((entry) => entry.id === currentPlayerId);
+  if (currentIndex < 0) return players[0].id || "";
+  const nextIndex = (currentIndex + 1) % players.length;
+  return players[nextIndex]?.id || players[0].id || "";
+}
+
+function nextNetworkHumanOwner(currentPlayerId = state.multiplayer.network.activePlayerId || state.multiplayer.network.playerId) {
+  const nextPlayerId = nextNetworkPlayerId(currentPlayerId);
+  return networkOwnerForPlayerId(nextPlayerId) || "player";
+}
+
+function firstNetworkHumanOwner() {
+  const firstPlayerId = state.multiplayer.network.players?.[0]?.id || "";
+  return networkOwnerForPlayerId(firstPlayerId) || "player";
+}
+
+function isLastNetworkHumanTurn(currentPlayerId = state.multiplayer.network.playerId || state.multiplayer.network.activePlayerId) {
+  const players = Array.isArray(state.multiplayer.network.players)
+    ? state.multiplayer.network.players
+    : [];
+  if (players.length < 2) return true;
+  const currentIndex = players.findIndex((entry) => entry.id === currentPlayerId);
+  if (currentIndex < 0) return true;
+  return currentIndex === players.length - 1;
+}
+
+function closeNetworkChannel() {
+  if (networkPollTimer) {
+    clearInterval(networkPollTimer);
+    networkPollTimer = null;
+  }
+  networkPollBusy = false;
+}
+
+function shutdownNetworkSession(options = {}) {
+  const notifyServer = options?.notifyServer !== false;
+  const leavingLobbyId = state.multiplayer.network.lobbyId;
+  const leavingPlayerId = state.multiplayer.network.playerId;
+  const cachedLobbies = Array.isArray(state.multiplayer.network.availableLobbies)
+    ? state.multiplayer.network.availableLobbies.slice()
+    : [];
+
+  closeNetworkChannel();
+  state.multiplayer.network.active = false;
+  state.multiplayer.network.room = "";
+  state.multiplayer.network.role = "host";
+  state.multiplayer.network.lobbyId = "";
+  state.multiplayer.network.playerId = "";
+  state.multiplayer.network.hostPlayerId = "";
+  state.multiplayer.network.connected = false;
+  state.multiplayer.network.started = false;
+  state.multiplayer.network.players = [];
+  state.multiplayer.network.maxPlayers = Math.max(2, Math.min(4, state.networkSetup.maxPlayers || 4));
+  state.multiplayer.network.aiEnabled = state.networkSetup.aiEnabled !== false;
+  state.multiplayer.network.activePlayerId = "";
+  state.multiplayer.network.payloadVersion = 0;
+  state.multiplayer.network.lastAppliedPayloadVersion = 0;
+  state.multiplayer.network.availableLobbies = cachedLobbies;
+  state.multiplayer.network.ownerByPlayerId = {};
+  state.multiplayer.network.ownerCountryByOwner = {};
+  state.multiplayer.network.lastError = "";
+  state.multiplayer.network.actionPending = false;
+  state.multiplayer.network.waitingForRemote = false;
+
+  if (notifyServer && leavingLobbyId && leavingPlayerId) {
+    void networkApiRequest(`/lobbies/${encodeURIComponent(leavingLobbyId)}/leave`, {
+      method: "POST",
+      body: { playerId: leavingPlayerId },
+      keepalive: true
+    });
+  }
+}
+
+async function networkApiRequest(path, options = {}) {
+  const method = options.method || "GET";
+  const headers = { Accept: "application/json" };
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, NETWORK_REQUEST_TIMEOUT_MS);
+  const init = {
+    method,
+    headers,
+    cache: "no-store",
+    signal: controller.signal
+  };
+  if (options.keepalive) init.keepalive = true;
+  if (options.body !== undefined) {
+    headers["Content-Type"] = "application/json";
+    init.body = JSON.stringify(options.body);
+  }
+  let response;
+  try {
+    response = await fetch(`/api${path}`, init);
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error instanceof Error && error.name === "AbortError") {
+      return {
+        ok: false,
+        status: 0,
+        message: "LAN request timed out. Verify lan-server.js is running and reachable on this network."
+      };
+    }
+    return {
+      ok: false,
+      status: 0,
+      message: "Cannot reach the LAN game server. Make sure the host started lan-server.js."
+    };
+  }
+  clearTimeout(timeoutId);
+  let payload = null;
+  try {
+    payload = await response.json();
+  } catch (error) {
+    payload = null;
+  }
+  if (!response.ok && !payload) {
+    if (response.status === 404 || response.status === 405 || response.status === 501) {
+      return {
+        ok: false,
+        status: response.status,
+        message: "LAN API is unavailable on this URL. Start the game with `node lan-server.js` and open that server address."
+      };
+    }
+    return {
+      ok: false,
+      status: response.status,
+      message: `LAN server returned ${response.status}. Confirm lan-server.js is the process serving this page.`
+    };
+  }
+  if (!response.ok || !payload || payload.ok === false) {
+    return {
+      ok: false,
+      status: response.status,
+      message: payload?.message || `LAN request failed (${response.status}).`
+    };
+  }
+  return payload;
+}
+
+function syncNetworkStateFromLobby(lobby, options = {}) {
+  if (!lobby || typeof lobby !== "object") return;
+  const network = state.multiplayer.network;
+  const previousWaiting = Boolean(network.waitingForRemote);
+  const previousActivePlayerId = network.activePlayerId;
+
+  const players = Array.isArray(lobby.players)
+    ? lobby.players.map((entry) => ({
+      id: String(entry?.id || ""),
+      name: sanitizeNetworkPlayerName(entry?.name),
+      countryId: STARTING_COUNTRY_POOL.some((country) => country.id === entry?.countryId) ? entry.countryId : "",
+      ownerSlot: normalizeNetworkOwnerSlot(entry?.ownerSlot),
+      isHost: Boolean(entry?.isHost)
+    })).filter((entry) => entry.id)
+    : [];
+
+  network.players = players;
+  syncNetworkOwnerAssignments();
+  network.connected = players.length > 1;
+  network.hostPlayerId = typeof lobby.hostPlayerId === "string" ? lobby.hostPlayerId : "";
+  network.room = sanitizeNetworkRoom(lobby.room || lobby.name || state.networkSetup.room);
+  network.maxPlayers = Math.max(2, Math.min(4, Number.parseInt(lobby.maxPlayers, 10) || network.maxPlayers || 4));
+  network.aiEnabled = lobby.aiEnabled !== false;
+  network.started = lobby.status === "started";
+  network.activePlayerId = typeof lobby.activePlayerId === "string" ? lobby.activePlayerId : "";
+  network.payloadVersion = Math.max(0, Math.floor(Number(lobby.payloadVersion) || 0));
+  network.lastError = "";
+
+  state.networkSetup.room = network.room;
+  state.networkSetup.maxPlayers = network.maxPlayers;
+  state.networkSetup.aiEnabled = network.aiEnabled;
+  if (lobby.settings && typeof lobby.settings === "object") {
+    state.setupOptions = normalizeSetupOptions(lobby.settings);
+  }
+
+  const local = networkLocalPlayer();
+  if (local && local.countryId) {
+    state.playerCountryId = local.countryId;
+    state.networkSetup.countryChosen = true;
+  }
+
+  const shouldWait = network.started &&
+    Boolean(network.activePlayerId) &&
+    Boolean(network.playerId) &&
+    network.activePlayerId !== network.playerId;
+  setNetworkWaiting(shouldWait);
+
+  if (network.started) {
+    state.turn = activeNetworkOwner();
+    syncHomeBaseForTurnOwner();
+  }
+
+  const canApplyPayload = options.applyPayload !== false &&
+    network.started &&
+    lobby.payload &&
+    network.payloadVersion > network.lastAppliedPayloadVersion;
+
+  if (canApplyPayload) {
+    const loaded = applyNetworkPayload(lobby.payload);
+    if (!loaded.ok) {
+      showBattleOutcome(loaded.message || "Network sync failed.", false, false);
+    } else {
+      network.lastAppliedPayloadVersion = network.payloadVersion;
+      if (state.setupOpen) hideCountryPicker();
+      if (isNetworkInputLocked()) {
+        addLog("LAN sync received. Waiting for active commander.");
+      } else {
+        addLog("LAN sync received. Your turn is ready.");
+      }
+    }
+  }
+
+  if (!shouldWait && previousWaiting && network.started) {
+    const previousActive = players.find((entry) => entry.id === previousActivePlayerId);
+    const previousName = previousActive?.name || "Remote commander";
+    const localName = networkLocalPlayer()?.name || ownerName(localHumanOwner());
+    const instruction = currentTurnActionInstruction();
+    addLog(`${localName} is up. ${previousName} finished turn.`);
+    showBattleOutcome(`${previousName} turn summary received. ${localName}, your turn: ${instruction}`, true, true);
+    playSound("ding");
+  } else if (shouldWait && !previousWaiting && network.started) {
+    const activeNow = networkActivePlayer();
+    const activeName = activeNow ? activeNow.name : "Remote commander";
+    addLog(`Turn passed to ${activeName}. Waiting while they issue orders.`);
+  }
+
+  if (previousActivePlayerId !== network.activePlayerId && state.setupOpen) {
+    renderSetupWizard();
+  }
+}
+
+async function refreshHostedLobbies(force = false) {
+  if (networkLobbyBrowseBusy) {
+    networkLobbyBrowseQueued = networkLobbyBrowseQueued || force;
+    return;
+  }
+  const now = Date.now();
+  if (!force && now - networkLastLobbyBrowseAt < 1300) return;
+
+  networkLobbyBrowseBusy = true;
+  networkLastLobbyBrowseAt = now;
+  const response = await networkApiRequest("/lobbies");
+  if (response.ok) {
+    clearNetworkSetupError();
+    state.multiplayer.network.availableLobbies = Array.isArray(response.lobbies) ? response.lobbies : [];
+    const selected = state.multiplayer.network.availableLobbies.find((entry) => entry.id === state.networkSetup.selectedLobbyId);
+    if (!selected && state.networkSetup.role === "join") {
+      state.networkSetup.selectedLobbyId = "";
+    }
+    if (selected && selected.settings) {
+      state.setupOptions = normalizeSetupOptions(selected.settings);
+      state.networkSetup.maxPlayers = Math.max(2, Math.min(4, Number.parseInt(selected.maxPlayers, 10) || state.networkSetup.maxPlayers));
+      state.networkSetup.aiEnabled = selected.aiEnabled !== false;
+    }
+    if (state.setupOpen && state.setupOptions.playMode === "network" && state.networkSetup.role === "join") {
+      renderSetupWizard();
+      render();
+    }
+  } else if (force) {
+    const message = response.message || "Unable to browse LAN lobbies.";
+    setNetworkSetupError(message, true);
+  }
+  networkLobbyBrowseBusy = false;
+  if (networkLobbyBrowseQueued) {
+    networkLobbyBrowseQueued = false;
+    void refreshHostedLobbies(true);
+  }
+}
+
+async function refreshActiveNetworkLobby(showErrors = false) {
+  if (!state.multiplayer.network.active || !state.multiplayer.network.lobbyId || !state.multiplayer.network.playerId) {
+    return { ok: false, message: "No active network lobby." };
+  }
+  const lobbyId = encodeURIComponent(state.multiplayer.network.lobbyId);
+  const playerId = encodeURIComponent(state.multiplayer.network.playerId);
+  const since = Math.max(0, Math.floor(state.multiplayer.network.lastAppliedPayloadVersion || 0));
+  const response = await networkApiRequest(`/lobbies/${lobbyId}?playerId=${playerId}&since=${since}`);
+  if (!response.ok) {
+    const status = Number(response.status) || 0;
+    if (status === 404 || status === 403) {
+      const missingMessage = response.message || "Lobby is no longer active.";
+      shutdownNetworkSession({ notifyServer: false });
+      if (showErrors || state.setupOpen) {
+        showBattleOutcome(missingMessage, false, false);
+      }
+      if (state.setupOpen) {
+        renderSetupWizard();
+        render();
+      }
+      return { ok: false, message: missingMessage, status };
+    }
+    if (showErrors) showBattleOutcome(response.message || "Failed to refresh lobby state.", false, false);
+    state.multiplayer.network.connected = false;
+    return response;
+  }
+  if (!response.lobby) {
+    const missingMessage = "Lobby no longer exists.";
+    if (showErrors) showBattleOutcome(missingMessage, false, false);
+    shutdownNetworkSession({ notifyServer: false });
+    if (state.setupOpen) {
+      renderSetupWizard();
+      render();
+    }
+    return { ok: false, message: missingMessage };
+  }
+  syncNetworkStateFromLobby(response.lobby);
+  if (state.setupOpen && state.setupOptions.playMode === "network") {
+    renderSetupWizard();
+  }
+  render();
+  return { ok: true };
+}
+
+function startNetworkPolling() {
+  closeNetworkChannel();
+  void refreshActiveNetworkLobby(false);
+  networkPollTimer = setInterval(() => {
+    if (networkPollBusy) return;
+    networkPollBusy = true;
+    void refreshActiveNetworkLobby(false).finally(() => {
+      networkPollBusy = false;
+    });
+  }, NETWORK_POLL_INTERVAL_MS);
+}
+
+function setNetworkWaiting(waiting) {
+  state.multiplayer.network.waitingForRemote = Boolean(waiting);
+}
+
+function setNetworkSetupError(message, showOutcome = false) {
+  state.multiplayer.network.lastError = String(message || "").trim();
+  if (showOutcome && state.multiplayer.network.lastError) {
+    showBattleOutcome(state.multiplayer.network.lastError, false, state.setupOpen);
+  }
+}
+
+function clearNetworkSetupError() {
+  state.multiplayer.network.lastError = "";
+}
+
+function validateNetworkSetupBeforeLobbyAction() {
+  if (state.setupOptions.playMode !== "network") return "";
+  if (window.location.protocol === "file:") {
+    return "LAN mode cannot run from file://. Start `node lan-server.js` and open the server URL (for example http://localhost:8080).";
+  }
+  const role = state.networkSetup.role === "join" ? "join" : "host";
+  const playerNameRaw = typeof state.networkSetup.playerName === "string"
+    ? state.networkSetup.playerName.trim()
+    : "";
+  if (!playerNameRaw) {
+    return "Enter a commander name before continuing.";
+  }
+  if (role === "host") {
+    const roomRaw = typeof state.networkSetup.room === "string"
+      ? state.networkSetup.room.trim()
+      : "";
+    if (!roomRaw) {
+      return "Enter a lobby code before opening a lobby.";
+    }
+    if (!state.networkSetup.countryChosen) {
+      return "Choose your country before opening a lobby.";
+    }
+    return "";
+  }
+  if (!state.networkSetup.selectedLobbyId) {
+    return "Select a hosted LAN lobby before joining.";
+  }
+  return "";
+}
+
+function networkLobbyStateForSetup() {
+  const role = state.networkSetup.role === "join" ? "join" : "host";
+  const room = sanitizeNetworkRoom(state.networkSetup.room);
+  const active = state.multiplayer.network.active;
+  const pending = state.multiplayer.network.actionPending;
+  const started = state.multiplayer.network.started;
+  const players = state.multiplayer.network.players;
+  const playerCount = players.length;
+  const pickedCount = players.reduce((sum, entry) => sum + (entry.countryId ? 1 : 0), 0);
+  const selectedLobby = state.multiplayer.network.availableLobbies.find((entry) => entry.id === state.networkSetup.selectedLobbyId);
+
+  if (pending) {
+    const buttonLabel = role === "join" ? "Joining..." : "Opening...";
+    return {
+      buttonLabel,
+      canStart: false,
+      status: role === "join"
+        ? "Joining selected LAN lobby..."
+        : "Opening LAN lobby..."
+    };
+  }
+
+  if (!active) {
+    if (role === "host") {
+      return {
+        buttonLabel: "Open Lobby",
+        canStart: true,
+        status: `Host "${room}" on LAN. Choose your country first, then wait for up to ${state.networkSetup.maxPlayers} total players.`
+      };
+    }
+    const joinable = Boolean(selectedLobby && selectedLobby.status === "open");
+    return {
+      buttonLabel: "Join Selected Lobby",
+      canStart: joinable,
+      status: selectedLobby
+        ? selectedLobby.status === "open"
+          ? `Previewing "${selectedLobby.room}". Settings are host-controlled; you can only choose an unclaimed country.`
+          : `"${selectedLobby.room}" is already in a live match. Choose another hosted lobby.`
+        : "Browse LAN hosted games, select one, then join."
+    };
+  }
+
+  if (started) {
+    const activeCommander = networkActivePlayer();
+    return {
+      buttonLabel: role === "host" ? "Match Running" : "Waiting for Turn",
+      canStart: false,
+      status: activeCommander
+        ? `Match in progress. Active commander: ${activeCommander.name}.`
+        : "Match in progress."
+    };
+  }
+
+  if (role === "host") {
+    const hasEnoughPlayers = playerCount >= 2;
+    const everyonePicked = playerCount > 0 && pickedCount === playerCount;
+    const canLaunch = hasEnoughPlayers && everyonePicked;
+    let status = `Lobby open (${playerCount}/${state.multiplayer.network.maxPlayers}). `;
+    if (!hasEnoughPlayers) {
+      status += "Need at least 2 LAN players.";
+    } else if (!everyonePicked) {
+      status += "Waiting for all players to choose unique countries.";
+    } else {
+      status += "All commanders ready. Launch when ready.";
+    }
+    return {
+      buttonLabel: "Launch Match",
+      canStart: canLaunch,
+      status
+    };
+  }
+
+  return {
+    buttonLabel: "Waiting for Host",
+    canStart: false,
+    status: `Joined "${state.multiplayer.network.room}". Waiting for host launch.`
+  };
+}
+
+function networkPayloadFromCurrentState() {
+  return {
+    version: SAVE_FORMAT_VERSION,
+    savedAt: new Date().toISOString(),
+    game: captureGameSaveSnapshot()
+  };
+}
+
+function applyNetworkPayload(payload) {
+  const storage = getSaveStorage();
+  if (!storage) return { ok: false, message: "Local storage is unavailable for network sync." };
+  try {
+    storage.setItem(SAVE_STORAGE_KEY, JSON.stringify(payload));
+  } catch (error) {
+    return { ok: false, message: "Failed to stage remote state in local storage." };
+  }
+  return loadGameFromStorage();
+}
+
+async function beginNetworkSessionFromSetup() {
+  const validationError = validateNetworkSetupBeforeLobbyAction();
+  if (validationError) {
+    setNetworkSetupError(validationError, true);
+    return { ok: false, message: validationError };
+  }
+
+  const role = state.networkSetup.role === "join" ? "join" : "host";
+  const room = sanitizeNetworkRoom(state.networkSetup.room);
+  const playerName = sanitizeNetworkPlayerName(state.networkSetup.playerName);
+  state.networkSetup.role = role;
+  state.networkSetup.room = room;
+  state.networkSetup.playerName = playerName;
+  clearNetworkSetupError();
+
+  if (state.multiplayer.network.active) {
+    shutdownNetworkSession();
+  }
+
+  let response;
+  if (role === "host") {
+    response = await networkApiRequest("/lobbies", {
+      method: "POST",
+      body: {
+        room,
+        playerName,
+        countryId: state.playerCountryId,
+        maxPlayers: Math.max(2, Math.min(4, state.networkSetup.maxPlayers || 4)),
+        aiEnabled: state.networkSetup.aiEnabled !== false,
+        settings: normalizeSetupOptions(state.setupOptions)
+      }
+    });
+  } else {
+    if (!state.networkSetup.selectedLobbyId) {
+      const message = "Choose a hosted LAN lobby first.";
+      setNetworkSetupError(message, true);
+      return { ok: false, message };
+    }
+    response = await networkApiRequest(`/lobbies/${encodeURIComponent(state.networkSetup.selectedLobbyId)}/join`, {
+      method: "POST",
+      body: {
+        playerName,
+        countryId: state.playerCountryId
+      }
+    });
+  }
+
+  if (!response.ok || !response.lobby || !response.playerId) {
+    const message = response.message || "Failed to open LAN lobby.";
+    setNetworkSetupError(message, true);
+    return { ok: false, message };
+  }
+
+  state.multiplayer.network.active = true;
+  state.multiplayer.network.role = role;
+  state.multiplayer.network.playerId = String(response.playerId);
+  state.multiplayer.network.lobbyId = String(response.lobby.id || "");
+  state.multiplayer.network.room = sanitizeNetworkRoom(response.lobby.room || room);
+  state.multiplayer.network.lastAppliedPayloadVersion = 0;
+  state.multiplayer.network.payloadVersion = 0;
+  state.networkSetup.selectedLobbyId = state.multiplayer.network.lobbyId;
+
+  syncNetworkStateFromLobby(response.lobby, { applyPayload: false });
+  startNetworkPolling();
+
+  if (role === "host") {
+    addLog(`LAN lobby "${state.multiplayer.network.room}" opened. Waiting for commanders.`);
+    showBattleOutcome(`LAN lobby "${state.multiplayer.network.room}" opened. Share this host on your local network.`, true, false);
+  } else {
+    addLog(`Joined LAN lobby "${state.multiplayer.network.room}" as ${playerName}.`);
+    showBattleOutcome(`Joined "${state.multiplayer.network.room}". Waiting for host launch.`, true, false);
+  }
+  clearNetworkSetupError();
+  return { ok: true };
+}
+
+async function updateHostedNetworkSettings() {
+  if (!state.multiplayer.network.active || state.multiplayer.network.role !== "host") return { ok: false };
+  const response = await networkApiRequest(`/lobbies/${encodeURIComponent(state.multiplayer.network.lobbyId)}/settings`, {
+    method: "POST",
+    body: {
+      playerId: state.multiplayer.network.playerId,
+      maxPlayers: Math.max(2, Math.min(4, state.networkSetup.maxPlayers || 4)),
+      aiEnabled: state.networkSetup.aiEnabled !== false,
+      settings: normalizeSetupOptions(state.setupOptions)
+    }
+  });
+  if (!response.ok || !response.lobby) {
+    const message = response.message || "Failed to update host settings.";
+    setNetworkSetupError(message, true);
+    return { ok: false };
+  }
+  clearNetworkSetupError();
+  syncNetworkStateFromLobby(response.lobby, { applyPayload: false });
+  if (state.setupOpen) {
+    renderSetupWizard();
+    render();
+  }
+  return { ok: true };
+}
+
+async function selectNetworkCountry(countryId) {
+  const resolved = resolveStartingCountry(countryId).id;
+  if (!state.multiplayer.network.active) {
+    state.playerCountryId = resolved;
+    return { ok: true };
+  }
+  const response = await networkApiRequest(`/lobbies/${encodeURIComponent(state.multiplayer.network.lobbyId)}/select-country`, {
+    method: "POST",
+    body: {
+      playerId: state.multiplayer.network.playerId,
+      countryId: resolved
+    }
+  });
+  if (!response.ok || !response.lobby) {
+    const message = response.message || "Country is unavailable.";
+    setNetworkSetupError(message, true);
+    return { ok: false };
+  }
+  clearNetworkSetupError();
+  syncNetworkStateFromLobby(response.lobby, { applyPayload: false });
+  if (state.setupOpen) {
+    renderSetupWizard();
+    render();
+  }
+  return { ok: true };
+}
+
+async function sendNetworkHandoff() {
+  if (!state.multiplayer.network.active || !state.multiplayer.network.playerId || !state.multiplayer.network.lobbyId) {
+    return false;
+  }
+  const response = await networkApiRequest(`/lobbies/${encodeURIComponent(state.multiplayer.network.lobbyId)}/handoff`, {
+    method: "POST",
+    body: {
+      playerId: state.multiplayer.network.playerId,
+      payload: networkPayloadFromCurrentState()
+    }
+  });
+  if (!response.ok || !response.lobby) {
+    setNetworkSetupError(response.message || "LAN handoff failed.");
+    return false;
+  }
+  clearNetworkSetupError();
+  syncNetworkStateFromLobby(response.lobby, { applyPayload: false });
+  state.multiplayer.network.lastAppliedPayloadVersion = Math.max(
+    state.multiplayer.network.lastAppliedPayloadVersion,
+    state.multiplayer.network.payloadVersion
+  );
+  return true;
+}
+
+function applyNetworkHumanOwnershipAtLaunch() {
+  if (!state.multiplayer.network.active) return;
+  syncNetworkOwnerAssignments();
+
+  const difficulty = setupDifficultyById(state.setupOptions.difficulty);
+  const humanOwners = new Set();
+  const humanCapitalsByOwner = {};
+
+  state.multiplayer.network.players.forEach((entry) => {
+    const owner = networkOwnerForPlayerId(entry.id);
+    if (!owner || !entry.countryId) return;
+    const capitalTerritory = resolveStartingCountry(entry.countryId).territory;
+    humanOwners.add(owner);
+    humanCapitalsByOwner[owner] = capitalTerritory;
+    state.territories[capitalTerritory] = {
+      owner,
+      armies: difficulty.playerStartArmies,
+      fortified: 0
+    };
+  });
+
+  const availableAiOwners = AI_OWNERS.filter((owner) => !humanOwners.has(owner));
+  let aiOwnerIndex = 0;
+  Object.entries(state.territories).forEach(([name, territory]) => {
+    if (!humanOwners.has(territory.owner)) return;
+    const reservedCapital = humanCapitalsByOwner[territory.owner];
+    if (reservedCapital && name === reservedCapital) return;
+    if (state.multiplayer.network.aiEnabled && availableAiOwners.length > 0) {
+      const reassignedOwner = availableAiOwners[aiOwnerIndex % availableAiOwners.length];
+      aiOwnerIndex += 1;
+      territory.owner = reassignedOwner;
+    } else {
+      territory.owner = "neutral";
+      territory.fortified = 0;
+    }
+  });
+
+  if (state.multiplayer.network.aiEnabled === false) {
+    Object.values(state.territories).forEach((territory) => {
+      if (territory.owner === "neutral") return;
+      if (humanOwners.has(territory.owner)) return;
+      territory.owner = "neutral";
+      territory.fortified = 0;
+    });
+    AI_OWNERS.forEach((owner) => {
+      state.aiShips[owner] = 0;
+    });
+  }
+
+  Object.entries(humanCapitalsByOwner).forEach(([owner, territoryName]) => {
+    const existing = state.territories[territoryName] || { armies: difficulty.playerStartArmies };
+    state.territories[territoryName] = {
+      owner,
+      armies: Math.max(difficulty.playerStartArmies, Math.round(Number(existing.armies) || difficulty.playerStartArmies)),
+      fortified: 0
+    };
+  });
+
+  const existingTreasuryByOwner = state.treasuryByOwner && typeof state.treasuryByOwner === "object"
+    ? state.treasuryByOwner
+    : {};
+  const treasuryByOwner = {};
+  humanOwners.forEach((owner) => {
+    treasuryByOwner[owner] = Math.max(0, Math.round(Number(existingTreasuryByOwner[owner]) || STARTING_TREASURY));
+  });
+  if (Object.keys(treasuryByOwner).length < 1) {
+    treasuryByOwner.player = STARTING_TREASURY;
+  }
+  state.treasuryByOwner = treasuryByOwner;
+  syncDisplayedTreasury();
+
+  state.turn = activeNetworkOwner() || networkOwnerForPlayerId(state.multiplayer.network.hostPlayerId) || "player";
+  state.phase = "reinforce";
+  state.reinforcementsLeft = reinforcementFor(state.turn);
+  state.selection = { from: null, to: null };
+  state.attackForce = 1;
+  state.attackShips = 0;
+  state.forceMenuHidden = false;
+  state.economyPanelOpen = false;
+  syncHomeBaseForTurnOwner();
+}
+
+async function launchHostedNetworkMatch() {
+  if (!state.multiplayer.network.active || state.multiplayer.network.role !== "host") {
+    return { ok: false, message: "Open a host lobby first." };
+  }
+  if (state.multiplayer.network.players.length < 2) {
+    return { ok: false, message: "Need at least 2 LAN players before launch." };
+  }
+  const unselected = state.multiplayer.network.players.filter((entry) => !entry.countryId);
+  if (unselected.length > 0) {
+    return { ok: false, message: "Every player must select a country before launch." };
+  }
+
+  initGame(state.playerCountryId);
+  applyNetworkHumanOwnershipAtLaunch();
+  setNetworkWaiting(false);
+  hideCountryPicker();
+  const response = await networkApiRequest(`/lobbies/${encodeURIComponent(state.multiplayer.network.lobbyId)}/start`, {
+    method: "POST",
+    body: {
+      playerId: state.multiplayer.network.playerId,
+      payload: networkPayloadFromCurrentState()
+    }
+  });
+  if (!response.ok || !response.lobby) {
+    const message = response.message || "Failed to launch LAN match.";
+    setNetworkSetupError(message);
+    return { ok: false, message };
+  }
+  clearNetworkSetupError();
+  syncNetworkStateFromLobby(response.lobby, { applyPayload: false });
+  state.multiplayer.network.lastAppliedPayloadVersion = Math.max(
+    state.multiplayer.network.lastAppliedPayloadVersion,
+    state.multiplayer.network.payloadVersion
+  );
+  addLog(`LAN match launched in "${state.multiplayer.network.room}".`);
+  showBattleOutcome("LAN match started.", true, false);
+  render();
+  return { ok: true };
+}
+function setupDifficultyForOwner(owner) {
+  const difficulty = setupDifficultyById(state.setupOptions.difficulty);
+  if (owner === "player" || isNetworkHumanOwner(owner)) {
+    return difficulty.playerReinforcementBonus;
+  }
+  if (isAIOwner(owner)) {
+    return difficulty.aiReinforcementBonus;
+  }
+  return 0;
+}
+
+function resetSetupToDefaults(preferredCountryId = state.playerCountryId) {
+  state.setupStep = DEFAULT_SETUP_OPTIONS.step;
+  state.setupTab = DEFAULT_SETUP_OPTIONS.tab;
+  state.setupOptions = {
+    playMode: DEFAULT_SETUP_OPTIONS.playMode,
+    mapPreset: DEFAULT_SETUP_OPTIONS.mapPreset,
+    rulesPreset: DEFAULT_SETUP_OPTIONS.rulesPreset,
+    difficulty: DEFAULT_SETUP_OPTIONS.difficulty,
+    campaignMode: DEFAULT_SETUP_OPTIONS.campaignMode,
+    passPlayers: DEFAULT_SETUP_OPTIONS.passPlayers
+  };
+  state.networkSetup = {
+    role: "host",
+    room: MULTIPLAYER_DEFAULT_ROOM,
+    playerName: sanitizeNetworkPlayerName(state.networkSetup.playerName || "Commander"),
+    selectedLobbyId: "",
+    maxPlayers: 4,
+    aiEnabled: true,
+    countryChosen: false
+  };
+  state.playerCountryId = resolveStartingCountry(preferredCountryId).id;
+  state.multiplayer.network.availableLobbies = [];
+}
+
+function setupSummaryLine() {
+  const mode = setupModeById(state.setupOptions.playMode);
+  const difficulty = setupDifficultyById(state.setupOptions.difficulty);
+  const mapPreset = setupMapPresetById(state.setupOptions.mapPreset);
+  const campaignMode = setupCampaignModeById(state.setupOptions.campaignMode);
+  const country = resolveStartingCountry(state.playerCountryId);
+  const displayCountry = state.setupOptions.playMode === "network" && !state.networkSetup.countryChosen
+    ? "Choose Country"
+    : country.name;
+  const parts = [
+    `${mode.name}`,
+    `${difficulty.name}`,
+    `${mapPreset.name}`,
+    `${campaignMode.name}`,
+    displayCountry
+  ];
+  if (state.setupOptions.playMode === "pass-play") {
+    parts.push(`${state.setupOptions.passPlayers} players`);
+  }
+  if (state.setupOptions.playMode === "network") {
+    const roleText = state.networkSetup.role === "join" ? "Join" : "Host";
+    const aiMode = (state.multiplayer.network.active
+      ? state.multiplayer.network.aiEnabled
+      : state.networkSetup.aiEnabled) ? "AI On" : "LAN Only";
+    const roomLabel = state.multiplayer.network.active
+      ? state.multiplayer.network.room
+      : sanitizeNetworkRoom(state.networkSetup.room);
+    if (state.multiplayer.network.active) {
+      const playerCount = state.multiplayer.network.players.length;
+      parts.push(`${roleText} · Lobby ${roomLabel} · ${playerCount}/${state.multiplayer.network.maxPlayers} players · ${aiMode}`);
+    } else {
+      parts.push(`${roleText} · Lobby ${roomLabel} · Max ${state.networkSetup.maxPlayers} players · ${aiMode}`);
+    }
+  }
+  return parts.join(" · ");
+}
+
+async function launchCampaignFromSetup() {
+  const mode = setupModeById(state.setupOptions.playMode);
+  const difficulty = setupDifficultyById(state.setupOptions.difficulty);
+  const mapPreset = setupMapPresetById(state.setupOptions.mapPreset);
+  const rulesPreset = setupRulesPresetById(state.setupOptions.rulesPreset);
+  const campaignMode = setupCampaignModeById(state.setupOptions.campaignMode);
+  const passPlayers = Math.max(2, Math.min(6, state.setupOptions.passPlayers || 2));
+  state.setupOptions.passPlayers = passPlayers;
+  state.multiplayer.commanderIndex = 0;
+  if (mode.id === "network") {
+    if (state.multiplayer.network.actionPending) return;
+    state.multiplayer.network.actionPending = true;
+    renderSetupWizard();
+    render();
+    try {
+      if (!state.multiplayer.network.active) {
+        const networkStart = await beginNetworkSessionFromSetup();
+        if (!networkStart.ok) {
+          setNetworkSetupError(networkStart.message || "Unable to open lobby.", true);
+        } else {
+          clearNetworkSetupError();
+          showBattleOutcome(networkLobbyStateForSetup().status, true, false);
+        }
+        renderSetupWizard();
+        render();
+        return;
+      }
+      if (state.networkSetup.role === "join") {
+        const refreshed = await refreshActiveNetworkLobby(false);
+        if (!refreshed.ok) {
+          setNetworkSetupError(refreshed.message || "Could not refresh lobby.", true);
+        }
+        showBattleOutcome(networkLobbyStateForSetup().status, true, false);
+        renderSetupWizard();
+        render();
+        return;
+      }
+      const launched = await launchHostedNetworkMatch();
+      if (!launched.ok) {
+        setNetworkSetupError(launched.message || "Unable to launch LAN match.", true);
+        renderSetupWizard();
+        render();
+      }
+      return;
+    } finally {
+      state.multiplayer.network.actionPending = false;
+      if (state.setupOpen && state.setupOptions.playMode === "network") {
+        renderSetupWizard();
+        render();
+      }
+    }
+  }
+  shutdownNetworkSession();
+  initGame(state.playerCountryId);
+  addLog(`Setup loaded: ${mode.name} · ${difficulty.name} · ${mapPreset.name} · ${rulesPreset.name} · ${campaignMode.name}.`);
+  if (mode.id !== "solo") {
+    if (mode.id === "pass-play") {
+      addLog(`Pass & Play active (${passPlayers} local commanders). Commander 1 begins.`);
+      showBattleOutcome("Pass device as turns rotate between local commanders.", true, false);
+    } else {
+      addLog(`${mode.name} scaffolding enabled. Networking flow is planned next.`);
+    }
+  }
+  render();
+}
+
 function hideCountryPicker() {
   state.setupOpen = false;
   if (countryPickerEl) countryPickerEl.classList.remove("visible");
 }
 
 function renderCountryPickerOptions() {
-  if (!countryPickerOptionsEl) return;
-  countryPickerOptionsEl.innerHTML = "";
+  const pickerOptionsEl = document.getElementById("country-picker-options");
+  if (!pickerOptionsEl) return;
+  pickerOptionsEl.innerHTML = "";
+  const networkMode = state.setupOptions.playMode === "network";
+  const networkActive = networkMode && state.multiplayer.network.active;
+  const selectedByCountry = networkActive ? networkCountrySelectionMap() : {};
+  const localPlayerId = state.multiplayer.network.playerId;
 
   STARTING_COUNTRY_POOL.forEach((country) => {
     const button = document.createElement("button");
     button.type = "button";
     button.id = `country-choice-${country.id}`;
     button.className = "country-option-btn";
-    button.classList.toggle("selected", country.id === state.playerCountryId);
+    const selectedEntry = selectedByCountry[country.id] || null;
+    const selectedByMe = Boolean(selectedEntry && selectedEntry.id === localPlayerId);
+    const selectedByOther = Boolean(selectedEntry && !selectedByMe);
+    const localPreLobbySelection = networkMode
+      ? state.networkSetup.countryChosen && country.id === state.playerCountryId
+      : country.id === state.playerCountryId;
+    const selected = networkMode && networkActive
+      ? selectedByMe
+      : localPreLobbySelection;
+    button.classList.toggle("selected", selected);
+    button.classList.toggle("locked", selectedByOther);
+    button.disabled = selectedByOther;
 
     const header = document.createElement("span");
     header.className = "country-option-header";
@@ -830,32 +2277,646 @@ function renderCountryPickerOptions() {
     const capitalName = territoryLabel(country.territory, country.territory);
     const capital = document.createElement("span");
     capital.className = "country-option-capital";
-    capital.textContent = `Capital: ${capitalName}`;
+    let selectionNote = "";
+    if (networkMode) {
+      if (selectedEntry) {
+        const hostBadge = selectedEntry.isHost ? " (Host)" : "";
+        selectionNote = ` \u00b7 ${selectedByMe ? "You" : selectedEntry.name}${hostBadge}`;
+      } else {
+        selectionNote = " \u00b7 Available";
+      }
+    }
+    capital.textContent = `Capital: ${capitalName}${selectionNote}`;
 
     header.appendChild(flag);
     header.appendChild(countryName);
     button.appendChild(header);
     button.appendChild(capital);
-    button.addEventListener("click", async () => {
-      await unlockAudio();
+    button.addEventListener("click", () => {
+      if (selectedByOther) return;
+      if (networkMode) {
+        void (async () => {
+          const selected = await selectNetworkCountry(country.id);
+          if (!selected.ok) return;
+          state.networkSetup.countryChosen = true;
+          clearNetworkSetupError();
+          playSound("select");
+          renderSetupWizard();
+          render();
+        })();
+        return;
+      }
+      state.playerCountryId = country.id;
+      state.networkSetup.countryChosen = true;
+      clearNetworkSetupError();
       playSound("select");
-      initGame(country.id);
+      renderSetupWizard();
+      render();
     });
 
-    countryPickerOptionsEl.appendChild(button);
+    pickerOptionsEl.appendChild(button);
   });
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function countryNameFromId(countryId) {
+  const country = STARTING_COUNTRY_POOL.find((entry) => entry.id === countryId);
+  return country ? country.name : "Unselected";
+}
+
+function networkRosterMarkup(players, hostPlayerId) {
+  if (!Array.isArray(players) || players.length < 1) {
+    return `<p class="setup-rule-copy">No commanders connected yet.</p>`;
+  }
+  return `
+    <div class="network-player-list">
+      ${players.map((entry) => {
+    const name = escapeHtml(entry.name || "Commander");
+    const hostTag = entry.id === hostPlayerId ? " (Host)" : "";
+    const country = entry.countryId ? escapeHtml(countryNameFromId(entry.countryId)) : "Unselected";
+    return `
+          <div class="network-player-row">
+            <span>${name}${hostTag}</span>
+            <span>${country}</span>
+          </div>
+        `;
+  }).join("")}
+    </div>
+  `;
+}
+
+function networkLobbySettingsSummary(lobby) {
+  const settings = lobby?.settings || {};
+  const mapName = setupMapPresetById(settings.mapPreset).name;
+  const rulesName = setupRulesPresetById(settings.rulesPreset).name;
+  const difficultyName = setupDifficultyById(settings.difficulty).name;
+  const modeName = setupCampaignModeById(settings.campaignMode).name;
+  return `${mapName} · ${rulesName} · ${difficultyName} · ${modeName}`;
+}
+
+function networkLobbyClaimsSummary(lobby) {
+  const players = Array.isArray(lobby?.players) ? lobby.players : [];
+  if (players.length < 1) return "No players joined.";
+  return players.map((entry) => {
+    const name = escapeHtml(entry?.name || "Commander");
+    const country = entry?.countryId ? escapeHtml(countryNameFromId(entry.countryId)) : "Unselected";
+    return `${name}: ${country}`;
+  }).join(" | ");
+}
+
+function renderSetupWizard() {
+  if (!startScreenCreateEl || !startScreenOptionsEl || !startScreenTitleEl || !startScreenBackBtn || !startScreenNextBtn) {
+    return;
+  }
+
+  const isCreateStep = state.setupStep === "create";
+  const selectedMode = setupModeById(state.setupOptions.playMode);
+  const selectedDifficulty = setupDifficultyById(state.setupOptions.difficulty);
+  const selectedMap = setupMapPresetById(state.setupOptions.mapPreset);
+  const selectedRules = setupRulesPresetById(state.setupOptions.rulesPreset);
+  const selectedCampaignMode = setupCampaignModeById(state.setupOptions.campaignMode);
+  const savedPayload = readSavedGamePayload();
+  const hasSavedGame = Boolean(savedPayload);
+  const savedTimestampLabel = hasSavedGame
+    ? formatSavedTimestamp(savedPayload.savedAt)
+    : "No saved game found yet.";
+  const difficultyIndex = setupDifficultyIndex();
+  const networkRole = state.networkSetup.role === "join" ? "join" : "host";
+  const networkRoom = sanitizeNetworkRoom(state.networkSetup.room);
+  const networkPlayerName = sanitizeNetworkPlayerName(state.networkSetup.playerName || "Commander");
+  const networkMaxPlayers = Math.max(2, Math.min(4, Number.parseInt(state.networkSetup.maxPlayers, 10) || 4));
+  const networkAiEnabled = state.networkSetup.aiEnabled !== false;
+  const networkActive = state.multiplayer.network.active;
+  const networkReadOnlySettings = selectedMode.id === "network" && networkRole === "join";
+  const selectedLobby = state.multiplayer.network.availableLobbies.find((entry) => entry.id === state.networkSetup.selectedLobbyId);
+  const networkError = selectedMode.id === "network" ? (state.multiplayer.network.lastError || "") : "";
+  const networkRoster = networkRosterMarkup(
+    networkActive ? state.multiplayer.network.players : [],
+    state.multiplayer.network.hostPlayerId
+  );
+  const lobbyCardsMarkup = state.multiplayer.network.availableLobbies.length
+    ? state.multiplayer.network.availableLobbies.map((lobby) => {
+      const isSelected = lobby.id === state.networkSetup.selectedLobbyId;
+      const roomLabel = escapeHtml(lobby.room || "lobby");
+      const playerCount = Math.max(0, Number.parseInt(lobby.playerCount, 10) || (Array.isArray(lobby.players) ? lobby.players.length : 0));
+      const maxPlayers = Math.max(2, Math.min(4, Number.parseInt(lobby.maxPlayers, 10) || 4));
+      const aiText = lobby.aiEnabled !== false ? "AI On" : "LAN Only";
+      const statusText = lobby.status === "started" ? "In Match" : "Open";
+      const joinable = lobby.status !== "started";
+      return `
+        <button type="button" class="map-choice-btn ${isSelected ? "active" : ""}" data-network-lobby-id="${escapeHtml(lobby.id)}" ${joinable ? "" : "disabled"}>
+          <span class="map-choice-title">${roomLabel}</span>
+          <span class="map-choice-copy">${statusText} · ${playerCount}/${maxPlayers} players · ${aiText}</span>
+          <span class="map-choice-copy">${escapeHtml(networkLobbySettingsSummary(lobby))}</span>
+        </button>
+      `;
+    }).join("")
+    : `<p class="setup-rule-copy">No hosted LAN games found yet.</p>`;
+  const networkLobby = networkLobbyStateForSetup();
+  state.networkSetup.role = networkRole;
+  state.networkSetup.room = networkRoom;
+  state.networkSetup.playerName = networkPlayerName;
+  state.networkSetup.maxPlayers = networkMaxPlayers;
+  state.networkSetup.aiEnabled = networkAiEnabled;
+
+  startScreenTitleEl.textContent = isCreateStep ? "Create a game" : "Options";
+  startScreenBackBtn.disabled = false;
+  startScreenNextBtn.disabled = false;
+  if (isCreateStep) {
+    startScreenNextBtn.textContent = "Next";
+  } else if (selectedMode.id === "network") {
+    startScreenNextBtn.textContent = networkLobby.buttonLabel;
+    startScreenNextBtn.disabled = state.multiplayer.network.actionPending || state.multiplayer.network.started;
+  } else {
+    startScreenNextBtn.textContent = "Start";
+  }
+  startScreenCreateEl.classList.toggle("visible", isCreateStep);
+  startScreenOptionsEl.classList.toggle("visible", !isCreateStep);
+
+  const soloMode = SETUP_PLAY_MODES.find((mode) => mode.id === "solo");
+  const multiplayerModes = SETUP_PLAY_MODES.filter((mode) => mode.id !== "solo");
+
+  startScreenCreateEl.innerHTML = `
+    <section class="start-screen-section start-screen-card">
+      <h3>Continue</h3>
+      <div class="mode-grid solo">
+        <button type="button" id="start-screen-continue-btn" class="mode-option-btn continue-save-btn" ${hasSavedGame ? "" : "disabled"}>
+          <span class="mode-option-icon">💾</span>
+          <span class="mode-option-name">Continue Saved Game</span>
+          <span class="mode-option-copy">${hasSavedGame ? `Resume from ${savedTimestampLabel}.` : savedTimestampLabel}</span>
+        </button>
+      </div>
+    </section>
+    <section class="start-screen-section start-screen-card">
+      <h3>Solo</h3>
+      <div class="mode-grid solo">
+        <button type="button" class="mode-option-btn ${selectedMode.id === soloMode.id ? "active" : ""}" data-mode-id="${soloMode.id}">
+          <span class="mode-option-icon">${soloMode.icon}</span>
+          <span class="mode-option-name">${soloMode.name}</span>
+          <span class="mode-option-copy">${soloMode.summary}</span>
+        </button>
+      </div>
+    </section>
+    <section class="start-screen-section start-screen-card">
+      <h3>Multi-Player</h3>
+      <div class="mode-grid multi">
+        ${multiplayerModes.map((mode) => `
+          <button type="button" class="mode-option-btn ${selectedMode.id === mode.id ? "active" : ""}" data-mode-id="${mode.id}">
+            <span class="mode-option-icon">${mode.icon}</span>
+            <span class="mode-option-name">${mode.name}</span>
+            <span class="mode-option-copy">${mode.summary}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${selectedMode.id === "network" ? `
+        <div class="setup-inline network-setup" style="margin-top:10px;">
+          <div class="setup-inline-row">
+            <p class="setup-inline-label">LAN Session</p>
+            <p class="setup-inline-value">${networkRole === "join" ? "Join" : "Host"}</p>
+          </div>
+          <div class="mode-toggle-row">
+            <button type="button" class="mode-toggle-btn ${networkRole === "host" ? "active" : ""}" data-network-role="host">Host</button>
+            <button type="button" class="mode-toggle-btn ${networkRole === "join" ? "active" : ""}" data-network-role="join">Join</button>
+          </div>
+          <label class="network-room-label" for="setup-network-player-name-create">Commander name</label>
+          <input id="setup-network-player-name-create" data-network-player-input="1" class="setup-network-room-input" type="text" maxlength="24" value="${escapeHtml(networkPlayerName)}" />
+          ${networkRole === "host" ? `
+            <label class="network-room-label" for="setup-network-room-create">Lobby code</label>
+            <input id="setup-network-room-create" data-network-room-input="1" class="setup-network-room-input" type="text" maxlength="${NETWORK_ROOM_MAX_LEN}" value="${networkRoom}" ${networkActive ? "disabled" : ""} />
+            <p class="setup-inline-label" style="font-size:0.8rem;">Max players</p>
+            <div class="mode-toggle-row">
+              <button type="button" class="mode-toggle-btn ${networkMaxPlayers === 2 ? "active" : ""}" data-network-max-players="2">2</button>
+              <button type="button" class="mode-toggle-btn ${networkMaxPlayers === 3 ? "active" : ""}" data-network-max-players="3">3</button>
+              <button type="button" class="mode-toggle-btn ${networkMaxPlayers === 4 ? "active" : ""}" data-network-max-players="4">4</button>
+            </div>
+            <p class="setup-inline-label" style="font-size:0.8rem;">AI Factions</p>
+            <div class="mode-toggle-row">
+              <button type="button" class="mode-toggle-btn ${networkAiEnabled ? "active" : ""}" data-network-ai-enabled="1">AI On</button>
+              <button type="button" class="mode-toggle-btn ${networkAiEnabled ? "" : "active"}" data-network-ai-enabled="0">LAN Only</button>
+            </div>
+          ` : `
+            <button type="button" class="mode-toggle-btn" data-network-refresh="1">Refresh Hosted Games</button>
+            <div class="map-choice-grid network-lobby-browser">
+              ${lobbyCardsMarkup}
+            </div>
+            ${selectedLobby ? `
+              <p class="setup-rule-copy">Preview: ${escapeHtml(networkLobbySettingsSummary(selectedLobby))}</p>
+              <p class="setup-rule-copy">${networkLobbyClaimsSummary(selectedLobby)}</p>
+            ` : ""}
+          `}
+          <p class="setup-rule-copy">${networkLobby.status}</p>
+          ${networkError ? `<p class="setup-rule-copy network-error-copy">${escapeHtml(networkError)}</p>` : ""}
+          ${networkActive ? `
+            <p class="setup-rule-copy">Country claims</p>
+            ${networkRoster}
+          ` : ""}
+        </div>
+      ` : ""}
+    </section>
+  `;
+
+  startScreenOptionsEl.innerHTML = `
+    <section class="start-screen-section start-screen-card">
+      <div class="setup-options-tabs">
+        <button type="button" class="setup-tab-btn ${state.setupTab === "map" ? "active" : ""}" data-setup-tab="map">Map</button>
+        <button type="button" class="setup-tab-btn ${state.setupTab === "rules" ? "active" : ""}" data-setup-tab="rules">Rules</button>
+      </div>
+      <div class="setup-tab-panel ${state.setupTab === "map" ? "visible" : ""}" data-tab-panel="map">
+        <div class="map-choice-grid">
+          ${SETUP_MAP_PRESETS.map((preset) => `
+            <button type="button" class="map-choice-btn ${selectedMap.id === preset.id ? "active" : ""}" data-map-id="${preset.id}" ${networkReadOnlySettings ? "disabled" : ""}>
+              <span class="map-choice-title">${preset.name}</span>
+              <span class="map-choice-copy">${preset.summary}</span>
+            </button>
+          `).join("")}
+        </div>
+      </div>
+      <div class="setup-tab-panel ${state.setupTab === "rules" ? "visible" : ""}" data-tab-panel="rules">
+        <div class="mode-toggle-row">
+          ${SETUP_RULE_PRESETS.map((preset) => `
+            <button type="button" class="mode-toggle-btn ${selectedRules.id === preset.id ? "active" : ""}" data-rules-id="${preset.id}" ${networkReadOnlySettings ? "disabled" : ""}>
+              ${preset.name}
+            </button>
+          `).join("")}
+        </div>
+        <p class="setup-rule-copy">${selectedRules.summary}</p>
+      </div>
+    </section>
+
+    <section class="start-screen-section start-screen-card">
+      <div class="setup-inline">
+        <div class="setup-inline-row">
+          <p class="setup-inline-label">Difficulty</p>
+          <p class="setup-inline-value">${selectedDifficulty.name}</p>
+        </div>
+        <input id="setup-difficulty-slider" class="parchment-slider setup-difficulty-slider" type="range" min="0" max="${SETUP_DIFFICULTIES.length - 1}" value="${difficultyIndex}" step="1" ${networkReadOnlySettings ? "disabled" : ""} />
+        <div class="setup-difficulty-scale">
+          <span>Very easy</span>
+          <span>Very hard</span>
+        </div>
+      </div>
+      <div class="setup-inline" style="margin-top:10px;">
+        <div class="setup-inline-row">
+          <p class="setup-inline-label">Game Mode</p>
+          <p class="setup-inline-value">${selectedCampaignMode.name}</p>
+        </div>
+        <div class="mode-toggle-row">
+          ${SETUP_CAMPAIGN_MODES.map((mode) => `
+            <button type="button" class="mode-toggle-btn ${selectedCampaignMode.id === mode.id ? "active" : ""}" data-campaign-mode-id="${mode.id}" ${networkReadOnlySettings ? "disabled" : ""}>
+              ${mode.name}
+            </button>
+          `).join("")}
+        </div>
+      </div>
+      ${selectedMode.id === "pass-play" ? `
+        <div class="setup-inline" style="margin-top:10px;">
+          <div class="passplay-row">
+            <p>Local players</p>
+            <div class="passplay-controls">
+              <button type="button" class="passplay-btn" data-passplay-adjust="-1">-</button>
+              <span class="passplay-count">${state.setupOptions.passPlayers}</span>
+              <button type="button" class="passplay-btn" data-passplay-adjust="1">+</button>
+            </div>
+          </div>
+        </div>
+      ` : ""}
+      ${selectedMode.id === "network" ? `
+        <div class="setup-inline network-setup" style="margin-top:10px;">
+          <div class="setup-inline-row">
+            <p class="setup-inline-label">LAN Session</p>
+            <p class="setup-inline-value">${networkRole === "join" ? "Join" : "Host"}</p>
+          </div>
+          <div class="mode-toggle-row">
+            <button type="button" class="mode-toggle-btn ${networkRole === "host" ? "active" : ""}" data-network-role="host">Host</button>
+            <button type="button" class="mode-toggle-btn ${networkRole === "join" ? "active" : ""}" data-network-role="join">Join</button>
+          </div>
+          <label class="network-room-label" for="setup-network-player-name">Commander name</label>
+          <input id="setup-network-player-name" data-network-player-input="1" class="setup-network-room-input" type="text" maxlength="24" value="${escapeHtml(networkPlayerName)}" />
+          ${networkRole === "host" ? `
+            <label class="network-room-label" for="setup-network-room">Lobby code</label>
+            <input id="setup-network-room" data-network-room-input="1" class="setup-network-room-input" type="text" maxlength="${NETWORK_ROOM_MAX_LEN}" value="${networkRoom}" ${networkActive ? "disabled" : ""} />
+            <p class="setup-inline-label" style="font-size:0.8rem;">Max players</p>
+            <div class="mode-toggle-row">
+              <button type="button" class="mode-toggle-btn ${networkMaxPlayers === 2 ? "active" : ""}" data-network-max-players="2">2</button>
+              <button type="button" class="mode-toggle-btn ${networkMaxPlayers === 3 ? "active" : ""}" data-network-max-players="3">3</button>
+              <button type="button" class="mode-toggle-btn ${networkMaxPlayers === 4 ? "active" : ""}" data-network-max-players="4">4</button>
+            </div>
+            <p class="setup-inline-label" style="font-size:0.8rem;">AI Factions</p>
+            <div class="mode-toggle-row">
+              <button type="button" class="mode-toggle-btn ${networkAiEnabled ? "active" : ""}" data-network-ai-enabled="1">AI On</button>
+              <button type="button" class="mode-toggle-btn ${networkAiEnabled ? "" : "active"}" data-network-ai-enabled="0">LAN Only</button>
+            </div>
+          ` : `
+            <button type="button" class="mode-toggle-btn" data-network-refresh="1">Refresh Hosted Games</button>
+            <div class="map-choice-grid network-lobby-browser">
+              ${lobbyCardsMarkup}
+            </div>
+            ${selectedLobby ? `
+              <p class="setup-rule-copy">Preview: ${escapeHtml(networkLobbySettingsSummary(selectedLobby))}</p>
+              <p class="setup-rule-copy">${networkLobbyClaimsSummary(selectedLobby)}</p>
+            ` : ""}
+          `}
+          <p class="setup-rule-copy">${networkLobby.status}</p>
+          ${networkError ? `<p class="setup-rule-copy network-error-copy">${escapeHtml(networkError)}</p>` : ""}
+          ${networkActive ? `
+            <p class="setup-rule-copy">Country claims</p>
+            ${networkRoster}
+          ` : ""}
+        </div>
+      ` : ""}
+    </section>
+
+    <section class="start-screen-section start-screen-card">
+      <h3>Choose Your Starting Country</h3>
+      <p class="start-screen-subtitle">${selectedMode.id === "network"
+        ? "Each LAN commander must claim a unique country. Joiners can preview settings, but only the host can edit them."
+        : "You start at that country&apos;s capital. AI empires spawn in different major capitals."}</p>
+      <div id="country-picker-options" class="country-picker-options"></div>
+      <div class="setup-summary" style="margin-top:10px;">
+        <strong>Summary:</strong> ${setupSummaryLine()}
+      </div>
+    </section>
+  `;
+
+  startScreenCreateEl.querySelectorAll("[data-mode-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextModeId = button.dataset.modeId || DEFAULT_SETUP_OPTIONS.playMode;
+      state.setupOptions.playMode = nextModeId;
+      if (nextModeId !== "network" && state.multiplayer.network.active) {
+        shutdownNetworkSession();
+      }
+      if (nextModeId !== "network") {
+        clearNetworkSetupError();
+      }
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const continueBtn = document.getElementById("start-screen-continue-btn");
+  if (continueBtn) {
+    continueBtn.addEventListener("click", async () => {
+      await unlockAudio();
+      if (state.multiplayer.network.active) {
+        shutdownNetworkSession();
+      }
+      const result = loadGameFromStorage();
+      if (!result.ok) {
+        showBattleOutcome(result.message, false, false);
+        renderSetupWizard();
+        render();
+        return;
+      }
+      hideCountryPicker();
+      playSound("select");
+      showBattleOutcome(`Loaded save from ${formatSavedTimestamp(result.savedAt)}.`, true, false);
+      render();
+    });
+  }
+
+  startScreenOptionsEl.querySelectorAll("[data-setup-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.setupTab = button.dataset.setupTab === "rules" ? "rules" : "map";
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  startScreenOptionsEl.querySelectorAll("[data-map-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (networkReadOnlySettings) return;
+      state.setupOptions.mapPreset = setupMapPresetById(button.dataset.mapId || DEFAULT_SETUP_OPTIONS.mapPreset).id;
+      playSound("select");
+      if (selectedMode.id === "network" && state.multiplayer.network.active && state.multiplayer.network.role === "host") {
+        void updateHostedNetworkSettings();
+      }
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  startScreenOptionsEl.querySelectorAll("[data-rules-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (networkReadOnlySettings) return;
+      state.setupOptions.rulesPreset = setupRulesPresetById(button.dataset.rulesId || DEFAULT_SETUP_OPTIONS.rulesPreset).id;
+      playSound("select");
+      if (selectedMode.id === "network" && state.multiplayer.network.active && state.multiplayer.network.role === "host") {
+        void updateHostedNetworkSettings();
+      }
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  startScreenOptionsEl.querySelectorAll("[data-campaign-mode-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (networkReadOnlySettings) return;
+      state.setupOptions.campaignMode = setupCampaignModeById(button.dataset.campaignModeId || DEFAULT_SETUP_OPTIONS.campaignMode).id;
+      playSound("select");
+      if (selectedMode.id === "network" && state.multiplayer.network.active && state.multiplayer.network.role === "host") {
+        void updateHostedNetworkSettings();
+      }
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const difficultySlider = document.getElementById("setup-difficulty-slider");
+  if (difficultySlider) {
+    difficultySlider.addEventListener("input", () => {
+      if (networkReadOnlySettings) return;
+      const nextIndex = clampNumber(Number.parseInt(difficultySlider.value, 10), 0, SETUP_DIFFICULTIES.length - 1);
+      state.setupOptions.difficulty = SETUP_DIFFICULTIES[nextIndex].id;
+      if (selectedMode.id === "network" && state.multiplayer.network.active && state.multiplayer.network.role === "host") {
+        void updateHostedNetworkSettings();
+      }
+      renderSetupWizard();
+      render();
+    });
+  }
+
+  startScreenOptionsEl.querySelectorAll("[data-passplay-adjust]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const delta = Number.parseInt(button.dataset.passplayAdjust || "0", 10) || 0;
+      const next = Math.max(2, Math.min(6, state.setupOptions.passPlayers + delta));
+      state.setupOptions.passPlayers = next;
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const networkRoleButtons = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-role]")
+    : [];
+  networkRoleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const role = button.dataset.networkRole === "join" ? "join" : "host";
+      const changed = state.networkSetup.role !== role;
+      state.networkSetup.role = role;
+      if (changed && state.multiplayer.network.active) {
+        shutdownNetworkSession();
+      }
+      clearNetworkSetupError();
+      if (role === "join" && !state.multiplayer.network.active) {
+        void refreshHostedLobbies(true);
+      }
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const networkRoomInputs = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-room-input]")
+    : [];
+  networkRoomInputs.forEach((inputEl) => {
+    inputEl.addEventListener("input", () => {
+      state.networkSetup.room = inputEl.value;
+      clearNetworkSetupError();
+    });
+    inputEl.addEventListener("change", () => {
+      const cleaned = sanitizeNetworkRoom(inputEl.value);
+      state.networkSetup.room = cleaned;
+      if (state.multiplayer.network.active && cleaned !== state.multiplayer.network.room) {
+        shutdownNetworkSession();
+      }
+      clearNetworkSetupError();
+      renderSetupWizard();
+      render();
+    });
+    inputEl.addEventListener("blur", () => {
+      const cleaned = sanitizeNetworkRoom(inputEl.value);
+      if (cleaned !== inputEl.value) {
+        state.networkSetup.room = cleaned;
+      }
+      if (state.multiplayer.network.active && cleaned !== state.multiplayer.network.room) {
+        shutdownNetworkSession();
+      }
+      clearNetworkSetupError();
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const networkPlayerInputs = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-player-input]")
+    : [];
+  networkPlayerInputs.forEach((inputEl) => {
+    inputEl.addEventListener("input", () => {
+      state.networkSetup.playerName = inputEl.value;
+      clearNetworkSetupError();
+    });
+    inputEl.addEventListener("change", () => {
+      state.networkSetup.playerName = sanitizeNetworkPlayerName(inputEl.value);
+      clearNetworkSetupError();
+      renderSetupWizard();
+      render();
+    });
+    inputEl.addEventListener("blur", () => {
+      state.networkSetup.playerName = sanitizeNetworkPlayerName(inputEl.value);
+      clearNetworkSetupError();
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const networkRefreshButtons = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-refresh]")
+    : [];
+  networkRefreshButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      clearNetworkSetupError();
+      void refreshHostedLobbies(true);
+      playSound("select");
+    });
+  });
+
+  const networkLobbyButtons = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-lobby-id]")
+    : [];
+  networkLobbyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const lobbyId = String(button.dataset.networkLobbyId || "");
+      if (!lobbyId) return;
+      state.networkSetup.selectedLobbyId = lobbyId;
+      clearNetworkSetupError();
+      const preview = state.multiplayer.network.availableLobbies.find((entry) => entry.id === lobbyId);
+      if (preview?.settings) {
+        state.setupOptions = normalizeSetupOptions(preview.settings);
+      }
+      if (preview) {
+        state.networkSetup.room = sanitizeNetworkRoom(preview.room || state.networkSetup.room);
+        state.networkSetup.maxPlayers = Math.max(2, Math.min(4, Number.parseInt(preview.maxPlayers, 10) || state.networkSetup.maxPlayers));
+        state.networkSetup.aiEnabled = preview.aiEnabled !== false;
+      }
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const networkMaxPlayerButtons = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-max-players]")
+    : [];
+  networkMaxPlayerButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const next = Math.max(2, Math.min(4, Number.parseInt(button.dataset.networkMaxPlayers || "4", 10) || 4));
+      state.networkSetup.maxPlayers = next;
+      clearNetworkSetupError();
+      if (selectedMode.id === "network" && state.multiplayer.network.active && state.multiplayer.network.role === "host") {
+        void updateHostedNetworkSettings();
+      }
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  const networkAiButtons = countryPickerEl
+    ? countryPickerEl.querySelectorAll("[data-network-ai-enabled]")
+    : [];
+  networkAiButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.networkSetup.aiEnabled = button.dataset.networkAiEnabled === "1";
+      clearNetworkSetupError();
+      if (selectedMode.id === "network" && state.multiplayer.network.active && state.multiplayer.network.role === "host") {
+        void updateHostedNetworkSettings();
+      }
+      playSound("select");
+      renderSetupWizard();
+      render();
+    });
+  });
+
+  if (selectedMode.id === "network" && networkRole === "join" && !state.multiplayer.network.active) {
+    void refreshHostedLobbies(false);
+  }
+
+  renderCountryPickerOptions();
 }
 
 function showCountryPicker(preferredCountryId = state.playerCountryId) {
   if (!aimLineEl) buildMap();
-  state.playerCountryId = resolveStartingCountry(preferredCountryId).id;
+  resetSetupToDefaults(preferredCountryId);
   state.setupOpen = true;
   state.animating = false;
   state.forceMenuHidden = false;
+  state.economyPanelOpen = false;
   state.selection = { from: null, to: null };
   clearMovementCue();
   clearBattleOutcome(true);
-  renderCountryPickerOptions();
+  renderSetupWizard();
   if (countryPickerEl) countryPickerEl.classList.add("visible");
   render();
 }
@@ -863,7 +2924,11 @@ function showCountryPicker(preferredCountryId = state.playerCountryId) {
 const worldMapEl = document.getElementById("world-map");
 const mapStageEl = document.querySelector(".map-stage");
 const countryPickerEl = document.getElementById("country-picker");
-const countryPickerOptionsEl = document.getElementById("country-picker-options");
+const startScreenBackBtn = document.getElementById("start-screen-back-btn");
+const startScreenNextBtn = document.getElementById("start-screen-next-btn");
+const startScreenTitleEl = document.getElementById("start-screen-title");
+const startScreenCreateEl = document.getElementById("start-screen-create");
+const startScreenOptionsEl = document.getElementById("start-screen-options");
 const logEl = document.getElementById("log");
 const turnLabel = document.getElementById("turn-label");
 const phaseLabel = document.getElementById("phase-label");
@@ -873,17 +2938,28 @@ const statusText = document.getElementById("status-text");
 const ribbonText = document.getElementById("ribbon-text");
 const dateLabel = document.getElementById("date-label");
 const turnPill = document.getElementById("turn-pill");
+const mobileMenuTurnPill = document.getElementById("mobile-menu-turn-pill");
 const treasuryLabel = document.getElementById("treasury-label");
 const powerPlayerEl = document.getElementById("power-player");
 const powerAi1El = document.getElementById("power-ai1");
 const powerAi2El = document.getElementById("power-ai2");
 const powerAi3El = document.getElementById("power-ai3");
 const powerAi4El = document.getElementById("power-ai4");
+const powerAi5El = document.getElementById("power-ai5");
+const powerAi6El = document.getElementById("power-ai6");
 const powerAiCoalitionEl = document.getElementById("power-ai");
 const powerNeutralEl = document.getElementById("power-neutral");
 const powerPlayerLabelEl = document.getElementById("power-player-label");
 const powerAiLabelEl = document.getElementById("power-ai-label");
 const powerNeutralLabelEl = document.getElementById("power-neutral-label");
+const powerAiEls = {
+  ai1: powerAi1El,
+  ai2: powerAi2El,
+  ai3: powerAi3El,
+  ai4: powerAi4El,
+  ai5: powerAi5El,
+  ai6: powerAi6El
+};
 const movementBadge = document.getElementById("movement-badge");
 const mobileNextStepEl = document.getElementById("mobile-next-step");
 const mobileNextText = document.getElementById("mobile-next-text");
@@ -900,6 +2976,15 @@ const newGameBtn = document.getElementById("new-game-btn");
 const confirmBtn = document.getElementById("confirm-btn");
 const soundToggleBtn = document.getElementById("sound-toggle-btn");
 const soundTestBtn = document.getElementById("sound-test-btn");
+const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+const mobileTopMenuEl = document.getElementById("mobile-top-menu");
+const mobileMenuHomeBtn = document.getElementById("mobile-menu-home-btn");
+const mobileMenuSfxBtn = document.getElementById("mobile-menu-sfx-btn");
+const mobileMenuTestBtn = document.getElementById("mobile-menu-test-btn");
+const mobileMenuSaveBtn = document.getElementById("mobile-menu-save-btn");
+const mobileMenuLoadBtn = document.getElementById("mobile-menu-load-btn");
+const mobileMenuSaveStatus = document.getElementById("mobile-menu-save-status");
+const mobileMenuCloseBtn = document.getElementById("mobile-menu-close-btn");
 const ordersPanel = document.getElementById("orders-panel");
 const closePanelBtn = document.getElementById("close-panel-btn");
 const attackForcePanel = document.querySelector(".attack-force-panel");
@@ -925,6 +3010,13 @@ const battleOutcomeEl = document.getElementById("battle-outcome");
 const buyArmiesBtn = document.getElementById("buy-armies-btn");
 const buyShipsBtn = document.getElementById("buy-ships-btn");
 const fortifyBtn = document.getElementById("fortify-btn");
+const economyToggleCard = document.getElementById("economy-toggle-card");
+const economyToggleBtn = document.getElementById("economy-toggle-btn");
+const economyToggleNote = document.getElementById("economy-toggle-note");
+const economyActionsPanel = document.getElementById("economy-actions-panel");
+const opsArmiesCard = document.getElementById("ops-armies-card");
+const opsShipsCard = document.getElementById("ops-ships-card");
+const opsFortifyCard = document.getElementById("ops-fortify-card");
 const buyArmiesInfo = document.getElementById("buy-armies-info");
 const buyShipsInfo = document.getElementById("buy-ships-info");
 const fortifyInfo = document.getElementById("fortify-info");
@@ -941,6 +3033,7 @@ let movementCue = null;
 let battleOutcomeTimer = null;
 let attackOddsCacheKey = "";
 let attackOddsCacheValue = null;
+let mobileTopMenuOpen = false;
 
 const MAP_BASE_VIEWBOX = {
   x: 0,
@@ -1030,6 +3123,17 @@ function createOceanScratchPath() {
 }
 
 function createMapTextureDefs(defs) {
+  const makePattern = (id, width, height, transform = "") => {
+    const pattern = svgEl("pattern", {
+      id,
+      patternUnits: "userSpaceOnUse",
+      width: String(width),
+      height: String(height)
+    });
+    if (transform) pattern.setAttribute("patternTransform", transform);
+    return pattern;
+  };
+
   const oceanGradient = svgEl("linearGradient", {
     id: "ocean-gradient",
     x1: "0%",
@@ -1178,6 +3282,154 @@ function createMapTextureDefs(defs) {
     opacity: "0.15"
   }));
   defs.appendChild(landNoisePattern);
+
+  const mountainBandPattern = svgEl("pattern", {
+    id: "mountain-band-pattern",
+    patternUnits: "userSpaceOnUse",
+    width: "26",
+    height: "14"
+  });
+  mountainBandPattern.appendChild(svgEl("rect", {
+    x: "0",
+    y: "0",
+    width: "26",
+    height: "14",
+    fill: "#dfc58f"
+  }));
+  for (let i = 0; i < 3; i += 1) {
+    const baseX = 2 + (i * 8.0);
+    const ridgeY = 8.2 + ((i % 2) * 0.8);
+    mountainBandPattern.appendChild(svgEl("path", {
+      d: `M ${baseX.toFixed(2)} ${ridgeY.toFixed(2)} ` +
+        `Q ${(baseX + 1.25).toFixed(2)} ${(ridgeY - 2.35).toFixed(2)} ${(baseX + 2.5).toFixed(2)} ${ridgeY.toFixed(2)} ` +
+        `M ${(baseX + 3.0).toFixed(2)} ${ridgeY.toFixed(2)} ` +
+        `Q ${(baseX + 4.25).toFixed(2)} ${(ridgeY - 2.1).toFixed(2)} ${(baseX + 5.45).toFixed(2)} ${ridgeY.toFixed(2)}`,
+      fill: "none",
+      stroke: "#7c5a32",
+      "stroke-width": "0.74",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      opacity: "0.62"
+    }));
+    mountainBandPattern.appendChild(svgEl("path", {
+      d: `M ${(baseX + 1.2).toFixed(2)} ${(ridgeY + 2.0).toFixed(2)} ` +
+        `Q ${(baseX + 2.7).toFixed(2)} ${(ridgeY + 1.2).toFixed(2)} ${(baseX + 4.2).toFixed(2)} ${(ridgeY + 2.0).toFixed(2)}`,
+      fill: "none",
+      stroke: "#8f6b3f",
+      "stroke-width": "0.46",
+      "stroke-linecap": "round",
+      opacity: "0.23"
+    }));
+  }
+  mountainBandPattern.appendChild(svgEl("path", {
+    d: "M 0.8 12.2 C 6.1 11.4 10.8 12.2 15.8 11.0 C 19.5 10.1 22.5 10.8 25.2 10.2",
+    fill: "none",
+    stroke: "#8e673a",
+    "stroke-width": "0.54",
+    "stroke-linecap": "round",
+    opacity: "0.2"
+  }));
+  defs.appendChild(mountainBandPattern);
+
+  const ai1Pattern = makePattern("territory-fill-ai1", 34, 34, "rotate(45)");
+  ai1Pattern.appendChild(svgEl("rect", { x: "0", y: "0", width: "34", height: "34", fill: "#8078bc" }));
+  for (let x = -20; x <= 58; x += 12) {
+    ai1Pattern.appendChild(svgEl("line", {
+      x1: String(x),
+      y1: "-8",
+      x2: String(x),
+      y2: "46",
+      stroke: "#4a447e",
+      "stroke-width": "5.2",
+      opacity: "0.34"
+    }));
+  }
+  defs.appendChild(ai1Pattern);
+
+  const ai2Pattern = makePattern("territory-fill-ai2", 28, 28);
+  ai2Pattern.appendChild(svgEl("rect", { x: "0", y: "0", width: "28", height: "28", fill: "#68a972" }));
+  for (let p = 0; p <= 28; p += 8) {
+    ai2Pattern.appendChild(svgEl("line", {
+      x1: String(p),
+      y1: "0",
+      x2: String(p),
+      y2: "28",
+      stroke: "#3e6a43",
+      "stroke-width": "2.0",
+      opacity: "0.34"
+    }));
+    ai2Pattern.appendChild(svgEl("line", {
+      x1: "0",
+      y1: String(p),
+      x2: "28",
+      y2: String(p),
+      stroke: "#3e6a43",
+      "stroke-width": "1.5",
+      opacity: "0.24"
+    }));
+  }
+  defs.appendChild(ai2Pattern);
+
+  const ai3Pattern = makePattern("territory-fill-ai3", 34, 34, "rotate(-45)");
+  ai3Pattern.appendChild(svgEl("rect", { x: "0", y: "0", width: "34", height: "34", fill: "#bf8b4f" }));
+  for (let x = -20; x <= 58; x += 12) {
+    ai3Pattern.appendChild(svgEl("line", {
+      x1: String(x),
+      y1: "-8",
+      x2: String(x),
+      y2: "46",
+      stroke: "#7b5528",
+      "stroke-width": "4.8",
+      opacity: "0.34"
+    }));
+  }
+  defs.appendChild(ai3Pattern);
+
+  const ai4Pattern = makePattern("territory-fill-ai4", 30, 30);
+  ai4Pattern.appendChild(svgEl("rect", { x: "0", y: "0", width: "30", height: "30", fill: "#6a97bf" }));
+  for (let y = 3; y <= 30; y += 9) {
+    ai4Pattern.appendChild(svgEl("line", {
+      x1: "0",
+      y1: String(y),
+      x2: "30",
+      y2: String(y),
+      stroke: "#35566f",
+      "stroke-width": "2.2",
+      opacity: "0.32"
+    }));
+  }
+  defs.appendChild(ai4Pattern);
+
+  const ai5Pattern = makePattern("territory-fill-ai5", 30, 30);
+  ai5Pattern.appendChild(svgEl("rect", { x: "0", y: "0", width: "30", height: "30", fill: "#5aaaa5" }));
+  for (let x = 2; x <= 30; x += 8) {
+    ai5Pattern.appendChild(svgEl("line", {
+      x1: String(x),
+      y1: "0",
+      x2: String(x),
+      y2: "30",
+      stroke: "#25605c",
+      "stroke-width": "2.0",
+      "stroke-dasharray": "4 4",
+      opacity: "0.36"
+    }));
+  }
+  defs.appendChild(ai5Pattern);
+
+  const ai6Pattern = makePattern("territory-fill-ai6", 30, 30);
+  ai6Pattern.appendChild(svgEl("rect", { x: "0", y: "0", width: "30", height: "30", fill: "#9e74aa" }));
+  for (let y = 4; y <= 30; y += 10) {
+    for (let x = 4; x <= 30; x += 10) {
+      ai6Pattern.appendChild(svgEl("circle", {
+        cx: String(x),
+        cy: String(y),
+        r: "1.7",
+        fill: "#4c3568",
+        opacity: "0.5"
+      }));
+    }
+  }
+  defs.appendChild(ai6Pattern);
 }
 
 function setLineEndpoints(lineEl, fromName, toName) {
@@ -1232,6 +3484,536 @@ function polygonCentroid(pointsText) {
     x: cx / (3 * twiceArea),
     y: cy / (3 * twiceArea)
   };
+}
+
+function buildPathFromPoints(points, close = false) {
+  if (!Array.isArray(points) || points.length === 0) return "";
+  const d = points.map((point, index) => (
+    `${index === 0 ? "M" : "L"} ${point.x.toFixed(1)} ${point.y.toFixed(1)}`
+  )).join(" ");
+  return close ? `${d} Z` : d;
+}
+
+function midpoint(a, b) {
+  return {
+    x: (a.x + b.x) * 0.5,
+    y: (a.y + b.y) * 0.5
+  };
+}
+
+function buildSmoothPathFromPoints(points, close = false) {
+  if (!Array.isArray(points) || points.length === 0) return "";
+  if (points.length < 3) return buildPathFromPoints(points, close);
+
+  if (!close) {
+    const mids = [];
+    for (let i = 0; i < points.length - 1; i += 1) {
+      mids.push(midpoint(points[i], points[i + 1]));
+    }
+    let d = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
+    for (let i = 0; i < mids.length; i += 1) {
+      const control = points[i + 1];
+      const end = mids[i] || points[points.length - 1];
+      d += ` Q ${control.x.toFixed(1)} ${control.y.toFixed(1)} ${end.x.toFixed(1)} ${end.y.toFixed(1)}`;
+    }
+    const last = points[points.length - 1];
+    d += ` L ${last.x.toFixed(1)} ${last.y.toFixed(1)}`;
+    return d;
+  }
+
+  const count = points.length;
+  const start = midpoint(points[0], points[1]);
+  let d = `M ${start.x.toFixed(1)} ${start.y.toFixed(1)}`;
+  for (let i = 1; i <= count; i += 1) {
+    const control = points[i % count];
+    const next = points[(i + 1) % count];
+    const end = midpoint(control, next);
+    d += ` Q ${control.x.toFixed(1)} ${control.y.toFixed(1)} ${end.x.toFixed(1)} ${end.y.toFixed(1)}`;
+  }
+  return `${d} Z`;
+}
+
+function normalForSegment(from, to, side = 1) {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const length = Math.hypot(dx, dy);
+  if (length < 0.0001) return { x: 0, y: 0 };
+  return {
+    x: ((-dy) / length) * side,
+    y: (dx / length) * side
+  };
+}
+
+function offsetPolyline(points, distance, side = 1) {
+  if (!Array.isArray(points) || points.length === 0) return [];
+  if (points.length === 1) return [{ x: points[0].x, y: points[0].y }];
+  return points.map((point, index) => {
+    const previous = points[Math.max(0, index - 1)];
+    const next = points[Math.min(points.length - 1, index + 1)];
+    const normal = normalForSegment(previous, next, side);
+    return {
+      x: point.x + (normal.x * distance),
+      y: point.y + (normal.y * distance)
+    };
+  });
+}
+
+const mountainTerritoryGeometryCache = new Map();
+const mountainSideSpineCache = new Map();
+
+function getMountainTerritoryGeometry(territory) {
+  if (!territory) return null;
+  if (mountainTerritoryGeometryCache.has(territory)) {
+    return mountainTerritoryGeometryCache.get(territory);
+  }
+  const layout = MAP_LAYOUT[territory];
+  if (!layout?.points) {
+    mountainTerritoryGeometryCache.set(territory, null);
+    return null;
+  }
+  const points = parsePolygonPoints(layout.points);
+  const centroid = polygonCentroid(layout.points);
+  const geometry = (points.length >= 3 && Number.isFinite(centroid?.x) && Number.isFinite(centroid?.y))
+    ? { points, centroid }
+    : null;
+  mountainTerritoryGeometryCache.set(territory, geometry);
+  return geometry;
+}
+
+function normalizeMountainBoundaryPoints(points) {
+  if (!Array.isArray(points) || points.length < 3) return [];
+  const normalized = [];
+  for (let index = 0; index < points.length; index += 1) {
+    const point = points[index];
+    if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) continue;
+    if (normalized.length > 0) {
+      const previous = normalized[normalized.length - 1];
+      if (Math.hypot(previous.x - point.x, previous.y - point.y) < 0.06) continue;
+    }
+    normalized.push({ x: point.x, y: point.y });
+  }
+  if (normalized.length < 3) return [];
+  const first = normalized[0];
+  const last = normalized[normalized.length - 1];
+  if (Math.hypot(first.x - last.x, first.y - last.y) < 0.08) {
+    normalized.pop();
+  }
+  return normalized;
+}
+
+function mountainBounds(points) {
+  if (!Array.isArray(points) || points.length === 0) return null;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  points.forEach((point) => {
+    minX = Math.min(minX, point.x);
+    minY = Math.min(minY, point.y);
+    maxX = Math.max(maxX, point.x);
+    maxY = Math.max(maxY, point.y);
+  });
+  return {
+    minX,
+    minY,
+    maxX,
+    maxY,
+    width: Math.max(0.001, maxX - minX),
+    height: Math.max(0.001, maxY - minY)
+  };
+}
+
+function longestCircularRun(flags) {
+  if (!Array.isArray(flags) || flags.length === 0) return null;
+  const size = flags.length;
+  let bestStart = -1;
+  let bestLength = 0;
+  let currentStart = -1;
+  let currentLength = 0;
+
+  for (let index = 0; index < size * 2; index += 1) {
+    const isActive = Boolean(flags[index % size]);
+    if (isActive) {
+      if (currentLength === 0) currentStart = index;
+      currentLength += 1;
+      if (currentLength > size) {
+        currentLength = size;
+        currentStart = index - size + 1;
+      }
+      if (currentLength > bestLength) {
+        bestLength = currentLength;
+        bestStart = currentStart;
+      }
+    } else {
+      currentLength = 0;
+      currentStart = -1;
+    }
+  }
+
+  if (bestStart < 0 || bestLength < 2) return null;
+  return {
+    start: ((bestStart % size) + size) % size,
+    length: Math.min(size, bestLength)
+  };
+}
+
+function simplifyMountainPolyline(points, minDistance = 1.1) {
+  if (!Array.isArray(points) || points.length <= 2) return Array.isArray(points) ? [...points] : [];
+  const simplified = [points[0]];
+  for (let index = 1; index < points.length - 1; index += 1) {
+    const point = points[index];
+    const previous = simplified[simplified.length - 1];
+    if (Math.hypot(point.x - previous.x, point.y - previous.y) >= minDistance) {
+      simplified.push(point);
+    }
+  }
+  const tail = points[points.length - 1];
+  const previous = simplified[simplified.length - 1];
+  if (Math.hypot(tail.x - previous.x, tail.y - previous.y) >= (minDistance * 0.4)) {
+    simplified.push(tail);
+  }
+  if (simplified.length < 2) return [points[0], tail];
+  return simplified;
+}
+
+function orderMountainSidePolyline(points, sideHint) {
+  if (!Array.isArray(points) || points.length <= 2) return Array.isArray(points) ? [...points] : [];
+  const sortVertical = sideHint === "east" || sideHint === "west";
+  const pickExtreme = (current, candidate) => {
+    if (!current) return candidate;
+    if (sortVertical) {
+      if (sideHint === "east") return candidate.x > current.x ? candidate : current;
+      return candidate.x < current.x ? candidate : current;
+    }
+    if (sideHint === "north") return candidate.y < current.y ? candidate : current;
+    return candidate.y > current.y ? candidate : current;
+  };
+  const buckets = new Map();
+  for (const point of points) {
+    const axisValue = sortVertical ? point.y : point.x;
+    const key = Math.round(axisValue); // one sample per pixel along the edge axis avoids corner jitter
+    buckets.set(key, pickExtreme(buckets.get(key), point));
+  }
+  const collapsed = [...buckets.values()];
+  collapsed.sort((a, b) => {
+    if (sortVertical) return a.y - b.y;
+    return a.x - b.x;
+  });
+  if (collapsed.length <= 2) return collapsed;
+  const filtered = [collapsed[0]];
+  for (let index = 1; index < collapsed.length; index += 1) {
+    const point = collapsed[index];
+    const previous = filtered[filtered.length - 1];
+    const dx = Math.abs(point.x - previous.x);
+    const dy = Math.abs(point.y - previous.y);
+    if (sortVertical && dy < 0.9 && dx > 1.35) continue;
+    if (!sortVertical && dx < 0.9 && dy > 1.35) continue;
+    filtered.push(point);
+  }
+  return filtered;
+}
+
+function pointOnMountainSide(point, bounds, sideHint, sideDepth) {
+  const depth = clampNumber(sideDepth, 0.12, 0.45);
+  switch (sideHint) {
+    case "east":
+      return point.x >= (bounds.maxX - (bounds.width * depth));
+    case "north":
+      return point.y <= (bounds.minY + (bounds.height * depth));
+    case "south":
+      return point.y >= (bounds.maxY - (bounds.height * depth));
+    case "west":
+    default:
+      return point.x <= (bounds.minX + (bounds.width * depth));
+  }
+}
+
+function extractMountainSidePolyline(points, sideHint, sideDepth) {
+  const boundary = normalizeMountainBoundaryPoints(points);
+  if (boundary.length < 3) return [];
+  const bounds = mountainBounds(boundary);
+  if (!bounds) return [];
+
+  const eligible = boundary.map((point) => pointOnMountainSide(point, bounds, sideHint, sideDepth));
+  if (!eligible.some(Boolean)) return [];
+  const run = longestCircularRun(eligible);
+  if (!run) return [];
+
+  const sidePoints = [];
+  for (let offset = 0; offset < run.length; offset += 1) {
+    const point = boundary[(run.start + offset) % boundary.length];
+    sidePoints.push({ x: point.x, y: point.y });
+  }
+  const ordered = orderMountainSidePolyline(sidePoints, sideHint);
+  return simplifyMountainPolyline(ordered, 1.08);
+}
+
+function buildMountainSideSpine(range, geometry) {
+  if (!range || !geometry?.points || !geometry?.centroid) return [];
+  const sideHint = (
+    range.sideHint === "east" ||
+    range.sideHint === "north" ||
+    range.sideHint === "south" ||
+    range.sideHint === "west"
+  ) ? range.sideHint : "west";
+  const sideDepth = Number.isFinite(range.sideDepth) ? range.sideDepth : 0.25;
+  const sidePolyline = extractMountainSidePolyline(geometry.points, sideHint, sideDepth);
+  if (sidePolyline.length < 2) return [];
+
+  const edgeInset = Number.isFinite(range.edgeInset) ? range.edgeInset : 1.2;
+  const bandWidth = Number.isFinite(range.bandWidth) ? range.bandWidth : 7.2;
+  const sideInset = Number.isFinite(range.sideInset)
+    ? range.sideInset
+    : (edgeInset + (bandWidth * 0.16));
+  const spinePoints = [];
+  const total = sidePolyline.length;
+
+  for (let index = 0; index < total; index += 1) {
+    const point = sidePolyline[index];
+    const previous = sidePolyline[Math.max(0, index - 1)];
+    const next = sidePolyline[Math.min(total - 1, index + 1)];
+    const dx = next.x - previous.x;
+    const dy = next.y - previous.y;
+    const length = Math.hypot(dx, dy);
+    if (length < 0.0001) {
+      spinePoints.push({ x: point.x, y: point.y });
+      continue;
+    }
+    const tangentX = dx / length;
+    const tangentY = dy / length;
+    const normalA = { x: -tangentY, y: tangentX };
+    const normalB = { x: -normalA.x, y: -normalA.y };
+    const toCentroid = {
+      x: geometry.centroid.x - point.x,
+      y: geometry.centroid.y - point.y
+    };
+    const dotA = (toCentroid.x * normalA.x) + (toCentroid.y * normalA.y);
+    const normal = dotA >= 0 ? normalA : normalB;
+    const inset = sideInset;
+    spinePoints.push({
+      x: point.x + (normal.x * inset),
+      y: point.y + (normal.y * inset)
+    });
+  }
+
+  return simplifyMountainPolyline(spinePoints, 1.12);
+}
+
+function getMountainSpine(range) {
+  if (!range) return [];
+  if (range.anchorToSide && range.territory) {
+    const cacheKey = [
+      range.id || range.territory,
+      range.territory,
+      range.sideHint || "west",
+      Number.isFinite(range.sideDepth) ? range.sideDepth.toFixed(3) : "",
+      Number.isFinite(range.sideInset) ? range.sideInset.toFixed(3) : ""
+    ].join("|");
+    if (mountainSideSpineCache.has(cacheKey)) {
+      return mountainSideSpineCache.get(cacheKey);
+    }
+    const geometry = getMountainTerritoryGeometry(range.territory);
+    const derived = geometry ? buildMountainSideSpine(range, geometry) : [];
+    if (derived.length >= 2) {
+      mountainSideSpineCache.set(cacheKey, derived);
+      return derived;
+    }
+    const fallback = Array.isArray(range.spine) ? range.spine : [];
+    mountainSideSpineCache.set(cacheKey, fallback);
+    return fallback;
+  }
+  return Array.isArray(range.spine) ? range.spine : [];
+}
+
+function resolveMountainNormalSign(range, point, baseNormal) {
+  const fallback = range?.side === -1 ? -1 : 1;
+  if (!point || !baseNormal) return fallback;
+  const geometry = getMountainTerritoryGeometry(range?.territory);
+  if (!geometry) return fallback;
+
+  const bandWidth = Number.isFinite(range?.bandWidth) ? range.bandWidth : 8;
+  const probeDistance = Number.isFinite(range?.inwardProbe)
+    ? range.inwardProbe
+    : Math.max(2.0, bandWidth * 0.36);
+
+  const plusProbe = {
+    x: point.x + (baseNormal.x * probeDistance),
+    y: point.y + (baseNormal.y * probeDistance)
+  };
+  const minusProbe = {
+    x: point.x - (baseNormal.x * probeDistance),
+    y: point.y - (baseNormal.y * probeDistance)
+  };
+  const plusInside = isPointInsidePolygon(plusProbe, geometry.points);
+  const minusInside = isPointInsidePolygon(minusProbe, geometry.points);
+  if (plusInside && !minusInside) return 1;
+  if (minusInside && !plusInside) return -1;
+
+  const toCentroid = {
+    x: geometry.centroid.x - point.x,
+    y: geometry.centroid.y - point.y
+  };
+  const dot = (toCentroid.x * baseNormal.x) + (toCentroid.y * baseNormal.y);
+  if (Math.abs(dot) > 0.0001) return dot >= 0 ? 1 : -1;
+  return fallback;
+}
+
+function sampleMountainSpine(range, spacingHint = null) {
+  const spine = getMountainSpine(range);
+  if (!Array.isArray(spine) || spine.length < 2) return [];
+  const spacingBase = Number.isFinite(spacingHint)
+    ? spacingHint
+    : (Number.isFinite(range.peakSpacing) ? range.peakSpacing * 0.72 : 6.4);
+  const spacing = Math.max(3.8, spacingBase);
+  const samples = [];
+  const segmentCount = spine.length - 1;
+
+  for (let segmentIndex = 0; segmentIndex < segmentCount; segmentIndex += 1) {
+    const from = spine[segmentIndex];
+    const to = spine[segmentIndex + 1];
+    const dx = to.x - from.x;
+    const dy = to.y - from.y;
+    const length = Math.hypot(dx, dy);
+    if (length < 0.5) continue;
+    const tangentX = dx / length;
+    const tangentY = dy / length;
+    const baseNormal = normalForSegment(from, to, 1);
+    const normalSign = resolveMountainNormalSign(range, {
+      x: (from.x + to.x) * 0.5,
+      y: (from.y + to.y) * 0.5
+    }, baseNormal);
+    const normal = {
+      x: baseNormal.x * normalSign,
+      y: baseNormal.y * normalSign
+    };
+    const steps = Math.max(1, Math.ceil(length / spacing));
+
+    for (let step = 0; step <= steps; step += 1) {
+      if (segmentIndex > 0 && step === 0) continue;
+      const t = step / steps;
+      const progress = (segmentIndex + t) / segmentCount;
+      samples.push({
+        x: from.x + (tangentX * length * t),
+        y: from.y + (tangentY * length * t),
+        tangentX,
+        tangentY,
+        normalX: normal.x,
+        normalY: normal.y,
+        progress
+      });
+    }
+  }
+
+  return samples;
+}
+
+function offsetMountainSample(sample, normalOffset, tangentOffset = 0) {
+  return {
+    x: sample.x + (sample.normalX * normalOffset) + (sample.tangentX * tangentOffset),
+    y: sample.y + (sample.normalY * normalOffset) + (sample.tangentY * tangentOffset)
+  };
+}
+
+function mountainTaper(index, total) {
+  if (total <= 1) return 1;
+  return Math.sin(Math.PI * (index / (total - 1)));
+}
+
+function trimMountainSamples(samples, range, minCount = 2) {
+  if (!Array.isArray(samples) || samples.length === 0) return [];
+  const total = samples.length;
+  const startFraction = Number.isFinite(range?.sampleStart)
+    ? clampNumber(range.sampleStart, 0, 0.96)
+    : 0;
+  const endFraction = Number.isFinite(range?.sampleEnd)
+    ? clampNumber(range.sampleEnd, 0.04, 1)
+    : 1;
+  let start = Math.min(startFraction, endFraction);
+  let end = Math.max(startFraction, endFraction);
+  if ((end - start) < 0.1) {
+    const mid = (start + end) * 0.5;
+    start = clampNumber(mid - 0.05, 0, 0.95);
+    end = clampNumber(mid + 0.05, 0.05, 1);
+  }
+  const startIndex = Math.max(0, Math.floor(start * (total - 1)));
+  const endIndex = Math.min(total - 1, Math.ceil(end * (total - 1)));
+  const subset = samples.slice(startIndex, endIndex + 1);
+  if (subset.length >= minCount) return subset;
+  return samples;
+}
+
+function buildMountainBandPath(range) {
+  const spacingHint = Number.isFinite(range?.peakSpacing) ? range.peakSpacing * 0.92 : 6.6;
+  const samples = sampleMountainSpine(range, Math.max(5.8, spacingHint));
+  if (samples.length < 2) return "";
+  const trimmed = trimMountainSamples(samples, range, 2);
+  const keepEndpoints = range?.coverFullSide === true;
+  const coreSamples = (!keepEndpoints && trimmed.length > 4) ? trimmed.slice(1, -1) : trimmed;
+  const edgeInset = Number.isFinite(range.edgeInset) ? range.edgeInset : 1.2;
+  const bandWidth = Number.isFinite(range.bandWidth) ? range.bandWidth : 7.2;
+  const centerOffset = edgeInset + (bandWidth * 0.38);
+  const centerLine = coreSamples.map((sample) => offsetMountainSample(sample, centerOffset));
+  return buildPathFromPoints(simplifyMountainPolyline(centerLine, 0.88), false);
+}
+
+function buildMountainRidgePath(range, ridgeFactor = 0.62) {
+  const preferredSpacing = Number.isFinite(range?.peakSpacing) ? range.peakSpacing * 0.62 : 5.2;
+  const samples = sampleMountainSpine(range, Math.max(4.2, preferredSpacing));
+  if (samples.length < 2) return "";
+  const edgeInset = Number.isFinite(range.edgeInset) ? range.edgeInset : 1.2;
+  const bandWidth = Number.isFinite(range.bandWidth) ? range.bandWidth : 7.2;
+  const ridgeOffset = edgeInset + (bandWidth * ridgeFactor);
+  const amplitude = bandWidth * 0.2;
+  const tangentAmplitude = Math.min(1.2, bandWidth * 0.18);
+  const ridgePoints = samples.map((sample, index) => {
+    const taper = mountainTaper(index, samples.length);
+    const wave = Math.sin((sample.progress * Math.PI * 6.8) + (ridgeFactor * 1.7));
+    const normalShift = wave * amplitude * taper;
+    const tangentShift = wave * tangentAmplitude * taper;
+    return offsetMountainSample(sample, ridgeOffset + normalShift, tangentShift);
+  });
+  return buildPathFromPoints(ridgePoints);
+}
+
+function buildMountainPeakPath(range) {
+  const peakSpacingHint = Number.isFinite(range?.peakSpacing) ? range.peakSpacing : 8;
+  const samples = sampleMountainSpine(range, Math.max(6.4, peakSpacingHint * 1.06));
+  if (samples.length < 3) return "";
+  const trimmed = trimMountainSamples(samples, range, 3);
+  const keepEndpoints = range?.coverFullSide === true;
+  const coreSamples = (!keepEndpoints && trimmed.length > 5) ? trimmed.slice(1, -1) : trimmed;
+  const edgeInset = Number.isFinite(range.edgeInset) ? range.edgeInset : 1.2;
+  const bandWidth = Number.isFinite(range.bandWidth) ? range.bandWidth : 7.2;
+  const peakHeight = Number.isFinite(range.peakHeight) ? range.peakHeight : (bandWidth * 0.72);
+  const peakWidth = Number.isFinite(range.peakWidth)
+    ? Math.max(1.6, range.peakWidth * 0.64)
+    : (peakSpacingHint * 0.28);
+  const baseOffset = edgeInset + (bandWidth * 0.40);
+  const commands = [];
+
+  for (let index = 0; index < coreSamples.length; index += 1) {
+    const sample = coreSamples[index];
+    const taper = mountainTaper(index, coreSamples.length);
+    if (taper < 0.2) continue;
+
+    const halfWidth = peakWidth * (0.76 + (0.14 * taper));
+    const glyphHeight = peakHeight * (0.32 + (0.14 * taper));
+    const baseCenter = offsetMountainSample(sample, baseOffset, 0);
+    const lx = baseCenter.x - (halfWidth * 0.95);
+    const mx = baseCenter.x - (halfWidth * 0.20);
+    const rx = baseCenter.x + (halfWidth * 0.58);
+    const y = baseCenter.y;
+    const peakA = y - glyphHeight;
+    const peakB = y - (glyphHeight * 0.88);
+
+    commands.push(
+      `M ${lx.toFixed(1)} ${y.toFixed(1)} ` +
+      `Q ${(lx + (halfWidth * 0.34)).toFixed(1)} ${peakA.toFixed(1)} ${mx.toFixed(1)} ${y.toFixed(1)} ` +
+      `M ${mx.toFixed(1)} ${y.toFixed(1)} ` +
+      `Q ${(mx + (halfWidth * 0.36)).toFixed(1)} ${peakB.toFixed(1)} ${rx.toFixed(1)} ${y.toFixed(1)}`
+    );
+  }
+  return commands.join(" ");
 }
 
 function isPointInsidePolygon(point, points) {
@@ -1296,6 +4078,16 @@ function canUseShipsOnRoute(fromName, toName) {
 function isAdjacentTerritory(fromName, toName) {
   if (!fromName || !toName || fromName === toName) return false;
   return TERRITORIES[fromName]?.includes(toName) || false;
+}
+
+function isMountainBlockedRoute(fromName, toName) {
+  if (!fromName || !toName || fromName === toName) return false;
+  return MOUNTAIN_BLOCKED_ROUTE_KEYS.has(routeKey(fromName, toName));
+}
+
+function isLandRouteAvailable(fromName, toName) {
+  if (!isAdjacentTerritory(fromName, toName)) return false;
+  return !isMountainBlockedRoute(fromName, toName);
 }
 
 function showMovementCue(from, to, owner, force = null) {
@@ -1458,6 +4250,7 @@ function applyMapCamera() {
     const chipMapW = chipWidth / safeScale;
     const chipMapH = chipHeight / safeScale;
     const chipMapHalfText = chipTextOffset / safeScale;
+    const showCapitalMarker = hasCapitalIcon(name);
 
     const localDensity = Number.parseFloat(label?.dataset.localDensity || "0");
     const densityStep = mobileLike ? 0.01 : 0.035;
@@ -1570,7 +4363,7 @@ function applyMapCamera() {
       const highlighted = state.selection.from === name || state.selection.to === name;
       const fortified = territory?.fortified > 0;
       const openingSeason =
-        state.turn === "player" &&
+        isLocalTurnOwner() &&
         state.phase === "reinforce" &&
         state.year === 1850 &&
         state.seasonIndex === 0 &&
@@ -1607,10 +4400,13 @@ function applyMapCamera() {
     army.setAttribute("y", chipCenterY.toFixed(3));
 
     if (troopIcon) {
-      troopIcon.style.fontSize = `${(crownFont / safeScale).toFixed(2)}px`;
-      troopIcon.style.strokeWidth = `${(0.42 / safeScale).toFixed(2)}px`;
-      troopIcon.setAttribute("x", tokenX.toFixed(3));
-      troopIcon.setAttribute("y", tokenY.toFixed(3));
+      troopIcon.style.display = showCapitalMarker ? "block" : "none";
+      if (showCapitalMarker) {
+        troopIcon.style.fontSize = `${(crownFont / safeScale).toFixed(2)}px`;
+        troopIcon.style.strokeWidth = `${(0.42 / safeScale).toFixed(2)}px`;
+        troopIcon.setAttribute("x", tokenX.toFixed(3));
+        troopIcon.setAttribute("y", tokenY.toFixed(3));
+      }
     }
 
     if (shipCount) {
@@ -1621,22 +4417,31 @@ function applyMapCamera() {
     }
 
     if (pinShadow) {
-      pinShadow.setAttribute("cx", (tokenX + (pinShift / safeScale)).toFixed(3));
-      pinShadow.setAttribute("cy", (tokenY + (pinShift / safeScale)).toFixed(3));
-      pinShadow.setAttribute("r", (pinShadowR / safeScale).toFixed(3));
-      pinShadow.style.strokeWidth = `${(0.58 / safeScale).toFixed(2)}px`;
+      pinShadow.style.display = showCapitalMarker ? "block" : "none";
+      if (showCapitalMarker) {
+        pinShadow.setAttribute("cx", (tokenX + (pinShift / safeScale)).toFixed(3));
+        pinShadow.setAttribute("cy", (tokenY + (pinShift / safeScale)).toFixed(3));
+        pinShadow.setAttribute("r", (pinShadowR / safeScale).toFixed(3));
+        pinShadow.style.strokeWidth = `${(0.58 / safeScale).toFixed(2)}px`;
+      }
     }
     if (armyRing) {
-      armyRing.setAttribute("cx", tokenX.toFixed(3));
-      armyRing.setAttribute("cy", tokenY.toFixed(3));
-      armyRing.setAttribute("r", (pinRingR / safeScale).toFixed(3));
-      armyRing.style.strokeWidth = `${(1.0 / safeScale).toFixed(2)}px`;
+      armyRing.style.display = showCapitalMarker ? "block" : "none";
+      if (showCapitalMarker) {
+        armyRing.setAttribute("cx", tokenX.toFixed(3));
+        armyRing.setAttribute("cy", tokenY.toFixed(3));
+        armyRing.setAttribute("r", (pinRingR / safeScale).toFixed(3));
+        armyRing.style.strokeWidth = `${(1.0 / safeScale).toFixed(2)}px`;
+      }
     }
     if (armyFill) {
-      armyFill.setAttribute("cx", tokenX.toFixed(3));
-      armyFill.setAttribute("cy", tokenY.toFixed(3));
-      armyFill.setAttribute("r", (pinFillR / safeScale).toFixed(3));
-      armyFill.style.strokeWidth = `${(0.7 / safeScale).toFixed(2)}px`;
+      armyFill.style.display = showCapitalMarker ? "block" : "none";
+      if (showCapitalMarker) {
+        armyFill.setAttribute("cx", tokenX.toFixed(3));
+        armyFill.setAttribute("cy", tokenY.toFixed(3));
+        armyFill.setAttribute("r", (pinFillR / safeScale).toFixed(3));
+        armyFill.style.strokeWidth = `${(0.7 / safeScale).toFixed(2)}px`;
+      }
     }
   });
 }
@@ -1968,11 +4773,12 @@ function setupMapInteractions() {
   }
   if (zoomResetBtn) {
     zoomResetBtn.addEventListener("click", () => {
-      if (isMobileLikeUI() && state.homeBase) {
-        focusMapOnTerritory(state.homeBase);
-        return;
+      const capitalFocus = ownerCapitalTerritory(localHumanOwner()) || state.homeBase || firstPlayerTerritoryName();
+      if (capitalFocus) {
+        focusMapOnTerritory(capitalFocus);
+      } else {
+        resetMapCamera();
       }
-      resetMapCamera();
     });
   }
 }
@@ -2129,14 +4935,313 @@ function playSound(effect) {
       playTone(420, { duration: 0.08, gain: 0.052 });
       playTone(530, { delay: 0.08, duration: 0.09, gain: 0.052 });
       break;
+    case "ding":
+      playTone(740, { type: "triangle", duration: 0.08, gain: 0.06 });
+      playTone(988, { delay: 0.07, type: "triangle", duration: 0.1, gain: 0.064 });
+      break;
     case "test":
       playSound("land-move");
       playSound("ship-move");
       playSound("attack-success");
+      playSound("ding");
       break;
     default:
       break;
   }
+}
+
+function getSaveStorage() {
+  try {
+    return window.localStorage;
+  } catch (error) {
+    return null;
+  }
+}
+
+function formatSavedTimestamp(savedAt) {
+  if (typeof savedAt !== "string") return "unknown time";
+  const parsed = new Date(savedAt);
+  if (Number.isNaN(parsed.getTime())) return "unknown time";
+  return parsed.toLocaleString([], {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  });
+}
+
+function normalizeSetupOptions(options) {
+  const source = options && typeof options === "object" ? options : {};
+  return {
+    playMode: setupModeById(source.playMode).id,
+    mapPreset: setupMapPresetById(source.mapPreset).id,
+    rulesPreset: setupRulesPresetById(source.rulesPreset).id,
+    difficulty: setupDifficultyById(source.difficulty).id,
+    campaignMode: setupCampaignModeById(source.campaignMode).id,
+    passPlayers: Math.max(2, Math.min(6, Number.parseInt(source.passPlayers, 10) || 2))
+  };
+}
+
+function readSavedGamePayload() {
+  const storage = getSaveStorage();
+  if (!storage) return null;
+  const raw = storage.getItem(SAVE_STORAGE_KEY);
+  if (!raw) return null;
+  try {
+    const payload = JSON.parse(raw);
+    if (!payload || typeof payload !== "object") return null;
+    if (!payload.game || typeof payload.game !== "object") return null;
+    return payload;
+  } catch (error) {
+    return null;
+  }
+}
+
+function updateSavedGameMenuUI() {
+  const payload = readSavedGamePayload();
+  const saveAllowed = !state.setupOpen && !state.animating;
+  if (mobileMenuSaveBtn) mobileMenuSaveBtn.disabled = !saveAllowed;
+  if (mobileMenuLoadBtn) mobileMenuLoadBtn.disabled = !payload;
+  if (mobileMenuSaveStatus) {
+    if (!payload) {
+      mobileMenuSaveStatus.textContent = "No saved game.";
+    } else {
+      mobileMenuSaveStatus.textContent = `Saved: ${formatSavedTimestamp(payload.savedAt)}`;
+    }
+  }
+}
+
+function captureGameSaveSnapshot() {
+  ensureTreasuryLedger();
+  const territorySnapshot = {};
+  Object.keys(TERRITORIES).forEach((name) => {
+    const territory = state.territories[name] || {};
+    const owner = VALID_OWNER_SET.has(territory.owner) ? territory.owner : "neutral";
+    territorySnapshot[name] = {
+      owner,
+      armies: Math.max(0, Math.round(Number(territory.armies) || 0)),
+      fortified: Math.max(0, Math.round(Number(territory.fortified) || 0))
+    };
+  });
+  return {
+    territories: territorySnapshot,
+    turn: state.turn,
+    phase: state.phase,
+    reinforcementsLeft: state.reinforcementsLeft,
+    attackForce: state.attackForce,
+    attackShips: state.attackShips,
+    selection: { from: state.selection.from, to: state.selection.to },
+    homeBase: state.homeBase,
+    ships: state.ships,
+    playerShipLocations: { ...state.playerShipLocations },
+    aiShips: { ...state.aiShips },
+    gameOver: state.gameOver,
+    seasonIndex: state.seasonIndex,
+    year: state.year,
+    lastIncomeYear: state.lastIncomeYear,
+    treasury: getOwnerTreasury(localHumanOwner()),
+    treasuryByOwner: { ...state.treasuryByOwner },
+    firstRound: state.firstRound,
+    playerCountryId: state.playerCountryId,
+    setupOptions: normalizeSetupOptions(state.setupOptions),
+    commanderIndex: Math.max(0, Math.floor(state.multiplayer.commanderIndex || 0)),
+    forceMenuHidden: state.forceMenuHidden,
+    mapCamera: {
+      x: mapCamera.x,
+      y: mapCamera.y,
+      scale: mapCamera.scale
+    }
+  };
+}
+
+function saveGameToStorage() {
+  if (state.setupOpen) {
+    return { ok: false, message: "Start a campaign before saving." };
+  }
+
+  if (isNetworkInputLocked()) {
+    return { ok: false, message: "Wait for your network turn before saving." };
+  }
+  if (state.animating) {
+    return { ok: false, message: "Wait for animations to finish before saving." };
+  }
+  const storage = getSaveStorage();
+  if (!storage) {
+    return { ok: false, message: "This browser does not allow local saves." };
+  }
+  const payload = {
+    version: SAVE_FORMAT_VERSION,
+    savedAt: new Date().toISOString(),
+    game: captureGameSaveSnapshot()
+  };
+  try {
+    storage.setItem(SAVE_STORAGE_KEY, JSON.stringify(payload));
+    updateSavedGameMenuUI();
+    return { ok: true, savedAt: payload.savedAt };
+  } catch (error) {
+    return { ok: false, message: "Save failed. Storage may be full or blocked." };
+  }
+}
+
+function normalizeOwner(owner) {
+  return VALID_OWNER_SET.has(owner) ? owner : "neutral";
+}
+
+function normalizeTerritoryName(name) {
+  return typeof name === "string" && Object.prototype.hasOwnProperty.call(TERRITORIES, name) ? name : null;
+}
+
+function loadGameFromStorage() {
+  const payload = readSavedGamePayload();
+  if (!payload) {
+    return { ok: false, message: "No saved game found." };
+  }
+  if (payload.version !== SAVE_FORMAT_VERSION) {
+    return { ok: false, message: "Saved game format is outdated." };
+  }
+  const data = payload.game;
+  if (!data || typeof data !== "object") {
+    return { ok: false, message: "Saved game data is invalid." };
+  }
+
+  if (!aimLineEl) buildMap();
+
+  const territoryNames = Object.keys(TERRITORIES);
+  const restoredTerritories = {};
+  territoryNames.forEach((name) => {
+    const territory = data.territories && typeof data.territories === "object" ? data.territories[name] : null;
+    restoredTerritories[name] = {
+      owner: normalizeOwner(territory?.owner),
+      armies: Math.max(0, Math.round(Number(territory?.armies) || 0)),
+      fortified: Math.max(0, Math.round(Number(territory?.fortified) || 0))
+    };
+  });
+  const validTurnOwners = new Set(["player", ...AI_OWNERS]);
+  const hasOwnedTerritory = territoryNames.some((name) => validTurnOwners.has(restoredTerritories[name].owner));
+  if (!hasOwnedTerritory) {
+    return { ok: false, message: "Saved game is missing controllable territory ownership." };
+  }
+
+  state.territories = restoredTerritories;
+  state.turn = validTurnOwners.has(data.turn) ? data.turn : "player";
+  state.phase = data.phase === "attack" ? "attack" : "reinforce";
+  state.reinforcementsLeft = Math.max(0, Math.round(Number(data.reinforcementsLeft) || 0));
+  state.attackForce = Math.max(1, Math.round(Number(data.attackForce) || 1));
+  state.attackShips = Math.max(0, Math.round(Number(data.attackShips) || 0));
+  state.selection = {
+    from: normalizeTerritoryName(data.selection?.from),
+    to: normalizeTerritoryName(data.selection?.to)
+  };
+  state.homeBase = normalizeTerritoryName(data.homeBase) || firstPlayerTerritoryName();
+  if (!state.homeBase) {
+    return { ok: false, message: "Saved game does not include a valid home base." };
+  }
+  state.ships = Math.max(0, Math.round(Number(data.ships) || 0));
+  const restoredShips = {};
+  if (data.playerShipLocations && typeof data.playerShipLocations === "object") {
+    territoryNames.forEach((name) => {
+      const ships = Math.max(0, Math.round(Number(data.playerShipLocations[name]) || 0));
+      if (ships > 0) restoredShips[name] = ships;
+    });
+  }
+  if (Object.keys(restoredShips).length === 0 && state.ships > 0) {
+    restoredShips[state.homeBase] = state.ships;
+  }
+  state.playerShipLocations = restoredShips;
+  state.aiShips = AI_OWNERS.reduce((acc, owner) => {
+    const ships = data.aiShips && typeof data.aiShips === "object"
+      ? Math.round(Number(data.aiShips[owner]) || 0)
+      : 0;
+    acc[owner] = Math.max(0, ships);
+    return acc;
+  }, {});
+  state.gameOver = Boolean(data.gameOver);
+  state.seasonIndex = clampNumber(Math.round(Number(data.seasonIndex) || 0), 0, 3);
+  state.year = Math.max(1800, Math.round(Number(data.year) || 1850));
+  state.lastIncomeYear = Math.min(
+    state.year,
+    Math.max(1800, Math.round(Number(data.lastIncomeYear) || state.year))
+  );
+  const restoredTreasuryByOwner = {};
+  if (data.treasuryByOwner && typeof data.treasuryByOwner === "object") {
+    Object.entries(data.treasuryByOwner).forEach(([owner, value]) => {
+      if (owner !== "player" && !AI_OWNERS.includes(owner)) return;
+      restoredTreasuryByOwner[owner] = Math.max(0, Math.round(Number(value) || 0));
+    });
+  }
+  if (Object.keys(restoredTreasuryByOwner).length < 1) {
+    restoredTreasuryByOwner.player = Math.max(0, Math.round(Number(data.treasury) || STARTING_TREASURY));
+  }
+  state.treasuryByOwner = restoredTreasuryByOwner;
+  syncDisplayedTreasury();
+  state.firstRound = Boolean(data.firstRound);
+  state.setupOpen = false;
+  state.setupStep = "create";
+  state.setupTab = "map";
+  state.setupOptions = normalizeSetupOptions(data.setupOptions);
+  const restoredCommanderIndex = Math.max(0, Math.floor(Number(data.commanderIndex) || 0));
+  const commanderCount = Math.max(1, multiplayerCommanderCount());
+  state.multiplayer.commanderIndex = restoredCommanderIndex % commanderCount;
+  state.playerCountryId = STARTING_COUNTRY_POOL.some((country) => country.id === data.playerCountryId)
+    ? data.playerCountryId
+    : state.playerCountryId;
+  state.forceMenuHidden = Boolean(data.forceMenuHidden);
+  state.economyPanelOpen = false;
+  state.animating = false;
+  state.outcomeAckRequired = false;
+  state.outcomeAckWaiters = [];
+  attackOddsCacheKey = "";
+  attackOddsCacheValue = null;
+
+  if (logEl) logEl.innerHTML = "";
+  clearMovementCue();
+  clearBattleOutcome(true);
+  hideCountryPicker();
+
+  resetMapCamera();
+  const savedCamera = data.mapCamera;
+  if (
+    savedCamera &&
+    Number.isFinite(savedCamera.scale) &&
+    Number.isFinite(savedCamera.x) &&
+    Number.isFinite(savedCamera.y)
+  ) {
+    mapCamera.scale = clampNumber(savedCamera.scale, mapCamera.minScale, mapCamera.maxScale);
+    mapCamera.w = MAP_BASE_VIEWBOX.w / mapCamera.scale;
+    mapCamera.h = MAP_BASE_VIEWBOX.h / mapCamera.scale;
+    mapCamera.x = savedCamera.x;
+    mapCamera.y = savedCamera.y;
+    mapCamera.activePointerId = null;
+    mapCamera.dragStart = null;
+    mapCamera.pointers.clear();
+    mapCamera.pinchStart = null;
+    clampMapCameraPosition();
+    applyMapCamera();
+  } else {
+    const focusName = state.selection.from || state.homeBase || firstPlayerTerritoryName();
+    if (focusName) focusMapOnTerritory(focusName, isMobileLikeUI() ? 5.1 : 2.85);
+  }
+
+  render();
+  updateSavedGameMenuUI();
+  return { ok: true, savedAt: payload.savedAt };
+}
+
+function setMobileTopMenuOpen(open) {
+  const shouldOpen = Boolean(open);
+  mobileTopMenuOpen = shouldOpen;
+  if (mobileTopMenuEl) {
+    mobileTopMenuEl.classList.toggle("visible", shouldOpen);
+    mobileTopMenuEl.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
+  }
+}
+
+function updateMobileTopMenuUI() {
+  if (mobileMenuTurnPill && turnPill) {
+    mobileMenuTurnPill.textContent = turnPill.textContent;
+  }
+  updateSavedGameMenuUI();
 }
 
 function updateSoundToggle() {
@@ -2145,82 +5250,307 @@ function updateSoundToggle() {
     soundToggleBtn.setAttribute("aria-pressed", "false");
     soundToggleBtn.disabled = true;
     soundTestBtn.disabled = true;
+    if (mobileMenuSfxBtn) {
+      mobileMenuSfxBtn.textContent = "SFX N/A";
+      mobileMenuSfxBtn.setAttribute("aria-pressed", "false");
+      mobileMenuSfxBtn.disabled = true;
+    }
+    if (mobileMenuTestBtn) mobileMenuTestBtn.disabled = true;
     return;
   }
   soundToggleBtn.textContent = audioState.enabled ? "SFX ON" : "SFX OFF";
   soundToggleBtn.setAttribute("aria-pressed", String(audioState.enabled));
   soundToggleBtn.disabled = false;
   soundTestBtn.disabled = false;
+  if (mobileMenuSfxBtn) {
+    mobileMenuSfxBtn.textContent = audioState.enabled ? "SFX ON" : "SFX OFF";
+    mobileMenuSfxBtn.setAttribute("aria-pressed", String(audioState.enabled));
+    mobileMenuSfxBtn.disabled = false;
+  }
+  if (mobileMenuTestBtn) mobileMenuTestBtn.disabled = false;
 }
 
 function maxAttackForceFor(name) {
   const territory = state.territories[name];
-  if (!territory || territory.owner !== "player") return 1;
+  if (!territory || territory.owner !== localHumanOwner()) return 1;
   return Math.max(1, territory.armies - 1);
 }
 
 function maxTransferArmiesFor(name) {
   const territory = state.territories[name];
-  if (!territory || territory.owner !== "player") return 0;
+  if (!territory || territory.owner !== localHumanOwner()) return 0;
   return Math.max(0, territory.armies - 1);
 }
 
 function firstPlayerTerritoryName() {
-  return Object.keys(state.territories).find((name) => state.territories[name].owner === "player") || null;
+  const owner = localHumanOwner();
+  return Object.keys(state.territories).find((name) => state.territories[name].owner === owner) || null;
 }
 
 function defaultPurchaseTerritory() {
-  if (state.selection.from && state.territories[state.selection.from]?.owner === "player") return state.selection.from;
-  if (state.homeBase && state.territories[state.homeBase]?.owner === "player") return state.homeBase;
+  const owner = localHumanOwner();
+  if (state.selection.from && state.territories[state.selection.from]?.owner === owner) return state.selection.from;
+  if (state.homeBase && state.territories[state.homeBase]?.owner === owner) return state.homeBase;
   return firstPlayerTerritoryName();
 }
 
 function capitalPurchaseTerritory() {
-  if (!state.homeBase) return null;
-  return state.territories[state.homeBase]?.owner === "player" ? state.homeBase : null;
+  const capital = ownerCapitalTerritory(localHumanOwner());
+  if (!capital) return null;
+  return state.territories[capital]?.owner === localHumanOwner() ? capital : null;
+}
+
+function normalizePlayableOwner(owner) {
+  return owner && (owner === "player" || AI_OWNERS.includes(owner)) ? owner : "player";
+}
+
+function ensureShipLedger() {
+  if (!state.shipsByOwner || typeof state.shipsByOwner !== "object") {
+    state.shipsByOwner = {};
+  }
+  if (!state.shipLocationsByOwner || typeof state.shipLocationsByOwner !== "object") {
+    state.shipLocationsByOwner = {};
+  }
+
+  const legacyShips = Math.max(0, Math.round(Number(state.ships) || 0));
+  const legacyLocations = state.playerShipLocations && typeof state.playerShipLocations === "object"
+    ? state.playerShipLocations
+    : {};
+
+  if (Object.keys(state.shipsByOwner).length < 1) {
+    state.shipsByOwner.player = legacyShips;
+  }
+  if (Object.keys(state.shipLocationsByOwner).length < 1) {
+    const migrated = {};
+    Object.entries(legacyLocations).forEach(([name, value]) => {
+      if (!Object.prototype.hasOwnProperty.call(TERRITORIES, name)) return;
+      const ships = Math.max(0, Math.round(Number(value) || 0));
+      if (ships > 0) migrated[name] = ships;
+    });
+    if (Object.keys(migrated).length > 0) {
+      state.shipLocationsByOwner.player = migrated;
+    }
+  }
+
+  Object.keys(state.shipsByOwner).forEach((owner) => {
+    if (owner !== "player" && !AI_OWNERS.includes(owner)) {
+      delete state.shipsByOwner[owner];
+      return;
+    }
+    state.shipsByOwner[owner] = Math.max(0, Math.round(Number(state.shipsByOwner[owner]) || 0));
+  });
+
+  Object.keys(state.shipLocationsByOwner).forEach((owner) => {
+    if (owner !== "player" && !AI_OWNERS.includes(owner)) {
+      delete state.shipLocationsByOwner[owner];
+      return;
+    }
+    const source = state.shipLocationsByOwner[owner];
+    if (!source || typeof source !== "object") {
+      state.shipLocationsByOwner[owner] = {};
+      return;
+    }
+    const normalized = {};
+    Object.entries(source).forEach(([name, value]) => {
+      if (!Object.prototype.hasOwnProperty.call(TERRITORIES, name)) return;
+      const ships = Math.max(0, Math.round(Number(value) || 0));
+      if (ships > 0) normalized[name] = ships;
+    });
+    state.shipLocationsByOwner[owner] = normalized;
+  });
+
+  Object.keys(state.shipsByOwner).forEach((owner) => {
+    if (!state.shipLocationsByOwner[owner]) {
+      state.shipLocationsByOwner[owner] = {};
+    }
+    const locations = state.shipLocationsByOwner[owner];
+    const docked = Object.values(locations).reduce(
+      (sum, value) => sum + Math.max(0, Math.round(Number(value) || 0)),
+      0
+    );
+    if (docked > state.shipsByOwner[owner]) {
+      state.shipsByOwner[owner] = docked;
+    }
+    if (docked < 1 && state.shipsByOwner[owner] > 0) {
+      const fallbackDock = ownerCapitalTerritory(owner) || (owner === "player" ? state.homeBase : null);
+      if (fallbackDock && Object.prototype.hasOwnProperty.call(TERRITORIES, fallbackDock)) {
+        locations[fallbackDock] = state.shipsByOwner[owner];
+      }
+    }
+  });
+}
+
+function getOwnerShipLocations(owner = localHumanOwner()) {
+  ensureShipLedger();
+  const key = normalizePlayableOwner(owner);
+  if (!state.shipLocationsByOwner[key] || typeof state.shipLocationsByOwner[key] !== "object") {
+    state.shipLocationsByOwner[key] = {};
+  }
+  return state.shipLocationsByOwner[key];
+}
+
+function getOwnerShips(owner = localHumanOwner()) {
+  ensureShipLedger();
+  const key = normalizePlayableOwner(owner);
+  const docked = Object.values(getOwnerShipLocations(key)).reduce(
+    (sum, value) => sum + Math.max(0, Math.round(Number(value) || 0)),
+    0
+  );
+  const recorded = Math.max(0, Math.round(Number(state.shipsByOwner[key]) || 0));
+  const total = Math.max(recorded, docked);
+  state.shipsByOwner[key] = total;
+  return total;
+}
+
+function setOwnerShips(owner, amount) {
+  ensureShipLedger();
+  const key = normalizePlayableOwner(owner);
+  const docked = Object.values(getOwnerShipLocations(key)).reduce(
+    (sum, value) => sum + Math.max(0, Math.round(Number(value) || 0)),
+    0
+  );
+  const next = Math.max(docked, Math.round(Number(amount) || 0));
+  state.shipsByOwner[key] = next;
+  if (key === localHumanOwner()) {
+    state.ships = next;
+  }
+}
+
+function syncDisplayedShips() {
+  const key = localHumanOwner();
+  state.ships = getOwnerShips(key);
+  state.playerShipLocations = { ...getOwnerShipLocations(key) };
+}
+
+function ownerShipsAt(owner, name) {
+  if (!name) return 0;
+  return Math.max(0, getOwnerShipLocations(owner)[name] || 0);
+}
+
+function setOwnerShipsAt(owner, name, count) {
+  if (!name) return;
+  const key = normalizePlayableOwner(owner);
+  const locations = getOwnerShipLocations(key);
+  const next = Math.max(0, Math.floor(Number(count) || 0));
+  if (next > 0) {
+    locations[name] = next;
+  } else {
+    delete locations[name];
+  }
+  const total = Object.values(locations).reduce(
+    (sum, value) => sum + Math.max(0, Math.round(Number(value) || 0)),
+    0
+  );
+  setOwnerShips(key, total);
+}
+
+function moveOwnerShips(owner, fromName, toName, count) {
+  const available = ownerShipsAt(owner, fromName);
+  const toMove = Math.max(0, Math.min(Math.floor(Number(count) || 0), available));
+  if (toMove < 1) return 0;
+  setOwnerShipsAt(owner, fromName, available - toMove);
+  setOwnerShipsAt(owner, toName, ownerShipsAt(owner, toName) + toMove);
+  return toMove;
 }
 
 function playerShipsAt(name) {
-  if (!name) return 0;
-  return Math.max(0, state.playerShipLocations[name] || 0);
+  return ownerShipsAt(localHumanOwner(), name);
 }
 
 function territoryShipCount(name) {
   const territory = state.territories[name];
-  if (!territory || territory.owner !== "player") return 0;
+  if (!territory || territory.owner !== localHumanOwner()) return 0;
   return playerShipsAt(name);
 }
 
 function setPlayerShipsAt(name, count) {
-  if (!name) return;
-  const next = Math.max(0, Math.floor(count));
-  if (next > 0) {
-    state.playerShipLocations[name] = next;
-  } else {
-    delete state.playerShipLocations[name];
-  }
+  setOwnerShipsAt(localHumanOwner(), name, count);
 }
 
 function movePlayerShips(fromName, toName, count) {
-  const available = playerShipsAt(fromName);
-  const toMove = Math.max(0, Math.min(Math.floor(count), available));
-  if (toMove < 1) return 0;
-  setPlayerShipsAt(fromName, available - toMove);
-  setPlayerShipsAt(toName, playerShipsAt(toName) + toMove);
-  return toMove;
+  return moveOwnerShips(localHumanOwner(), fromName, toName, count);
+}
+
+function ensureTreasuryLedger() {
+  if (!state.treasuryByOwner || typeof state.treasuryByOwner !== "object") {
+    state.treasuryByOwner = {};
+  }
+  const ledger = state.treasuryByOwner;
+  if (Object.keys(ledger).length < 1) {
+    ledger.player = Math.max(0, Math.round(Number(state.treasury) || STARTING_TREASURY));
+  }
+  Object.keys(ledger).forEach((owner) => {
+    if (owner !== "player" && !AI_OWNERS.includes(owner)) {
+      delete ledger[owner];
+      return;
+    }
+    ledger[owner] = Math.max(0, Math.round(Number(ledger[owner]) || 0));
+  });
+}
+
+function getOwnerTreasury(owner = localHumanOwner()) {
+  ensureTreasuryLedger();
+  const key = owner && (owner === "player" || AI_OWNERS.includes(owner)) ? owner : "player";
+  const existing = state.treasuryByOwner[key];
+  if (!Number.isFinite(existing)) {
+    const fallback = key === "player"
+      ? Math.max(0, Math.round(Number(state.treasury) || STARTING_TREASURY))
+      : STARTING_TREASURY;
+    state.treasuryByOwner[key] = fallback;
+  }
+  return Math.max(0, Math.round(Number(state.treasuryByOwner[key]) || 0));
+}
+
+function setOwnerTreasury(owner, amount) {
+  ensureTreasuryLedger();
+  const key = owner && (owner === "player" || AI_OWNERS.includes(owner)) ? owner : "player";
+  const next = Math.max(0, Math.round(Number(amount) || 0));
+  state.treasuryByOwner[key] = next;
+  if (key === localHumanOwner()) {
+    state.treasury = next;
+  }
+}
+
+function syncDisplayedTreasury() {
+  state.treasury = getOwnerTreasury(localHumanOwner());
 }
 
 function canIssueOrders() {
-  return state.turn === "player" && !state.gameOver && !state.animating && !state.setupOpen;
+  return isLocalTurnOwner() &&
+    !state.gameOver &&
+    !state.animating &&
+    !state.setupOpen &&
+    !isNetworkInputLocked();
 }
 
 function canSpendTreasuryNow() {
   return canIssueOrders() && state.phase === "reinforce" && state.seasonIndex === 0;
 }
 
+function currentTurnActionInstruction() {
+  if (state.phase === "reinforce") {
+    if (state.reinforcementsLeft > 0) {
+      return `Deploy ${state.reinforcementsLeft} reinforcements, then begin offensive.`;
+    }
+    return "Begin offensive, then issue attacks or transfers.";
+  }
+  if (state.phase === "attack") {
+    if (!state.selection.from) {
+      return "Select one of your territories with armies or ships to begin.";
+    }
+    if (!state.selection.to) {
+      return "Select a target territory, then resolve battle or transfer.";
+    }
+    return "Resolve your selected order, then end turn when done.";
+  }
+  return "Issue your orders and end your turn.";
+}
+
 function spendTreasury(amount) {
-  if (state.treasury < amount) return false;
-  state.treasury -= amount;
+  const owner = localHumanOwner();
+  const current = getOwnerTreasury(owner);
+  if (current < amount) return false;
+  setOwnerTreasury(owner, current - amount);
   return true;
 }
 
@@ -2234,7 +5564,7 @@ function buyArmiesBundle() {
   }
   const deployTo = capitalPurchaseTerritory();
   if (!deployTo) {
-    const capitalLabel = territoryLabel(state.homeBase, "your capital");
+    const capitalLabel = territoryLabel(ownerCapitalTerritory(localHumanOwner()) || state.homeBase, "your capital");
     addLog(`${capitalLabel} is not under your control. Recapture your capital to buy armies.`);
     playSound("invalid");
     render();
@@ -2262,7 +5592,7 @@ function buyShipsBundle() {
   }
   const deployTo = capitalPurchaseTerritory();
   if (!deployTo) {
-    const capitalLabel = territoryLabel(state.homeBase, "your capital");
+    const capitalLabel = territoryLabel(ownerCapitalTerritory(localHumanOwner()) || state.homeBase, "your capital");
     addLog(`${capitalLabel} is not under your control. Recapture your capital to buy ships.`);
     playSound("invalid");
     render();
@@ -2330,6 +5660,17 @@ function setForceControls(sliderEl, valueEl, hintEl, config) {
 function maxShipForceFor(fromName = state.selection.from, toName = state.selection.to) {
   if (!canUseShipsOnRoute(fromName, toName)) return 0;
   return Math.max(0, Math.min(playerShipsAt(fromName), state.ships));
+}
+
+function navalTroopCapacityForShips(shipCount) {
+  const ships = Math.max(0, Math.floor(Number(shipCount) || 0));
+  return Math.max(0, Math.floor(ships * WATER_TRANSPORT_TROOPS_PER_SHIP));
+}
+
+function requiredShipsForNavalTroops(troopCount) {
+  const troops = Math.max(0, Math.floor(Number(troopCount) || 0));
+  if (troops < 1) return 0;
+  return Math.ceil(troops / WATER_TRANSPORT_TROOPS_PER_SHIP);
 }
 
 function runBattleSimulation(attackingArmies, defendingArmies, committedShips = 0, fortified = false) {
@@ -2405,16 +5746,33 @@ function updateAttackSuccessLabels() {
   const fromName = state.selection.from;
   const toName = state.selection.to;
   const target = toName ? state.territories[toName] : null;
-  if (fromName && toName && target?.owner === "player") {
+  if (fromName && toName && target?.owner === localHumanOwner()) {
     const navalRoute = canUseShipsOnRoute(fromName, toName);
-    const adjacent = isAdjacentTerritory(fromName, toName);
+    const adjacent = isLandRouteAvailable(fromName, toName);
+    const mountainBlocked = isMountainBlockedRoute(fromName, toName);
+    const waterOnlyRoute = !adjacent && navalRoute;
     const moveArmies = clampNumber(state.attackForce, 0, maxTransferArmiesFor(fromName));
     const moveShips = clampNumber(state.attackShips, 0, maxShipForceFor(fromName, toName));
-    const text = !adjacent && navalRoute && moveShips < 1
-      ? "Set ship force to move across open water."
-      : navalRoute
-        ? `Transfer order: ${moveArmies} armies, ${moveShips} ships.`
-        : `Transfer order: ${moveArmies} armies. Ships unavailable on land route.`;
+    const requiredShips = waterOnlyRoute ? requiredShipsForNavalTroops(moveArmies) : 0;
+    const text = (
+      !adjacent && !navalRoute
+        ? (
+          mountainBlocked
+            ? "Mountain range blocks this route. Pick another target."
+            : "No valid route between these regions."
+        )
+        : (!adjacent && navalRoute && moveShips < 1)
+          ? (
+            mountainBlocked
+              ? "Mountains block land travel. Set ship force for coastal transfer."
+              : "Set ship force to move across open water."
+          )
+          : (waterOnlyRoute && moveArmies > 0 && moveShips < requiredShips)
+            ? `Need ${requiredShips} ships to move ${moveArmies} armies across water (35 troops per 5 ships).`
+          : navalRoute
+            ? `Transfer order: ${moveArmies} armies, ${moveShips} ships.`
+            : `Transfer order: ${moveArmies} armies. Ships unavailable on land route.`
+    );
     if (attackSuccessLabel) attackSuccessLabel.textContent = text;
     if (mobileAttackSuccessLabel) mobileAttackSuccessLabel.textContent = text;
     return;
@@ -2433,12 +5791,12 @@ function updateAttackSuccessLabels() {
 
 function updateAttackForceUI() {
   const canConfigure =
-    state.turn === "player" &&
+    isLocalTurnOwner() &&
     state.phase === "attack" &&
     !!state.selection.from &&
     !state.gameOver;
   const showForcePanel =
-    state.turn === "player" &&
+    isLocalTurnOwner() &&
     state.phase === "attack" &&
     Boolean(state.selection.from) &&
     Boolean(state.selection.to) &&
@@ -2475,7 +5833,7 @@ function updateAttackForceUI() {
   }
 
   const toTerritory = state.selection.to ? state.territories[state.selection.to] : null;
-  const isFriendlyTransfer = Boolean(toTerritory && toTerritory.owner === "player");
+  const isFriendlyTransfer = Boolean(toTerritory && toTerritory.owner === localHumanOwner());
   const transferCapacity = maxTransferArmiesFor(state.selection.from);
   const fromHasOnlyShips =
     !state.selection.to &&
@@ -2485,23 +5843,38 @@ function updateAttackForceUI() {
     ? transferCapacity
     : maxAttackForceFor(state.selection.from);
   const minForce = (isFriendlyTransfer || fromHasOnlyShips) ? 0 : 1;
-  const clampedMaxForce = Math.max(minForce, maxForce);
+  const hasLandRoute = isLandRouteAvailable(state.selection.from, state.selection.to);
+  const mountainBlocked = isMountainBlockedRoute(state.selection.from, state.selection.to);
   const routeSupportsShips = canUseShipsOnRoute(state.selection.from, state.selection.to);
+  const waterOnlyRoute = !hasLandRoute && routeSupportsShips;
   const maxShipForce = maxShipForceFor(state.selection.from, state.selection.to);
+  const navalTroopCapacity = waterOnlyRoute ? navalTroopCapacityForShips(maxShipForce) : maxForce;
+  const cappedMaxForce = waterOnlyRoute ? Math.min(maxForce, navalTroopCapacity) : maxForce;
+  const noNavalCapacity = waterOnlyRoute && cappedMaxForce < minForce;
+  const clampedMaxForce = Math.max(minForce, cappedMaxForce);
   state.attackForce = Math.max(minForce, Math.min(state.attackForce, clampedMaxForce));
-  state.attackShips = Math.max(0, Math.min(state.attackShips, maxShipForce));
+  const requiredShipsForForce = waterOnlyRoute ? requiredShipsForNavalTroops(state.attackForce) : 0;
+  const minimumShipsForSelection = waterOnlyRoute ? requiredShipsForForce : 0;
+  state.attackShips = Math.max(
+    0,
+    Math.min(maxShipForce, Math.max(state.attackShips, minimumShipsForSelection))
+  );
   const fromLabel = territoryLabel(state.selection.from);
   const toLabel = state.selection.to ? territoryLabel(state.selection.to) : "";
   const hint = !state.selection.to
     ? `From ${fromLabel}, tap your region to transfer or enemy region to attack.`
     : isFriendlyTransfer
-      ? `Transfer selected: ${fromLabel} -> ${toLabel}.`
-      : `Attack selected: ${fromLabel} -> ${toLabel}.`;
+      ? waterOnlyRoute
+        ? `Transfer selected: ${fromLabel} -> ${toLabel}. Sea lift capacity ${navalTroopCapacity} armies (${WATER_TRANSPORT_TROOPS_PER_BATCH} per ${WATER_TRANSPORT_SHIP_BATCH} ships).`
+        : `Transfer selected: ${fromLabel} -> ${toLabel}.`
+      : waterOnlyRoute
+        ? `Attack selected: ${fromLabel} -> ${toLabel}. Sea lift capacity ${navalTroopCapacity} armies (${WATER_TRANSPORT_TROOPS_PER_BATCH} per ${WATER_TRANSPORT_SHIP_BATCH} ships).`
+        : `Attack selected: ${fromLabel} -> ${toLabel}.`;
   const config = {
     min: minForce,
     max: clampedMaxForce,
     value: state.attackForce,
-    disabled: state.animating || (isFriendlyTransfer && clampedMaxForce < 1 && maxShipForce < 1),
+    disabled: state.animating || noNavalCapacity || (isFriendlyTransfer && clampedMaxForce < 1 && maxShipForce < 1),
     hint
   };
   setForceControls(armySendSlider, armySendValue, armySendHint, config);
@@ -2513,10 +5886,18 @@ function updateAttackForceUI() {
     disabled: state.animating || maxShipForce < 1,
     hint: !state.selection.to
       ? `Select a target from ${fromLabel} to set ship movement.`
+      : (!hasLandRoute && !routeSupportsShips)
+        ? (
+          mountainBlocked
+            ? "Mountain range blocks this route. Choose another border."
+            : "No valid route to this target."
+        )
       : routeSupportsShips
         ? (
           maxShipForce > 0
-            ? `${maxShipForce} docked ships available for this coastal route.`
+            ? waterOnlyRoute
+              ? `${maxShipForce} ships available. Need ${requiredShipsForForce} ships for ${state.attackForce} armies (35 troops per 5 ships).`
+              : `${maxShipForce} docked ships available for this coastal route.`
             : `Coastal route detected, but ${fromLabel} has no docked ships.`
         )
         : "Land route only. Ships cannot move or attack here."
@@ -2529,7 +5910,7 @@ function updateAttackForceUI() {
 
 function canResolveSelectedOrder() {
   if (
-    state.turn !== "player" ||
+    !isLocalTurnOwner() ||
     state.phase !== "attack" ||
     !state.selection.from ||
     !state.selection.to
@@ -2539,25 +5920,30 @@ function canResolveSelectedOrder() {
   const from = state.territories[state.selection.from];
   const to = state.territories[state.selection.to];
   if (!from || !to) return false;
-  const adjacent = isAdjacentTerritory(state.selection.from, state.selection.to);
+  const adjacent = isLandRouteAvailable(state.selection.from, state.selection.to);
   const navalRange = canUseShipsOnRoute(state.selection.from, state.selection.to);
+  const waterOnlyRoute = !adjacent && navalRange;
   const ships = clampNumber(state.attackShips, 0, maxShipForceFor(state.selection.from, state.selection.to));
 
-  if (to.owner !== "player") {
+  if (to.owner !== localHumanOwner()) {
     if (!adjacent && !navalRange) return false;
     if (from.armies < 2) return false;
-    if (!adjacent && ships < 1) return false;
+    const committedArmies = clampNumber(state.attackForce, 1, maxAttackForceFor(state.selection.from));
+    const requiredShips = waterOnlyRoute ? requiredShipsForNavalTroops(committedArmies) : 0;
+    if (waterOnlyRoute && ships < requiredShips) return false;
     return true;
   }
 
   if (!adjacent && !navalRange) return false;
   const armies = clampNumber(state.attackForce, 0, maxTransferArmiesFor(state.selection.from));
-  if (!adjacent && ships < 1) return false;
+  const requiredShips = waterOnlyRoute ? requiredShipsForNavalTroops(armies) : 0;
+  if (waterOnlyRoute && armies > 0 && ships < requiredShips) return false;
+  if (!adjacent && ships < 1 && armies < 1) return false;
   return armies > 0 || ships > 0;
 }
 
 function currentActionStep() {
-  if (state.setupOpen || state.gameOver || state.animating || state.turn !== "player") return "idle";
+  if (state.setupOpen || state.gameOver || state.animating || !isLocalTurnOwner() || isNetworkInputLocked()) return "idle";
   if (state.phase === "reinforce") {
     return state.reinforcementsLeft > 0 ? "map-reinforce" : "begin-offensive";
   }
@@ -2594,7 +5980,7 @@ function updateMobileForcePopup() {
   if (!mobileForcePopupEl || !mapStageEl) return;
   const popupEligible =
     isMobileLikeUI() &&
-    state.turn === "player" &&
+    isLocalTurnOwner() &&
     state.phase === "attack" &&
     Boolean(state.selection.from) &&
     Boolean(state.selection.to) &&
@@ -2622,6 +6008,7 @@ function updateEconomyUI() {
   const activeTerritoryLabel = activeTerritoryName ? territoryLabel(activeTerritoryName) : "a friendly territory";
   const activeTerritory = activeTerritoryName ? state.territories[activeTerritoryName] : null;
   const capitalTerritoryName = capitalPurchaseTerritory();
+  const ownerTreasury = getOwnerTreasury(localHumanOwner());
   const capitalLabel = territoryLabel(state.homeBase, "your capital");
   const canBuyNow = canSpendTreasuryNow();
   const nextSpendYear = state.year + 1;
@@ -2656,13 +6043,15 @@ function updateEconomyUI() {
     }
   }
 
-  const canBuyArmies = canBuyNow && Boolean(capitalTerritoryName) && state.treasury >= ECONOMY.armiesCost;
-  const canBuyShips = canBuyNow && Boolean(capitalTerritoryName) && state.treasury >= ECONOMY.shipsCost;
+  const canBuyArmies = canBuyNow && Boolean(capitalTerritoryName) && ownerTreasury >= ECONOMY.armiesCost;
+  const canBuyShips = canBuyNow && Boolean(capitalTerritoryName) && ownerTreasury >= ECONOMY.shipsCost;
   const canFortify =
     canBuyNow &&
     Boolean(activeTerritory) &&
     activeTerritory.fortified < 1 &&
-    state.treasury >= ECONOMY.fortifyCost;
+    ownerTreasury >= ECONOMY.fortifyCost;
+  const canAnyEconomyAction = canBuyArmies || canBuyShips || canFortify;
+  const canOpenEconomyPanel = canIssueOrders() && canBuyNow && canAnyEconomyAction;
 
   if (buyArmiesBtn) buyArmiesBtn.disabled = !canBuyArmies;
   if (buyShipsBtn) buyShipsBtn.disabled = !canBuyShips;
@@ -2671,11 +6060,43 @@ function updateEconomyUI() {
   if (mobileBuyShipsBtn) mobileBuyShipsBtn.disabled = !canBuyShips;
   if (mobileFortifyBtn) mobileFortifyBtn.disabled = !canFortify;
 
+  if (!canOpenEconomyPanel) {
+    state.economyPanelOpen = false;
+  }
+
+  if (economyToggleCard) economyToggleCard.style.display = canOpenEconomyPanel ? "grid" : "none";
+  if (economyToggleBtn) {
+    economyToggleBtn.textContent = state.economyPanelOpen ? "Hide Economy Actions" : "Open Economy Actions";
+    economyToggleBtn.disabled = !canOpenEconomyPanel;
+  }
+  if (economyToggleNote) {
+    economyToggleNote.textContent = canOpenEconomyPanel
+      ? "Spring spending window is open. Use this to buy armies, ships, or fortify."
+      : "Economy actions are hidden until they are available.";
+  }
+  if (economyActionsPanel) {
+    economyActionsPanel.classList.toggle("visible", canOpenEconomyPanel && state.economyPanelOpen);
+  }
+  if (opsArmiesCard) opsArmiesCard.classList.toggle("economy-option-hidden", !(canOpenEconomyPanel && canBuyArmies));
+  if (opsShipsCard) opsShipsCard.classList.toggle("economy-option-hidden", !(canOpenEconomyPanel && canBuyShips));
+  if (opsFortifyCard) opsFortifyCard.classList.toggle("economy-option-hidden", !(canOpenEconomyPanel && canFortify));
+
   if (mobileShopBarEl) {
-    const showShop = isMobileLikeUI() && state.turn === "player" && !state.gameOver;
+    const showShop = isMobileLikeUI() && canOpenEconomyPanel;
     mobileShopBarEl.style.visibility = showShop ? "visible" : "hidden";
     mobileShopBarEl.style.opacity = showShop ? "1" : "0";
     mobileShopBarEl.style.pointerEvents = showShop ? "auto" : "none";
+    if (mobileBuyArmiesBtn) mobileBuyArmiesBtn.style.display = showShop && canBuyArmies ? "" : "none";
+    if (mobileBuyShipsBtn) mobileBuyShipsBtn.style.display = showShop && canBuyShips ? "" : "none";
+    if (mobileFortifyBtn) mobileFortifyBtn.style.display = showShop && canFortify ? "" : "none";
+    const visibleButtons = [mobileBuyArmiesBtn, mobileBuyShipsBtn, mobileFortifyBtn]
+      .filter((entry) => entry && entry.style.display !== "none")
+      .length;
+    if (showShop && visibleButtons > 0) {
+      mobileShopBarEl.style.gridTemplateColumns = `repeat(${visibleButtons}, minmax(0, 1fr))`;
+    } else {
+      mobileShopBarEl.style.gridTemplateColumns = "repeat(3, minmax(0, 1fr))";
+    }
   }
 }
 
@@ -2693,7 +6114,7 @@ function updateMobileNextStepBar() {
     mobileNextBtn.classList.add("hidden");
     if (mobileEndBtn) {
       mobileEndBtn.disabled = true;
-      mobileEndBtn.textContent = "End Season";
+      mobileEndBtn.textContent = "End Turn";
     }
     return;
   }
@@ -2710,7 +6131,7 @@ function updateMobileNextStepBar() {
     action = "begin-offensive";
     buttonLabel = "Begin Offensive";
   } else if (step === "resolve-battle") {
-    const isFriendlyTransfer = state.selection.to && state.territories[state.selection.to]?.owner === "player";
+    const isFriendlyTransfer = state.selection.to && state.territories[state.selection.to]?.owner === localHumanOwner();
     if (isFriendlyTransfer) {
       text = `Next: Move ${state.attackForce} armies and ${state.attackShips} ships to your territory.`;
       buttonLabel = "Move Forces";
@@ -2744,24 +6165,31 @@ function updateMobileNextStepBar() {
   }
 
   if (mobileEndBtn) {
-    const canEnd = state.turn === "player" && !state.gameOver && !state.animating;
+    const canEnd = isLocalTurnOwner() && !state.gameOver && !state.animating && !isNetworkInputLocked();
     mobileEndBtn.disabled = !canEnd;
-    mobileEndBtn.textContent = state.phase === "reinforce" ? "End Season" : "End Turn";
+    mobileEndBtn.textContent = "End Turn";
   }
 }
 
 function addLog(message) {
+  if (!logEl) return;
   const li = document.createElement("li");
   li.textContent = message;
   logEl.prepend(li);
 }
 
 function ownerName(owner) {
+  if (isNetworkMode() && isNetworkHumanOwner(owner)) {
+    const networkPlayer = networkPlayerForOwner(owner);
+    if (networkPlayer?.name) return networkPlayer.name;
+  }
   if (owner === "player") return "Player";
   if (owner === "ai1") return "AI Crimson";
   if (owner === "ai2") return "AI Emerald";
   if (owner === "ai3") return "AI Amber";
   if (owner === "ai4") return "AI Azure";
+  if (owner === "ai5") return "AI Teal";
+  if (owner === "ai6") return "AI Violet";
   if (owner === "ai") return "AI";
   return "Unclaimed";
 }
@@ -2796,18 +6224,19 @@ function updateControlBar() {
   }, {});
 
   const playerPct = Math.max(0, Math.min(100, ((ownerArea.player || 0) / totalArea) * 100));
-  const ai1Pct = Math.max(0, Math.min(100, ((ownerArea.ai1 || 0) / totalArea) * 100));
-  const ai2Pct = Math.max(0, Math.min(100, ((ownerArea.ai2 || 0) / totalArea) * 100));
-  const ai3Pct = Math.max(0, Math.min(100, ((ownerArea.ai3 || 0) / totalArea) * 100));
-  const ai4Pct = Math.max(0, Math.min(100, ((ownerArea.ai4 || 0) / totalArea) * 100));
-  const aiPct = ai1Pct + ai2Pct + ai3Pct + ai4Pct;
+  const aiPctByOwner = AI_OWNERS.reduce((acc, owner) => {
+    acc[owner] = Math.max(0, Math.min(100, ((ownerArea[owner] || 0) / totalArea) * 100));
+    return acc;
+  }, {});
+  const aiPct = AI_OWNERS.reduce((sum, owner) => sum + (aiPctByOwner[owner] || 0), 0);
   const neutralPct = Math.max(0, Math.min(100, ((ownerArea.neutral || 0) / totalArea) * 100));
 
   if (powerPlayerEl) powerPlayerEl.style.width = `${playerPct}%`;
-  if (powerAi1El) powerAi1El.style.width = `${ai1Pct}%`;
-  if (powerAi2El) powerAi2El.style.width = `${ai2Pct}%`;
-  if (powerAi3El) powerAi3El.style.width = `${ai3Pct}%`;
-  if (powerAi4El) powerAi4El.style.width = `${ai4Pct}%`;
+  AI_OWNERS.forEach((owner) => {
+    const bar = powerAiEls[owner];
+    if (!bar) return;
+    bar.style.width = `${aiPctByOwner[owner] || 0}%`;
+  });
   if (powerAiCoalitionEl) powerAiCoalitionEl.style.width = `${aiPct}%`;
   if (powerNeutralEl) powerNeutralEl.style.width = `${neutralPct}%`;
   if (powerPlayerLabelEl) powerPlayerLabelEl.textContent = `Player ${Math.round(playerPct)}%`;
@@ -2816,7 +6245,9 @@ function updateControlBar() {
 }
 
 function reinforcementFor(owner) {
-  return Math.max(3, Math.floor(territoryCount(owner) / 3));
+  const base = Math.max(3, Math.floor(territoryCount(owner) / 3));
+  const difficultyBonus = setupDifficultyForOwner(owner);
+  return Math.max(2, base + difficultyBonus);
 }
 
 function rollDice(count) {
@@ -2826,11 +6257,19 @@ function rollDice(count) {
 }
 
 function checkGameOver() {
-  const playerOwns = territoryCount("player");
-  const aiOwns = AI_OWNERS.reduce((sum, owner) => sum + territoryCount(owner), 0);
-  if (playerOwns === 0 || aiOwns === 0) {
+  const humanOwners = isNetworkMode()
+    ? Array.from(new Set(Object.values(state.multiplayer.network.ownerByPlayerId || {}))).filter(Boolean)
+    : ["player"];
+  const aliveHumanOwners = humanOwners.filter((owner) => territoryCount(owner) > 0);
+  const aiOpponents = AI_OWNERS.filter((owner) => !humanOwners.includes(owner));
+  const aiOwns = aiOpponents.reduce((sum, owner) => sum + territoryCount(owner), 0);
+  const noAiOpponents = !state.multiplayer.network.aiEnabled && isNetworkMode();
+
+  if ((noAiOpponents && aliveHumanOwners.length <= 1) || (!noAiOpponents && (aliveHumanOwners.length < 1 || aiOwns === 0))) {
     state.gameOver = true;
-    const winner = playerOwns > 0 ? "Player" : "AI Coalition";
+    const winner = noAiOpponents
+      ? (aliveHumanOwners[0] ? ownerName(aliveHumanOwners[0]) : "No one")
+      : (aliveHumanOwners.length > 0 ? "Players" : "AI Coalition");
     addLog(`${winner} eliminated the rival empire. Game over.`);
   }
 }
@@ -2838,23 +6277,27 @@ function checkGameOver() {
 function applyAnnualIncomeIfNeeded() {
   if (state.seasonIndex !== 0) return;
   if (state.year <= state.lastIncomeYear) return;
-  const income = annualIncomeFor("player");
-  const areaShare = (claimedArea("player") / TOTAL_MAP_AREA) * 100;
-  state.treasury += income;
+  const activeOwner = state.turn || "player";
+  const income = annualIncomeFor(activeOwner);
+  const areaShare = (claimedArea(activeOwner) / TOTAL_MAP_AREA) * 100;
+  const nextTreasury = getOwnerTreasury(activeOwner) + income;
+  setOwnerTreasury(activeOwner, nextTreasury);
+  syncDisplayedTreasury();
   state.lastIncomeYear = state.year;
   addLog(`Year ${state.year} revenue: +$${income} from ${Math.round(areaShare)}% land control.`);
 }
 
 function autoDeployPlayerReinforcementsIfNeeded() {
   if (
-    state.turn !== "player" ||
+    !isLocalTurnOwner() ||
     state.phase !== "reinforce" ||
     state.reinforcementsLeft < 1
   ) {
     return false;
   }
+  const owner = localHumanOwner();
   const playerOwned = Object.keys(state.territories).filter(
-    (name) => state.territories[name].owner === "player"
+    (name) => state.territories[name].owner === owner
   );
   if (!playerOwned.length) return false;
   if (!state.firstRound && playerOwned.length > 1) return false;
@@ -2862,7 +6305,7 @@ function autoDeployPlayerReinforcementsIfNeeded() {
   let target = playerOwned[0];
   if (
     state.homeBase &&
-    state.territories[state.homeBase]?.owner === "player" &&
+    state.territories[state.homeBase]?.owner === owner &&
     (state.firstRound || playerOwned.length === 1)
   ) {
     target = state.homeBase;
@@ -2891,18 +6334,19 @@ function advanceCalendar() {
 }
 
 function select(territoryName) {
-  if (state.setupOpen || state.turn !== "player" || state.gameOver || state.animating) return;
+  if (state.setupOpen || !isLocalTurnOwner() || state.gameOver || state.animating || isNetworkInputLocked()) return;
   if (state.phase === "reinforce") {
     reinforce(territoryName);
     return;
   }
   if (state.phase !== "attack") return;
 
+  const owner = localHumanOwner();
   const selected = state.territories[territoryName];
   const fromName = state.selection.from;
   const fromTerritory = fromName ? state.territories[fromName] : null;
   const selectedHasMovableForces =
-    selected.owner === "player" &&
+    selected.owner === owner &&
     (selected.armies > 1 || playerShipsAt(territoryName) > 0);
 
   if (!fromName) {
@@ -2935,11 +6379,11 @@ function select(territoryName) {
     return;
   }
 
-  const adjacent = isAdjacentTerritory(fromName, territoryName);
+  const adjacent = isLandRouteAvailable(fromName, territoryName);
   const sourceShips = playerShipsAt(fromName);
   const navalRange = canUseShipsOnRoute(fromName, territoryName);
   const navalEnabled = navalRange && sourceShips > 0;
-  const playerOwnedTarget = selected.owner === "player";
+  const playerOwnedTarget = selected.owner === owner;
   const friendlyTransferAllowed = playerOwnedTarget && (adjacent || navalEnabled);
   const enemyAttackAllowed =
     !playerOwnedTarget &&
@@ -2974,31 +6418,38 @@ function select(territoryName) {
 function reinforce(territoryName) {
   if (state.phase !== "reinforce" || state.reinforcementsLeft < 1 || state.animating) return;
   const territory = state.territories[territoryName];
-  if (!territory || territory.owner !== "player") return;
+  if (!territory || territory.owner !== localHumanOwner()) return;
 
   territory.armies += 1;
   state.reinforcementsLeft -= 1;
-  addLog(`Player reinforces ${territoryLabel(territoryName)} (+1).`);
+  addLog(`${ownerName(localHumanOwner())} reinforces ${territoryLabel(territoryName)} (+1).`);
   playSound("land-move");
-  if (state.reinforcementsLeft === 0) addLog("Reinforcements complete. Begin offensive or end season.");
+  if (state.reinforcementsLeft === 0) addLog("Reinforcements complete. Begin offensive or end turn.");
   render();
 }
 
 function resolveFriendlyTransfer(fromName, toName, committedArmies = 0, committedShips = 0) {
   const from = state.territories[fromName];
   const to = state.territories[toName];
-  const adjacent = isAdjacentTerritory(fromName, toName);
+  const owner = localHumanOwner();
+  const adjacent = isLandRouteAvailable(fromName, toName);
   const navalRange = canUseShipsOnRoute(fromName, toName);
+  const mountainBlocked = isMountainBlockedRoute(fromName, toName);
   if (
     !from ||
     !to ||
-    from.owner !== "player" ||
-    to.owner !== "player" ||
+    from.owner !== owner ||
+    to.owner !== owner ||
     fromName === toName ||
     (!adjacent && !navalRange)
   ) {
-    addLog("Invalid transfer order.");
-    showBattleOutcome("Invalid transfer order.", false);
+    if (mountainBlocked) {
+      addLog("Mountain range blocks this land transfer.");
+      showBattleOutcome("Mountain range blocks this route.", false);
+    } else {
+      addLog("Invalid transfer order.");
+      showBattleOutcome("Invalid transfer order.", false);
+    }
     playSound("invalid");
     return { valid: false };
   }
@@ -3007,10 +6458,24 @@ function resolveFriendlyTransfer(fromName, toName, committedArmies = 0, committe
   const maxShips = maxShipForceFor(fromName, toName);
   const armyMove = clampNumber(committedArmies, 0, maxArmies);
   const shipMove = clampNumber(committedShips, 0, maxShips);
+  const waterOnlyRoute = !adjacent && navalRange;
+  const requiredShips = waterOnlyRoute ? requiredShipsForNavalTroops(armyMove) : 0;
 
-  if (!adjacent && shipMove < 1) {
-    addLog("Open-water transfer requires at least 1 ship.");
-    showBattleOutcome("Set ship force to move across open water.", false);
+  if (waterOnlyRoute && armyMove > 0 && shipMove < requiredShips) {
+    addLog(`Need ${requiredShips} ships to move ${armyMove} armies across water.`);
+    showBattleOutcome(`Need ${requiredShips} ships for ${armyMove} armies across water (35 troops per 5 ships).`, false);
+    playSound("invalid");
+    return { valid: false };
+  }
+
+  if (waterOnlyRoute && shipMove < 1) {
+    if (mountainBlocked) {
+      addLog("Mountains block land transfer. Use ships on this coastal route.");
+      showBattleOutcome("Mountains block land transfer. Commit ships.", false);
+    } else {
+      addLog("Open-water transfer requires at least 1 ship.");
+      showBattleOutcome("Set ship force to move across open water.", false);
+    }
     playSound("invalid");
     return { valid: false };
   }
@@ -3045,16 +6510,23 @@ function resolveFriendlyTransfer(fromName, toName, committedArmies = 0, committe
 function resolveBattle(attackerName, defenderName, committedArmies = 1, committedShips = 0) {
   const attacker = state.territories[attackerName];
   const defender = state.territories[defenderName];
-  const adjacent = isAdjacentTerritory(attackerName, defenderName);
+  const owner = localHumanOwner();
+  const adjacent = isLandRouteAvailable(attackerName, defenderName);
   const navalRange = canUseShipsOnRoute(attackerName, defenderName);
+  const mountainBlocked = isMountainBlockedRoute(attackerName, defenderName);
   if (
-    attacker.owner !== "player" ||
-    defender.owner === "player" ||
+    attacker.owner !== owner ||
+    defender.owner === owner ||
     attacker.armies < 2 ||
     (!adjacent && !navalRange)
   ) {
-    addLog("Invalid attack order.");
-    showBattleOutcome("Invalid attack order.", false);
+    if (mountainBlocked) {
+      addLog("Mountain range blocks this attack route.");
+      showBattleOutcome("Mountains block this land attack.", false);
+    } else {
+      addLog("Invalid attack order.");
+      showBattleOutcome("Invalid attack order.", false);
+    }
     playSound("invalid");
     return { valid: false, captured: false };
   }
@@ -3063,9 +6535,16 @@ function resolveBattle(attackerName, defenderName, committedArmies = 1, committe
   const maxShipsCommit = maxShipForceFor(attackerName, defenderName);
   const commit = Math.max(1, Math.min(committedArmies, maxCommit));
   const shipCommit = Math.max(0, Math.min(committedShips, maxShipsCommit));
-  if (!adjacent && shipCommit < 1) {
-    addLog("Naval assault requires ships for non-adjacent coastal targets.");
-    showBattleOutcome("Choose ships for this naval assault.", false);
+  const waterOnlyRoute = !adjacent && navalRange;
+  const requiredShips = waterOnlyRoute ? requiredShipsForNavalTroops(commit) : 0;
+  if (waterOnlyRoute && shipCommit < requiredShips) {
+    if (mountainBlocked) {
+      addLog("Mountains block this land route. Commit ships for a coastal assault.");
+      showBattleOutcome("Mountains block this land route. Commit ships.", false);
+    } else {
+      addLog(`Naval assault requires ${requiredShips} ships for ${commit} armies.`);
+      showBattleOutcome(`Need ${requiredShips} ships for ${commit} armies across water (35 troops per 5 ships).`, false);
+    }
     playSound("invalid");
     return { valid: false, captured: false };
   }
@@ -3078,7 +6557,7 @@ function resolveBattle(attackerName, defenderName, committedArmies = 1, committe
 
   const attackerLabel = territoryLabel(attackerName);
   const defenderLabel = territoryLabel(defenderName);
-  addLog(`Player attacks ${defenderLabel} from ${attackerLabel} with ${commit} armies and ${shipCommit} ships.`);
+  addLog(`${ownerName(owner)} attacks ${defenderLabel} from ${attackerLabel} with ${commit} armies and ${shipCommit} ships.`);
   if (hadFortification) {
     addLog(`${defenderLabel} fortifications are active (+1 defense die).`);
     defender.fortified = 0;
@@ -3101,14 +6580,14 @@ function resolveBattle(attackerName, defenderName, committedArmies = 1, committe
 
   let captured = false;
   if (defenderRemaining <= 0) {
-    defender.owner = "player";
+    defender.owner = owner;
     defender.fortified = 0;
     const availableToMove = Math.max(1, attacker.armies - 1);
     const desiredTransfer = Math.max(1, attackerRemaining);
     const transfer = Math.min(desiredTransfer, availableToMove);
     attacker.armies -= transfer;
     defender.armies = transfer;
-    addLog(`Player captured ${defenderLabel} and moved ${transfer} armies.`);
+    addLog(`${ownerName(owner)} captured ${defenderLabel} and moved ${transfer} armies.`);
     const survivingShips = Math.max(0, shipCommit - shipsLost);
     if (survivingShips > 0) {
       const movedShips = movePlayerShips(attackerName, defenderName, survivingShips);
@@ -3141,28 +6620,29 @@ function resolveBattle(attackerName, defenderName, committedArmies = 1, committe
 }
 
 async function executePlayerAttack() {
-  if (!state.selection.from || !state.selection.to || state.animating || state.turn !== "player" || state.phase !== "attack") {
+  if (!state.selection.from || !state.selection.to || state.animating || !isLocalTurnOwner() || state.phase !== "attack") {
     return;
   }
+  const owner = localHumanOwner();
   const from = state.selection.from;
   const to = state.selection.to;
   const toOwner = state.territories[to]?.owner;
-  const force = toOwner === "player"
+  const force = toOwner === owner
     ? clampNumber(state.attackForce, 0, maxTransferArmiesFor(from))
     : clampNumber(state.attackForce, 1, maxAttackForceFor(from));
   const ships = Math.max(0, Math.min(state.attackShips, maxShipForceFor(from, to)));
-  if (toOwner === "player" && force < 1 && ships < 1) {
+  if (toOwner === owner && force < 1 && ships < 1) {
     addLog("Select armies or ships before moving.");
     playSound("invalid");
     render();
     return;
   }
   state.animating = true;
-  showMovementCue(from, to, "player", `${force}A/${ships}S`);
+  showMovementCue(from, to, owner, `${force}A/${ships}S`);
   playSound(ships > 0 ? "ship-move" : "land-move");
   render();
   await sleep(420);
-  const result = toOwner === "player"
+  const result = toOwner === owner
     ? resolveFriendlyTransfer(from, to, force, ships)
     : resolveBattle(from, to, force, ships);
   await sleep(240);
@@ -3187,7 +6667,10 @@ function candidateAttacks(owner) {
     .filter(([, t]) => t.owner === owner && t.armies > 1)
     .flatMap(([name, t]) =>
       TERRITORIES[name]
-        .filter((neighbor) => state.territories[neighbor].owner !== owner)
+        .filter((neighbor) =>
+          state.territories[neighbor].owner !== owner &&
+          isLandRouteAvailable(name, neighbor)
+        )
         .map((neighbor) => ({
           from: name,
           to: neighbor,
@@ -3197,11 +6680,13 @@ function candidateAttacks(owner) {
     .sort((a, b) => b.strength - a.strength);
 }
 
-function resolveAIAttack(owner, from, to, committedArmies, committedShips) {
+function resolveAIAttack(owner, from, to, committedArmies, committedShips, options = {}) {
   const attacker = state.territories[from];
   const defender = state.territories[to];
   const attackerLabel = territoryLabel(from);
   const defenderLabel = territoryLabel(to);
+  const showOutcome = options.showOutcome !== false;
+  const requireOutcomeAck = options.requireOutcomeAck === true;
   const maxCommit = Math.max(1, attacker.armies - 1);
   const commit = Math.max(1, Math.min(committedArmies, maxCommit));
   const fleet = state.aiShips[owner] || 0;
@@ -3229,8 +6714,9 @@ function resolveAIAttack(owner, from, to, committedArmies, committedShips) {
   }
 
   let captured = false;
+  let summaryLine = `${ownerName(owner)} failed at ${defenderLabel}.`;
   if (defenderRemaining <= 0) {
-    const displacedPlayerShips = defender.owner === "player" ? playerShipsAt(to) : 0;
+    const displacedPlayerShips = isNetworkHumanOwner(defender.owner) ? playerShipsAt(to) : 0;
     defender.owner = owner;
     defender.fortified = 0;
     const availableToMove = Math.max(1, attacker.armies - 1);
@@ -3242,15 +6728,16 @@ function resolveAIAttack(owner, from, to, committedArmies, committedShips) {
       state.ships = Math.max(0, state.ships - displacedPlayerShips);
       addLog(`${displacedPlayerShips} player ships were lost with ${defenderLabel}.`);
     }
-    addLog(`${ownerName(owner)} captured ${defenderLabel}.`);
-    showBattleOutcome(`${ownerName(owner)} captured ${defenderLabel}.`, true, true);
+    summaryLine = `${ownerName(owner)} captured ${defenderLabel}.`;
+    addLog(summaryLine);
+    if (showOutcome) showBattleOutcome(summaryLine, true, requireOutcomeAck);
     captured = true;
     playSound("attack-success");
   } else {
-    showBattleOutcome(`${ownerName(owner)} failed at ${defenderLabel}.`, false, true);
+    if (showOutcome) showBattleOutcome(summaryLine, false, requireOutcomeAck);
     playSound("attack-fail");
   }
-  return { captured };
+  return { captured, summaryLine };
 }
 
 async function runAITurn() {
@@ -3258,6 +6745,8 @@ async function runAITurn() {
 
   clearBattleOutcome(true);
   clearMovementCue();
+  const aiAttackThreshold = setupDifficultyById(state.setupOptions.difficulty).aiAttackThreshold;
+  const aiActionSummary = [];
   state.animating = true;
   checkGameOver();
   if (state.gameOver) {
@@ -3267,6 +6756,7 @@ async function runAITurn() {
   }
   for (const aiOwner of AI_OWNERS) {
     if (state.gameOver) break;
+    if (isNetworkMode() && isNetworkHumanOwner(aiOwner)) continue;
     if (territoryCount(aiOwner) < 1) continue;
 
     state.turn = aiOwner;
@@ -3274,6 +6764,7 @@ async function runAITurn() {
     state.reinforcementsLeft = reinforcementFor(aiOwner);
     state.selection = { from: null, to: null };
     state.forceMenuHidden = false;
+    state.economyPanelOpen = false;
     playSound("turn");
     render();
     await sleep(260);
@@ -3289,13 +6780,14 @@ async function runAITurn() {
       state.territories[pick].armies += 1;
     }
     addLog(`${ownerName(aiOwner)} reinforces ${aiReinforcements} armies.`);
+    aiActionSummary.push(`${ownerName(aiOwner)} reinforced ${aiReinforcements} armies.`);
     state.reinforcementsLeft = 0;
     state.phase = "attack";
     render();
     await sleep(300);
 
     for (let i = 0; i < 3; i += 1) {
-      const options = candidateAttacks(aiOwner).filter((o) => o.strength >= -3);
+      const options = candidateAttacks(aiOwner).filter((o) => o.strength >= aiAttackThreshold);
       if (!options.length) break;
 
       const preferred = options.slice(0, Math.min(3, options.length));
@@ -3312,10 +6804,11 @@ async function runAITurn() {
       render();
       await sleep(380);
 
-      resolveAIAttack(aiOwner, from, to, aiForce, aiShips);
-      if (state.outcomeAckRequired) {
-        render();
-        await waitForBattleOutcomeAcknowledge();
+      const attackResult = resolveAIAttack(aiOwner, from, to, aiForce, aiShips, {
+        showOutcome: false
+      });
+      if (attackResult?.summaryLine) {
+        aiActionSummary.push(attackResult.summaryLine);
       }
       checkGameOver();
       render();
@@ -3336,40 +6829,116 @@ async function runAITurn() {
 
   clearMovementCue();
   advanceCalendar();
-  state.turn = "player";
+  const nextOwner = isNetworkMode() ? firstNetworkHumanOwner() : "player";
+  state.turn = nextOwner;
   state.phase = "reinforce";
-  state.reinforcementsLeft = reinforcementFor("player");
+  state.reinforcementsLeft = reinforcementFor(nextOwner);
   state.selection = { from: null, to: null };
   state.attackForce = 1;
   state.attackShips = 0;
   state.forceMenuHidden = false;
+  state.economyPanelOpen = false;
+  syncHomeBaseForTurnOwner();
   applyAnnualIncomeIfNeeded();
   autoDeployPlayerReinforcementsIfNeeded();
-  addLog("Player season begins.");
-  playSound("turn");
+  addLog(`${ownerName(nextOwner)} turn begins. ${currentTurnActionInstruction()}`);
+  playSound(nextOwner === localHumanOwner() ? "ding" : "turn");
+  state.animating = false;
+  render();
+
+  if (aiActionSummary.length > 0) {
+    const headline = aiActionSummary.slice(0, 5);
+    const overflow = Math.max(0, aiActionSummary.length - headline.length);
+    const summaryText = overflow > 0
+      ? `Rival turn summary: ${headline.join(" ")} +${overflow} more actions.`
+      : `Rival turn summary: ${headline.join(" ")}`;
+    showBattleOutcome(summaryText, true, true);
+    render();
+    await waitForBattleOutcomeAcknowledge();
+  }
+}
+
+function beginNextPlayerSeason(nextOwner = "player", options = {}) {
+  const advanceSeason = options.advanceSeason !== false;
+  clearMovementCue();
+  if (advanceSeason) {
+    advanceCalendar();
+  }
+  state.turn = nextOwner;
+  state.phase = "reinforce";
+  state.reinforcementsLeft = reinforcementFor(nextOwner);
+  state.selection = { from: null, to: null };
+  state.attackForce = 1;
+  state.attackShips = 0;
+  state.forceMenuHidden = false;
+  state.economyPanelOpen = false;
+  syncHomeBaseForTurnOwner();
+  if (advanceSeason) {
+    applyAnnualIncomeIfNeeded();
+  }
+  autoDeployPlayerReinforcementsIfNeeded();
+  addLog(`${ownerName(nextOwner)} turn begins. ${currentTurnActionInstruction()}`);
+  playSound(nextOwner === localHumanOwner() ? "ding" : "turn");
   state.animating = false;
   render();
 }
 
 function startAttackPhase() {
-  if (state.setupOpen || state.turn !== "player" || state.phase !== "reinforce" || state.reinforcementsLeft > 0 || state.animating) return;
+  if (state.setupOpen || !isLocalTurnOwner() || state.phase !== "reinforce" || state.reinforcementsLeft > 0 || state.animating || isNetworkInputLocked()) return;
   state.phase = "attack";
   state.selection = { from: null, to: null };
   state.attackShips = 0;
   state.forceMenuHidden = false;
-  addLog("Player offensive phase started.");
+  state.economyPanelOpen = false;
+  addLog(`${ownerName(localHumanOwner())} offensive phase started.`);
   playSound("select");
   render();
 }
 
 function endPlayerTurn() {
-  if (state.setupOpen || state.turn !== "player" || state.gameOver || state.animating) return;
-  void runAITurn();
+  if (state.setupOpen || !isLocalTurnOwner() || state.gameOver || state.animating || isNetworkInputLocked()) return;
+  void (async () => {
+    if (isNetworkMode()) {
+      const lastHumanTurn = isLastNetworkHumanTurn();
+      if (state.multiplayer.network.aiEnabled && lastHumanTurn) {
+        await runAITurn();
+      } else if (!state.multiplayer.network.aiEnabled && lastHumanTurn) {
+        beginNextPlayerSeason(firstNetworkHumanOwner(), { advanceSeason: true });
+      } else {
+        beginNextPlayerSeason(nextNetworkHumanOwner(), { advanceSeason: false });
+      }
+    } else {
+      await runAITurn();
+    }
+    if (isPassPlayMode()) {
+      const count = multiplayerCommanderCount();
+      state.multiplayer.commanderIndex = (state.multiplayer.commanderIndex + 1) % count;
+      const nextCommander = currentCommanderNumber();
+      addLog(`Pass device to Commander ${nextCommander}.`);
+      showBattleOutcome(`Pass device to Commander ${nextCommander}.`, true, true);
+      render();
+      return;
+    }
+    if (isNetworkMode()) {
+      const sent = await sendNetworkHandoff();
+      if (!sent) {
+        showBattleOutcome(state.multiplayer.network.lastError || "LAN handoff failed.", false, false);
+        render();
+        return;
+      }
+      const activePlayer = networkActivePlayer();
+      const activeName = activePlayer ? activePlayer.name : "remote commander";
+      setNetworkWaiting(state.multiplayer.network.activePlayerId !== state.multiplayer.network.playerId);
+      addLog(`Turn handed off to ${activeName}.`);
+      showBattleOutcome(`Turn sent to ${activeName}. Next actions: ${currentTurnActionInstruction()}`, true, false);
+      render();
+    }
+  })();
 }
 
 function updateButtons() {
-  const playerTurn = state.turn === "player";
-  const controlsLocked = state.gameOver || state.animating || state.setupOpen;
+  const playerTurn = isLocalTurnOwner();
+  const controlsLocked = state.gameOver || state.animating || state.setupOpen || isNetworkInputLocked();
   startAttackBtn.disabled = !playerTurn || state.phase !== "reinforce" || state.reinforcementsLeft > 0 || controlsLocked;
   attackBtn.disabled =
     !playerTurn ||
@@ -3382,7 +6951,7 @@ function updateButtons() {
 
 function updateMapVisuals() {
   const openingSeason =
-    state.turn === "player" &&
+    isLocalTurnOwner() &&
     state.phase === "reinforce" &&
     state.year === 1850 &&
     state.seasonIndex === 0;
@@ -3426,12 +6995,21 @@ function updateMapVisuals() {
 
 function statusMessage() {
   if (state.setupOpen) {
-    return "Choose your starting country to begin the campaign.";
+    if (state.setupStep === "create") {
+      return "Create a game. Choose solo or a multiplayer mode.";
+    }
+    return "Set map, rules, difficulty, and starting country. Press Start when ready.";
   }
   if (state.gameOver) {
-    return territoryCount("player") > 0
+    return territoryCount(localHumanOwner()) > 0
       ? "Victory. The rival empire has fallen."
       : "Defeat. Your empire has fallen.";
+  }
+  if (isNetworkInputLocked()) {
+    const activePlayer = networkActivePlayer();
+    const activeName = activePlayer ? activePlayer.name : "another commander";
+    const roomLabel = state.multiplayer.network.room || state.networkSetup.room || MULTIPLAYER_DEFAULT_ROOM;
+    return `Waiting for ${activeName} in LAN lobby "${roomLabel}". They should: ${currentTurnActionInstruction()}`;
   }
   if (movementCue) {
     const forceText = movementCue.force ? ` with force ${movementCue.force}` : "";
@@ -3465,7 +7043,7 @@ function statusMessage() {
   if (!state.selection.from) return "Next: Tap one of your territories with armies or docked ships to start.";
   if (state.selection.from && !state.selection.to) return "Next: Tap your region to transfer, or an enemy region to attack (coastal ships can travel farther).";
   if (state.selection.from && state.selection.to) {
-    const friendlyTransfer = state.territories[state.selection.to]?.owner === "player";
+    const friendlyTransfer = state.territories[state.selection.to]?.owner === localHumanOwner();
     if (friendlyTransfer) {
       const canUseShips = canUseShipsOnRoute(state.selection.from, state.selection.to);
       const shipsText = canUseShips
@@ -3492,16 +7070,22 @@ function render() {
   const fromName = state.selection.from ? territoryLabel(state.selection.from) : "";
   const toName = state.selection.to ? territoryLabel(state.selection.to) : "";
   const friendlyTargetSelected =
-    Boolean(state.selection.to) && state.territories[state.selection.to]?.owner === "player";
+    Boolean(state.selection.to) && state.territories[state.selection.to]?.owner === localHumanOwner();
 
-  turnLabel.textContent = ownerName(state.turn);
+  turnLabel.textContent = isLocalTurnOwner() ? currentCommanderLabel() : ownerName(state.turn);
   phaseLabel.textContent = state.phase[0].toUpperCase() + state.phase.slice(1);
   reinforcementLabel.textContent = String(state.reinforcementsLeft);
   selectionLabel.textContent = state.selection.from
     ? `${fromName}${state.selection.to ? ` -> ${toName}` : ""}`
     : "None";
   dateLabel.textContent = `${SEASONS[state.seasonIndex]} ${state.year}`;
-  turnPill.textContent = `${ownerName(state.turn)} Regency`;
+  if (isLocalTurnOwner()) {
+    turnPill.textContent = `${currentCommanderLabel()} Regency`;
+  } else {
+    turnPill.textContent = `${ownerName(state.turn)} Regency`;
+  }
+  updateMobileTopMenuUI();
+  syncDisplayedTreasury();
   treasuryLabel.textContent = state.treasury.toLocaleString();
 
   const message = statusMessage();
@@ -3529,10 +7113,28 @@ function buildMap() {
   defs.appendChild(createArrowMarker("arrowhead-aim", "#ffe6a5"));
   defs.appendChild(createArrowMarker("arrowhead-player", "#d14b34"));
   defs.appendChild(createArrowMarker("arrowhead-ai", "#5466d2"));
+  const mountainClipIds = new Map();
+  MOUNTAIN_RANGES.forEach((range) => {
+    if (!range.territory || mountainClipIds.has(range.territory)) return;
+    const layout = MAP_LAYOUT[range.territory];
+    if (!layout) return;
+    const clipId = `mountain-clip-${range.territory.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+    const territoryClip = svgEl("clipPath", {
+      id: clipId,
+      clipPathUnits: "userSpaceOnUse"
+    });
+    territoryClip.appendChild(svgEl("polygon", { points: layout.points }));
+    defs.appendChild(territoryClip);
+    mountainClipIds.set(range.territory, clipId);
+  });
 
   const waterLayer = svgEl("g", { "aria-hidden": "true" });
   const routesLayer = svgEl("g", { "aria-hidden": "true" });
   const territoryLayer = svgEl("g");
+  const mountainLayer = svgEl("g", {
+    class: "mountain-layer",
+    "aria-hidden": "true"
+  });
   const territoryTokenLayer = svgEl("g", { class: "territory-token-layer", "aria-hidden": "true" });
   const territoryLabelLayer = svgEl("g", { class: "territory-label-layer", "aria-hidden": "true" });
   const overlayLayer = svgEl("g", { "aria-hidden": "true" });
@@ -3578,9 +7180,10 @@ function buildMap() {
   const seen = new Set();
   Object.entries(TERRITORIES).forEach(([name, neighbors]) => {
     neighbors.forEach((neighbor) => {
-      const key = [name, neighbor].sort().join("|");
+      const key = routeKey(name, neighbor);
       if (seen.has(key)) return;
       seen.add(key);
+      if (MOUNTAIN_BLOCKED_ROUTE_KEYS.has(key)) return;
       const from = MAP_LAYOUT[name].token;
       const to = MAP_LAYOUT[neighbor].token;
       const routeLine = svgEl("line", {
@@ -3593,6 +7196,43 @@ function buildMap() {
       routesLayer.appendChild(routeLine);
       routeEls.push(routeLine);
     });
+  });
+
+  MOUNTAIN_RANGES.forEach((range) => {
+    const clipId = mountainClipIds.get(range.territory);
+    if (!clipId) return;
+    const band = buildMountainBandPath(range);
+    const peaks = buildMountainPeakPath(range);
+    if (!band) return;
+    const bandWidth = Number.isFinite(range.bandWidth) ? range.bandWidth : 7.2;
+    const shadowWidth = Math.max(1.5, bandWidth * 1.02);
+    const glyphStroke = Math.max(0.5, bandWidth * 0.085);
+
+    const rangeGroup = svgEl("g", {
+      class: `mountain-range mountain-range-${range.id}`,
+      "clip-path": `url(#${clipId})`
+    });
+    const shadowPath = svgEl("path", {
+      class: "mountain-shadow",
+      d: band,
+      "stroke-width": shadowWidth.toFixed(2)
+    });
+    const bandPath = svgEl("path", {
+      class: "mountain-band",
+      d: band,
+      "stroke-width": bandWidth.toFixed(2)
+    });
+    rangeGroup.appendChild(shadowPath);
+    rangeGroup.appendChild(bandPath);
+    if (peaks) {
+      const peakPath = svgEl("path", {
+        class: "mountain-glyphs",
+        d: peaks,
+        "stroke-width": glyphStroke.toFixed(2)
+      });
+      rangeGroup.appendChild(peakPath);
+    }
+    mountainLayer.appendChild(rangeGroup);
   });
 
   const labelPositions = {};
@@ -3674,6 +7314,7 @@ function buildMap() {
       cy: layout.token.y + 1,
       r: shadowRadius
     });
+    if (!hasCapitalIcon(name)) pinShadow.style.display = "none";
 
     const armyRing = svgEl("circle", {
       class: "army-ring",
@@ -3681,6 +7322,7 @@ function buildMap() {
       cy: layout.token.y,
       r: ringRadius
     });
+    if (!hasCapitalIcon(name)) armyRing.style.display = "none";
 
     const armyFill = svgEl("circle", {
       class: "army-fill",
@@ -3688,6 +7330,7 @@ function buildMap() {
       cy: layout.token.y,
       r: pinFillRadius
     });
+    if (!hasCapitalIcon(name)) armyFill.style.display = "none";
 
     const statsPlate = svgEl("rect", {
       class: "stats-plate",
@@ -3713,6 +7356,7 @@ function buildMap() {
       y: layout.token.y
     });
     troopIcon.textContent = "♛";
+    if (!hasCapitalIcon(name)) troopIcon.style.display = "none";
 
     const army = svgEl("text", {
       class: "army-count",
@@ -3786,6 +7430,7 @@ function buildMap() {
   worldMapEl.appendChild(waterLayer);
   worldMapEl.appendChild(routesLayer);
   worldMapEl.appendChild(territoryLayer);
+  worldMapEl.appendChild(mountainLayer);
   worldMapEl.appendChild(territoryTokenLayer);
   worldMapEl.appendChild(territoryLabelLayer);
   worldMapEl.appendChild(overlayLayer);
@@ -3797,6 +7442,7 @@ function initGame(playerCountryId = state.playerCountryId) {
   resetMapCamera();
 
   const names = Object.keys(TERRITORIES);
+  const difficultyProfile = setupDifficultyById(state.setupOptions.difficulty);
   const { playerCountry, aiStarts } = buildStartingAssignments(playerCountryId);
   const playerStart = playerCountry.territory;
   state.territories = {};
@@ -3807,9 +7453,15 @@ function initGame(playerCountryId = state.playerCountryId) {
       fortified: 0
     };
   });
-  state.territories[playerStart] = { owner: "player", armies: 12, fortified: 0 };
+  state.territories[playerStart] = { owner: "player", armies: difficultyProfile.playerStartArmies, fortified: 0 };
   aiStarts.forEach(({ owner, territory }) => {
-    state.territories[territory] = { owner, armies: 12, fortified: 0 };
+    state.territories[territory] = { owner, armies: difficultyProfile.aiStartArmies, fortified: 0 };
+  });
+  const claimedCountryIds = new Set([playerCountry.id, ...aiStarts.map(({ country }) => country.id)]);
+  const reserveCapitals = STARTING_COUNTRY_POOL.filter((country) => !claimedCountryIds.has(country.id));
+  reserveCapitals.forEach((country, index) => {
+    const owner = AI_OWNERS[index % AI_OWNERS.length];
+    state.territories[country.territory] = { owner, armies: difficultyProfile.reserveStartArmies, fortified: 0 };
   });
 
   state.turn = "player";
@@ -3824,26 +7476,26 @@ function initGame(playerCountryId = state.playerCountryId) {
   state.ships = 8;
   state.playerShipLocations = {};
   state.playerShipLocations[playerStart] = state.ships;
-  state.aiShips = {
-    ai1: 4 + Math.floor(Math.random() * 3),
-    ai2: 4 + Math.floor(Math.random() * 3),
-    ai3: 4 + Math.floor(Math.random() * 3),
-    ai4: 4 + Math.floor(Math.random() * 3)
-  };
+  state.aiShips = AI_OWNERS.reduce((acc, owner) => {
+    acc[owner] = 4 + Math.floor(Math.random() * 3);
+    return acc;
+  }, {});
   state.gameOver = false;
   state.seasonIndex = 0;
   state.year = 1850;
   state.lastIncomeYear = 1850;
-  state.treasury = 5000;
+  state.treasury = STARTING_TREASURY;
+  state.treasuryByOwner = { player: STARTING_TREASURY };
   state.firstRound = true;
   state.animating = false;
   state.forceMenuHidden = false;
+  state.economyPanelOpen = false;
   state.outcomeAckRequired = false;
   state.outcomeAckWaiters = [];
   attackOddsCacheKey = "";
   attackOddsCacheValue = null;
 
-  logEl.innerHTML = "";
+  if (logEl) logEl.innerHTML = "";
   clearMovementCue();
   clearBattleOutcome(true);
   updateSoundToggle();
@@ -3855,13 +7507,20 @@ function initGame(playerCountryId = state.playerCountryId) {
   aiStarts.forEach(({ owner, country, territory }) => {
     addLog(`${ownerName(owner)} starts as ${country.name} in ${territoryLabel(territory)}.`);
   });
+  if (reserveCapitals.length > 0) {
+    const reserveSummary = reserveCapitals
+      .map((country, index) => `${territoryLabel(country.territory)} (${ownerName(AI_OWNERS[index % AI_OWNERS.length])})`)
+      .join(", ");
+    addLog(`Additional capitals occupied at start: ${reserveSummary}.`);
+  }
   addLog("All unowned territories begin with 8-20 neutral armies.");
+  addLog("Mountain ranges block direct land travel on key borders; use coastal ship routes where available.");
   addLog("Budget rule: spend treasury only during Spring reinforcement; new revenue arrives each new year.");
   addLog("Attack phase: tap your own region to transfer or enemy to attack; coastal routes can extend range when ships are committed.");
   if (isMobileLikeUI()) {
     addLog("Map controls: drag and pinch to move and zoom.");
   } else {
-    addLog("Map controls: drag to move, pinch or +/- to zoom, RESET to recenter.");
+    addLog("Map controls: drag to move, pinch or +/- to zoom, and use View My Capital to recenter.");
   }
   addLog("Mobile: use the top Next Step card and bottom shop bar without opening menus.");
   render();
@@ -3873,10 +7532,12 @@ attackBtn.addEventListener("click", () => {
 });
 endTurnBtn.addEventListener("click", endPlayerTurn);
 if (confirmBtn) confirmBtn.addEventListener("click", endPlayerTurn);
-newGameBtn.addEventListener("click", () => {
+function openNewCampaignPicker() {
+  shutdownNetworkSession();
   showCountryPicker(state.playerCountryId);
-});
-soundToggleBtn.addEventListener("click", async () => {
+}
+
+async function handleToggleSound() {
   await unlockAudio();
   audioState.enabled = !audioState.enabled;
   if (audioState.enabled) {
@@ -3886,13 +7547,121 @@ soundToggleBtn.addEventListener("click", async () => {
   }
   updateSoundToggle();
   if (audioState.enabled) playSound("select");
-});
-soundTestBtn.addEventListener("click", async () => {
+}
+
+async function handleSoundTest() {
   await unlockAudio();
   if (audioState.enabled) {
     playSound("test");
   }
+}
+
+if (startScreenBackBtn) {
+  startScreenBackBtn.addEventListener("click", () => {
+    if (state.setupStep === "options") {
+      state.setupStep = "create";
+      playSound("select");
+      renderSetupWizard();
+      render();
+      return;
+    }
+    if (state.multiplayer.network.active) {
+      shutdownNetworkSession();
+    }
+    hideCountryPicker();
+    render();
+  });
+}
+
+if (startScreenNextBtn) {
+  startScreenNextBtn.addEventListener("click", async () => {
+    await unlockAudio();
+    if (state.setupStep === "create") {
+      state.setupStep = "options";
+      playSound("select");
+      renderSetupWizard();
+      render();
+      return;
+    }
+    try {
+      await launchCampaignFromSetup();
+    } catch (error) {
+      const message = error instanceof Error && error.message
+        ? error.message
+        : "Unexpected setup error while starting lobby.";
+      setNetworkSetupError(message, true);
+      renderSetupWizard();
+      render();
+    }
+  });
+}
+
+newGameBtn.addEventListener("click", openNewCampaignPicker);
+soundToggleBtn.addEventListener("click", () => {
+  void handleToggleSound();
 });
+soundTestBtn.addEventListener("click", () => {
+  void handleSoundTest();
+});
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener("click", () => {
+    setMobileTopMenuOpen(true);
+  });
+}
+if (mobileMenuCloseBtn) {
+  mobileMenuCloseBtn.addEventListener("click", () => {
+    setMobileTopMenuOpen(false);
+  });
+}
+if (mobileTopMenuEl) {
+  mobileTopMenuEl.addEventListener("click", (event) => {
+    if (event.target === mobileTopMenuEl) {
+      setMobileTopMenuOpen(false);
+    }
+  });
+}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && mobileTopMenuOpen) {
+    setMobileTopMenuOpen(false);
+  }
+});
+if (mobileMenuHomeBtn) {
+  mobileMenuHomeBtn.addEventListener("click", () => {
+    setMobileTopMenuOpen(false);
+    openNewCampaignPicker();
+  });
+}
+if (mobileMenuSfxBtn) {
+  mobileMenuSfxBtn.addEventListener("click", () => {
+    void handleToggleSound();
+  });
+}
+if (mobileMenuTestBtn) {
+  mobileMenuTestBtn.addEventListener("click", () => {
+    void handleSoundTest();
+  });
+}
+if (mobileMenuSaveBtn) {
+  mobileMenuSaveBtn.addEventListener("click", () => {
+    const result = saveGameToStorage();
+    if (result.ok) {
+      showBattleOutcome("Game saved.", true, false);
+      return;
+    }
+    showBattleOutcome(result.message, false, false);
+  });
+}
+if (mobileMenuLoadBtn) {
+  mobileMenuLoadBtn.addEventListener("click", () => {
+    const result = loadGameFromStorage();
+    if (result.ok) {
+      setMobileTopMenuOpen(false);
+      showBattleOutcome(`Loaded save from ${formatSavedTimestamp(result.savedAt)}.`, true, false);
+      return;
+    }
+    showBattleOutcome(result.message, false, false);
+  });
+}
 if (ordersPanel && closePanelBtn) {
   closePanelBtn.addEventListener("click", () => {
     ordersPanel.dataset.userToggled = "1";
@@ -3903,6 +7672,14 @@ if (ordersPanel && closePanelBtn) {
 if (buyArmiesBtn) buyArmiesBtn.addEventListener("click", buyArmiesBundle);
 if (buyShipsBtn) buyShipsBtn.addEventListener("click", buyShipsBundle);
 if (fortifyBtn) fortifyBtn.addEventListener("click", fortifyTerritory);
+if (economyToggleBtn) {
+  economyToggleBtn.addEventListener("click", () => {
+    if (!canIssueOrders() || !canSpendTreasuryNow()) return;
+    state.economyPanelOpen = !state.economyPanelOpen;
+    playSound("select");
+    render();
+  });
+}
 if (mobileBuyArmiesBtn) mobileBuyArmiesBtn.addEventListener("click", buyArmiesBundle);
 if (mobileBuyShipsBtn) mobileBuyShipsBtn.addEventListener("click", buyShipsBundle);
 if (mobileFortifyBtn) mobileFortifyBtn.addEventListener("click", fortifyTerritory);
@@ -3997,6 +7774,10 @@ if (ordersPanel && closePanelBtn && isMobileLikeUI()) {
   ordersPanel.classList.add("collapsed");
   closePanelBtn.textContent = ">";
 }
+
+window.addEventListener("beforeunload", () => {
+  shutdownNetworkSession();
+});
 
 initGame(state.playerCountryId);
 showCountryPicker(state.playerCountryId);
