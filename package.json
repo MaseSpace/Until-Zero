@@ -1,0 +1,32 @@
+{
+  "name": "until-zero",
+  "version": "1.0.0",
+  "description": "Until Zero Strategy Game",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --mac"
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.untilzero.game",
+    "mac": {
+      "category": "public.app-category.strategy-games",
+      "target": ["dmg"]
+    },
+    "files": [
+      "index.html",
+      "game.js",
+      "styles.css",
+      "lan-server.js",
+      "main.js",
+      "favicon.ico"
+    ]
+  }
+}

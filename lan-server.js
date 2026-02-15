@@ -6,7 +6,7 @@ const { URL } = require("node:url");
 
 const HOST = process.env.HOST || "0.0.0.0";
 const PORT = Number.parseInt(process.env.PORT || "8080", 10);
-const ROOT_DIR = process.cwd();
+const ROOT_DIR = __dirname;
 const STALE_PLAYER_MS = 45_000;
 
 const DEFAULT_SETTINGS = Object.freeze({
@@ -506,7 +506,16 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, HOST, () => {
-  console.log(`Until Zero LAN server running on http://${HOST}:${PORT}`);
-  console.log(`Serving files from: ${ROOT_DIR}`);
-});
+if (require.main === module) {
+  server.listen(PORT, HOST, () => {
+    console.log(`Until Zero LAN server running on http://${HOST}:${PORT}`);
+    console.log(`Serving files from: ${ROOT_DIR}`);
+  });
+}
+
+module.exports = {
+  server,
+  PORT,
+  HOST,
+  ROOT_DIR
+};
